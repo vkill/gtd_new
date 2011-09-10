@@ -1,0 +1,6 @@
+resque_scheduler_test_job:
+  cron: "1 * * * * *"
+  queue: resque_scheduler
+  class: ResqueSchedulerTestJob
+  args:
+

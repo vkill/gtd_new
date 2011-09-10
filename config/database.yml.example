@@ -1,0 +1,18 @@
+common: &common
+  adapter: postgresql
+  encoding: utf8
+  username: postgres
+  password: postgres
+
+development:
+  <<: *common
+  database: gtd_new_development
+
+test:
+  <<: *common
+  database: gtd_new_test
+
+production:
+  <<: *common
+  database: gtd_new_production
+
