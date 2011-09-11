@@ -66,3 +66,10 @@ module GtdNew
   end
 end
 
+
+if Rails.env.development? or Rails.env.test?
+  FactoryGirl.factories.clear
+  FactoryGirl.definition_file_paths << Rails.root.join('spec', 'support', 'factories').to_s
+  FactoryGirl.find_definitions
+end
+

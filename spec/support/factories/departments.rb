@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :department do
-      name "MyString"
-      describtion "MyText"
+      name        { Faker::LoremCN.word }
+      describtion { Faker::LoremCN.paragraph }
     end
 end
+

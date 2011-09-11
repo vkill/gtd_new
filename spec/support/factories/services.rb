@@ -2,10 +2,11 @@
 
 FactoryGirl.define do
   factory :service do
-      name "MyString"
-      describtion "MyText"
-      category "MyString"
-      expired_date_hours 1
-      department nil
+      name                { Faker::LoremCN.word }
+      describtion         { Faker::LoremCN.paragraph }
+      category            { Service.get_category_values.map{|x| x[1]}.sample }
+      expired_date_hours  { rand 168 }
+      association :department
     end
 end
+

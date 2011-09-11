@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110911095923) do
+ActiveRecord::Schema.define(:version => 20110911145807) do
 
   create_table "attachments", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20110911095923) do
     t.text     "describtion"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ancestry"
   end
 
   create_table "evaluations", :force => true do |t|
@@ -70,6 +71,10 @@ ActiveRecord::Schema.define(:version => 20110911095923) do
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "expired_date"
+    t.string   "name"
+    t.datetime "start_at"
+    t.datetime "end_at"
   end
 
   create_table "items", :force => true do |t|
@@ -115,6 +120,7 @@ ActiveRecord::Schema.define(:version => 20110911095923) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "roles_mask",                            :default => 0
+    t.string   "username"
     t.boolean  "superadmin",                            :default => false
     t.string   "name"
     t.string   "gender",                                :default => "male"

@@ -2,18 +2,24 @@
 
 FactoryGirl.define do
   factory :issue do
-      body "MyText"
-      state "MyString"
-      assigner_id 1
-      accepter_id 1
-      assign_remark "MyText"
-      assign_at "2011-09-11 17:27:33"
-      solution "MyText"
-      accept_at "2011-09-11 17:27:33"
-      result "MyText"
-      finish_at "2011-09-11 17:27:33"
-      user nil
-      service nil
-      type "MyString"
-    end
+    body          { Faker::LoremCN.paragraph }
+    association :user
+    association :service
+  end
+
+  factory :business do
+    body          { Faker::LoremCN.paragraph }
+    association :user
+    association :service
+  end
+
+  factory :task do
+    body          { Faker::LoremCN.paragraph }
+    association :user
+    association :service
+    association :assigner
+    association :accepter
+    assign_remark { Faker::LoremCN.paragraph }
+  end
 end
+

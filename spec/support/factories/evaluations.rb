@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :evaluation do
-      category "MyString"
-      star_rating 1
-      evaluationable nil
+      category      { Evaluation.get_category_values.map{|x| x[1]}.sample }
+      star_rating   { (1..5).to_a.sample }
     end
 end
+

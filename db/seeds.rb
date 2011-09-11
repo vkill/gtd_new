@@ -1,7 +1,43 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
-#   Mayor.create(:name => 'Daley', :city => cities.first)
+# encoding: utf-8
+
+DatabaseCleaner.strategy = :truncation
+DatabaseCleaner.clean
+
+FactoryGirl.factories.clear
+FactoryGirl.definition_file_paths << Rails.root.join('spec', 'support', 'factories').to_s
+FactoryGirl.find_definitions
+
+include Seed
+
+p '> Initializing primary departments ...'
+%w(财务处 后勤基建处 计算机工程系 图书信息中心).each do |name|
+  Factory :department, :name => name, :describtion => ''
+end
+p '%s departments were created.' % Department.count
+
+p '> Initializing primary users ...'
+%w(vkill jerry).each do |name|
+  user = Factory :user, :name => name, :email => '%s@gmail.com' % name
+  user.add_role! 'admin'
+end
+p '%s users were created.' % User.count
+
+#p '> Initializing primary services ...'
+#p '%s services were created.' % Service.count
+
+
+p '> Generating test data'
+_5_departments if Department.any?
+Department.find_each do |department|
+  services = _3_services :department => department
+  users = _5_users :department => department
+  users.each do |user|
+    posts = _3_posts :user => user
+    softwares = _3_softwares :user => user
+    softwares.each do |software|
+      _1_attachment :attachmentable => software
+    end
+  end
+end
+p 'done.'
+
