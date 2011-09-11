@@ -33,6 +33,7 @@ gem "meta_where", "~> 1.0.4"  #rails 3.1 use 'squeel'
 gem 'symbolize', '~> 3.3.0pre'
 gem 'aasm', '~> 2.2.0'
 gem 'ancestry', '~> 1.2.4'
+gem 'validates_timeliness', '~> 3.0.6', :git => "https://github.com/adzap/validates_timeliness.git"
 
 #controller
 gem 'inherited_resources', '~> 1.2.2'
@@ -58,6 +59,10 @@ gem 'nokogiri', '~> 1.4.4'
 gem 'spreadsheet', '~> 0.6.5.4'
 gem 'google-spreadsheet-ruby', '~> 0.1.2', :require => 'google_spreadsheet'
 gem 'roo', '~> 1.9.3'
+
+#calendar
+gem 'event-calendar', "~> 2.3.3", :git => "https://github.com/elevation/event_calendar.git",
+                     :require => 'event_calendar'
 
 #other
 gem "hz2py", "~> 0.0.4"

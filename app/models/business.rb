@@ -1,0 +1,3 @@
+class Business < Issue
+end
+
