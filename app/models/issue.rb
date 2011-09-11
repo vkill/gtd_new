@@ -1,5 +1,7 @@
 class Issue < ActiveRecord::Base
 
+  has_event_calendar
+
   belongs_to :user
   belongs_to :assigner, :foreign_key => :assigner_id, :class_name => "User"
   belongs_to :accepter, :foreign_key => :accepter_id, :class_name => "User"
@@ -8,5 +10,6 @@ class Issue < ActiveRecord::Base
   has_one :feedback
 
   symbolize :state, :in => [ :pending, :assigned, :accepted, :finished, :expired], :scopes => true, :methods => true
+
 end
 

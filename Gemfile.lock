@@ -12,6 +12,12 @@ GIT
     show_for (0.2.4)
 
 GIT
+  remote: https://github.com/EmmanuelOga/ffaker.git
+  revision: f94bcf502fcdd4ba5f29155a3df1811af2663950
+  specs:
+    ffaker (1.8.1)
+
+GIT
   remote: https://github.com/Macrow/rails_kindeditor.git
   revision: 66d14df8d45d98507357e78c5cbcbc739e95ee00
   specs:
@@ -114,7 +120,6 @@ GEM
       railties (>= 3.0.0)
     factory_seed (0.1.1)
       factory_girl
-    ffaker (1.4.0)
     ffi (1.0.9)
     foreman (0.20.0)
       term-ansicolor (~> 1.0.5)
@@ -318,7 +323,7 @@ DEPENDENCIES
   exception_notification (~> 2.5.2)!
   factory_girl_rails (~> 1.2.0)
   factory_seed (~> 0.1.1)
-  ffaker (~> 1.4.0)
+  ffaker (~> 1.8.1)!
   foreman (~> 0.20.0)
   google-spreadsheet-ruby (~> 0.1.2)
   guard-rspec (~> 0.4.4)

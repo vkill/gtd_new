@@ -78,7 +78,7 @@ group :development, :test do
   gem 'database_cleaner', '~> 0.6.7'
   gem "guard-rspec", "~> 0.4.4"
 
-  gem 'ffaker', '~> 1.4.0'
+  gem 'ffaker', '~> 1.8.1', :git => "https://github.com/EmmanuelOga/ffaker.git"
   gem 'timecop', '~> 0.3.5'
 end
 
