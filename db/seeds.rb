@@ -1,12 +1,6 @@
 # encoding: utf-8
-
 DatabaseCleaner.strategy = :truncation
 DatabaseCleaner.clean
-
-FactoryGirl.factories.clear
-FactoryGirl.definition_file_paths << Rails.root.join('spec', 'support', 'factories').to_s
-FactoryGirl.find_definitions
-
 include Seed
 
 p '> Initializing primary departments ...'

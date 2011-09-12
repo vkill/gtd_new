@@ -1,12 +1,6 @@
 # Read about factories at http://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :issue do
-    body          { Faker::LoremCN.paragraph }
-    association :user
-    association :service
-  end
-
   factory :business do
     body          { Faker::LoremCN.paragraph }
     association :user
@@ -17,8 +11,9 @@ FactoryGirl.define do
     body          { Faker::LoremCN.paragraph }
     association :user
     association :service
-    association :assigner
-    association :accepter
+    state         { :assigned }
+    association :assigner, :factory => :user
+    association :accepter, :factory => :user
     assign_remark { Faker::LoremCN.paragraph }
   end
 end

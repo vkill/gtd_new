@@ -8,3 +8,20 @@ class Feedback < ActiveRecord::Base
 
 end
 
+
+# == Schema Information
+#
+# Table name: feedbacks
+#
+#  id         :integer         not null, primary key
+#  category   :string(255)     default("bad")
+#  body       :text
+#  state      :string(255)     default("pending")
+#  result     :text
+#  handler_id :integer
+#  handle_at  :datetime
+#  issue_id   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

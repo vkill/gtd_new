@@ -36,3 +36,5 @@ RSpec.configure do |config|
   end
 end
 
+include Seed
+

@@ -45,7 +45,7 @@ module GtdNew
     config.generators do |g|
       g.template_engine :haml
       g.test_framework  :rspec, :fixture => true, :views => false
-      g.fixture_replacement :factory_girl, :dir => 'spec/support/factories'
+      g.fixture_replacement :factory_girl, :dir => 'factories'
     end
 
 
@@ -64,12 +64,5 @@ module GtdNew
                     :sender_address => %{"137518792" <137518792@qq.com>},
                     :exception_recipients => %w{122755990@qq.com}
   end
-end
-
-
-if Rails.env.development? or Rails.env.test?
-  FactoryGirl.factories.clear
-  FactoryGirl.definition_file_paths << Rails.root.join('spec', 'support', 'factories').to_s
-  FactoryGirl.find_definitions
 end
 
