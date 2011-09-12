@@ -9,7 +9,7 @@ FactoryGirl.define do
 
   factory :task do
     body          { Faker::LoremCN.paragraph }
-    association :user
+    association :user, :factory => :user
     association :service
     state         { :assigned }
     association :assigner, :factory => :user

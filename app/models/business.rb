@@ -1,4 +1,7 @@
 class Business < Issue
+
+  validates_datetime :assign_at, :before => :expired_date, :if => Proc.new{|record| record.assigned?}
+
 end
 
 
