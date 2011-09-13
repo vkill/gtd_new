@@ -171,11 +171,11 @@ describe Issue do
     end
     describe 'after create' do
       it "should build expired_date" do
-        subject.expired_date.should eq(subject.created_at + subject.expired_date_hours)
+        subject.expired_date.to_s.should eq((subject.created_at + subject.expired_date_hours.hours).to_s)
       end
 
       it "should build assign_at if assigned?" do
-        subject.assign_at.should be_kind_of(ActiveSupport::TimeWithZone)
+        subject.assign_at.to_s.should eq(subject.created_at.to_s)
       end
     end
 
