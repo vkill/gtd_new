@@ -4,6 +4,7 @@ class Issue < ActiveRecord::Base
 
 
   belongs_to :user
+  belongs_to :editor, :foreign_key => :user_id, :class_name => "User"
   belongs_to :assigner, :foreign_key => :assigner_id, :class_name => "User"
   belongs_to :accepter, :foreign_key => :accepter_id, :class_name => "User"
   belongs_to :service
@@ -11,8 +12,13 @@ class Issue < ActiveRecord::Base
   has_one :feedback
 
 
-  delegate :email, :name, :to => :user, :prefix => true
-  delegate :name, :expired_date_hours, :to => :service, :prefix => true
+  delegate :email, :name, :to => :editor, :prefix => true, :allow_nil => true
+  delegate :email, :name, :to => :assigner, :prefix => true, :allow_nil => true
+  delegate :email, :name, :to => :accepter, :prefix => true, :allow_nil => true
+  delegate :name, :to => "editor.try(:department)", :prefix => :editor_department, :allow_nil => true
+  delegate :name, :to => :service, :prefix => true
+  delegate :expired_date_hours, :to => :service
+  delegate :name, :to => "service.try(:department)", :prefix => :service_department, :allow_nil => true
 
 
   symbolize :state, :in => [ :pending, :assigned, :accepted, :finished, :expired], :scopes => true, :methods => true
@@ -90,7 +96,7 @@ class Issue < ActiveRecord::Base
     end
 
     def build_expired_date
-      self.expired_date = Time.now + self.service_expired_date_hours.hours
+      self.expired_date = Time.zone.now + self.expired_date_hours.hours
     end
 end
 

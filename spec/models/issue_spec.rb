@@ -40,7 +40,7 @@ describe Issue do
       task.state.should eq(:assigned)
     end
 
-    it "should build build_expired_date when enter pending!" do
+    it "should build expired_date when enter pending!" do
       old_expired_date = business.expired_date
       Timecop.freeze(business.expired_date + 1.hours) do
         business.expired!
@@ -158,22 +158,27 @@ describe Issue do
   end
 
   context "callbacks" do
-    describe 'create a task' do
-      before {
-        subject.type = 'Task'
-        subject.service = service
-        subject.state = :assigned
-        subject.save! :validate => false
-      }
-
-      it "should build expired_date" do
+    before {
+      subject.type = 'Task'
+      subject.service = service
+      subject.state = :assigned
+      subject.save! :validate => false
+    }
+    describe 'before create' do
+      it "should build user" do
         subject.expired_date.should be_true
+      end
+    end
+    describe 'after create' do
+      it "should build expired_date" do
+        subject.expired_date.should eq(subject.created_at + subject.expired_date_hours)
       end
 
       it "should build assign_at if assigned?" do
         subject.assign_at.should be_kind_of(ActiveSupport::TimeWithZone)
       end
     end
+
   end
 
 
