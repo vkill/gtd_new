@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110911145807) do
+ActiveRecord::Schema.define(:version => 20110913094402) do
 
   create_table "attachments", :force => true do |t|
     t.string   "name"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20110911145807) do
 
   create_table "issues", :force => true do |t|
     t.text     "body"
-    t.string   "state",         :default => "pending"
+    t.string   "state",                :default => "pending"
     t.integer  "assigner_id"
     t.integer  "accepter_id"
     t.text     "assign_remark"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20110911145807) do
     t.string   "name"
     t.datetime "start_at"
     t.datetime "end_at"
+    t.string   "state_before_expired"
   end
 
   create_table "items", :force => true do |t|

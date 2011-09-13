@@ -5,52 +5,6 @@ GIT
   specs:
     annotate (2.4.0)
 
-GIT
-  remote: http://github.com/plataformatec/show_for.git
-  revision: c4c84411accad86dba56dffa2eab9d4ff8095d45
-  specs:
-    show_for (0.2.4)
-
-GIT
-  remote: https://github.com/EmmanuelOga/ffaker.git
-  revision: f94bcf502fcdd4ba5f29155a3df1811af2663950
-  specs:
-    ffaker (1.8.1)
-
-GIT
-  remote: https://github.com/Macrow/rails_kindeditor.git
-  revision: 66d14df8d45d98507357e78c5cbcbc739e95ee00
-  specs:
-    rails_kindeditor (0.1.0)
-      carrierwave
-
-GIT
-  remote: https://github.com/adzap/validates_timeliness.git
-  revision: 7886132114253e7fe81abf1a4b42dd6d91d9256e
-  specs:
-    validates_timeliness (3.0.6)
-      timeliness (~> 0.3.3)
-
-GIT
-  remote: https://github.com/elevation/event_calendar.git
-  revision: 131d6dee147f4d515daa77d4acc7fa77f369bfcc
-  specs:
-    event-calendar (2.3.3)
-
-GIT
-  remote: https://github.com/jnicklas/carrierwave.git
-  revision: f82d9112c4c29deb13085fa27e9eba686445235c
-  specs:
-    carrierwave (0.5.7)
-      activesupport (~> 3.0)
-
-GIT
-  remote: https://github.com/smartinez87/exception_notification.git
-  revision: 1c6ff2b75e17c1c73ee645fc2511059e115dc0ea
-  specs:
-    exception_notification (2.5.2)
-      actionmailer (>= 3.0.4)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -97,6 +51,8 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    carrierwave (0.5.7)
+      activesupport (~> 3.0)
     childprocess (0.2.2)
       ffi (~> 1.0.6)
     client_side_validations (3.0.12)
@@ -113,13 +69,17 @@ GEM
     easy_roles (1.2.0)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    event-calendar (2.3.3)
     eventmachine (0.12.10)
+    exception_notification (2.5.2)
+      actionmailer (>= 3.0.4)
     factory_girl (2.1.0)
     factory_girl_rails (1.2.0)
       factory_girl (~> 2.1.0)
       railties (>= 3.0.0)
     factory_seed (0.1.1)
       factory_girl
+    ffaker (1.8.1)
     ffi (1.0.9)
     foreman (0.20.0)
       term-ansicolor (~> 1.0.5)
@@ -206,6 +166,8 @@ GEM
       railties (= 3.0.9)
     rails_config (0.2.4)
       activesupport (>= 3.0)
+    rails_kindeditor (0.1.0)
+      carrierwave
     railties (3.0.9)
       actionpack (= 3.0.9)
       activesupport (= 3.0.9)
@@ -266,6 +228,7 @@ GEM
       json_pure
       rubyzip
     sexp_processor (3.0.6)
+    show_for (0.2.4)
     simple_form (1.5.0)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
@@ -295,6 +258,10 @@ GEM
     tzinfo (0.3.29)
     uuid (2.3.4)
       macaddr (~> 1.0)
+    valid_attribute (1.2.0)
+    validates_existence (0.7.0)
+    validates_timeliness (3.0.6)
+      timeliness (~> 0.3.3)
     vegas (0.1.8)
       rack (>= 1.0.0)
     vidibus-routing_error (0.2.1)
@@ -313,17 +280,17 @@ DEPENDENCIES
   annotate!
   cancan (~> 1.6.4)
   capybara (~> 1.0.1)
-  carrierwave (~> 0.5.7)!
+  carrierwave (~> 0.5.7)
   client_side_validations (~> 3.0.4)
   curb (~> 0.7.15)
   database_cleaner (~> 0.6.7)
   devise (~> 1.4.4)
   easy_roles (~> 1.2.0)
-  event-calendar (~> 2.3.3)!
-  exception_notification (~> 2.5.2)!
+  event-calendar (~> 2.3.3)
+  exception_notification (~> 2.5.2)
   factory_girl_rails (~> 1.2.0)
   factory_seed (~> 0.1.1)
-  ffaker (~> 1.8.1)!
+  ffaker (~> 1.8.1)
   foreman (~> 0.20.0)
   google-spreadsheet-ruby (~> 0.1.2)
   guard-rspec (~> 0.4.4)
@@ -344,7 +311,7 @@ DEPENDENCIES
   pry-padrino (~> 0.1.2)
   rails (= 3.0.9)
   rails_config (~> 0.2.4)
-  rails_kindeditor (~> 0.1.0)!
+  rails_kindeditor (~> 0.1.0)
   resque (~> 1.18.6)
   resque-scheduler (~> 1.9.9)
   resque-status (~> 0.2.3)
@@ -352,12 +319,14 @@ DEPENDENCIES
   roo (~> 1.9.3)
   rspec-rails (~> 2.6.1)
   rubyzip (~> 0.9.4)
-  show_for (~> 0.2.4)!
+  show_for (~> 0.2.4)
   simple_form (~> 1.5.0)
   spreadsheet (~> 0.6.5.4)
   symbolize (~> 3.3.0pre)
   thin (~> 1.2.11)
   timecop (~> 0.3.5)
   turn (~> 0.8.2)
-  validates_timeliness (~> 3.0.6)!
+  valid_attribute (~> 1.2.0)
+  validates_existence (~> 0.7.0)
+  validates_timeliness (~> 3.0.6)
   vidibus-routing_error (~> 0.2.1)

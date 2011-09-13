@@ -27,23 +27,24 @@ gem "rails_config", "~> 0.2.4"
 
 #model
 gem 'paperclip', '~> 2.3.11'
-gem "carrierwave", "~> 0.5.7", :git => "https://github.com/jnicklas/carrierwave.git"
+gem "carrierwave", "~> 0.5.7"
 gem 'meta_search', '~> 1.0.6' #rails 3.1 use 'ransack'
 gem "meta_where", "~> 1.0.4"  #rails 3.1 use 'squeel'
 gem 'symbolize', '~> 3.3.0pre'
 gem 'aasm', '~> 2.2.0'
 gem 'ancestry', '~> 1.2.4'
-gem 'validates_timeliness', '~> 3.0.6', :git => "https://github.com/adzap/validates_timeliness.git"
+gem 'validates_timeliness', '~> 3.0.6'
+gem "validates_existence", "~> 0.7.0"
 
 #controller
 gem 'inherited_resources', '~> 1.2.2'
 gem 'has_scope', '~> 0.5.1'
-gem "show_for", "~> 0.2.4", :git => "http://github.com/plataformatec/show_for.git"
+gem "show_for", "~> 0.2.4"
 
 #template
 gem 'simple_form', '~> 1.5.0'
 gem 'kaminari', '~> 0.12.4'
-gem "rails_kindeditor", "~> 0.1.0", :git => "https://github.com/Macrow/rails_kindeditor.git"
+gem "rails_kindeditor", "~> 0.1.0"
 gem 'client_side_validations', '~> 3.0.4'
 
 ##tag
@@ -51,7 +52,7 @@ gem 'client_side_validations', '~> 3.0.4'
 
 #exception
 gem "vidibus-routing_error", "~> 0.2.1"
-gem "exception_notification", "~> 2.5.2", :git => "https://github.com/smartinez87/exception_notification.git"
+gem "exception_notification", "~> 2.5.2"
 
 #roo
 gem 'rubyzip', '~> 0.9.4', :require => 'zip/zipfilesystem'
@@ -61,8 +62,7 @@ gem 'google-spreadsheet-ruby', '~> 0.1.2', :require => 'google_spreadsheet'
 gem 'roo', '~> 1.9.3'
 
 #calendar
-gem 'event-calendar', "~> 2.3.3", :git => "https://github.com/elevation/event_calendar.git",
-                     :require => 'event_calendar'
+gem 'event-calendar', "~> 2.3.3", :require => 'event_calendar'
 
 #other
 gem "hz2py", "~> 0.0.4"
@@ -78,8 +78,11 @@ group :development, :test do
   gem 'database_cleaner', '~> 0.6.7'
   gem "guard-rspec", "~> 0.4.4"
 
-  gem 'ffaker', '~> 1.8.1', :git => "https://github.com/EmmanuelOga/ffaker.git"
+  gem 'ffaker', '~> 1.8.1'
   gem 'timecop', '~> 0.3.5'
+
+  gem 'valid_attribute', '~> 1.2.0'
+
 end
 
 group :development do

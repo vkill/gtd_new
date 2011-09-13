@@ -15,6 +15,7 @@ FactoryGirl.define do
     association :assigner, :factory => :user
     association :accepter, :factory => :user
     assign_remark { Faker::LoremCN.paragraph }
+    assign_at     { Time.now }
   end
 end
 

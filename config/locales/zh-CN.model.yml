@@ -1,0 +1,9 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      user:
+    attributes:
+      user:
+        id: 序号
+

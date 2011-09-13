@@ -1,0 +1,21 @@
+---
+zh-CN:
+  #https://github.com/perfectline/validates_existence
+  activerecord:
+    errors:
+      messages:
+        existence: 对象不存在
+
+
+  #https://github.com/adzap/validates_timeliness
+  errors:
+    messages:
+      invalid_date: "is not a valid date"
+      invalid_time: "is not a valid time"
+      invalid_datetime: "is not a valid datetime"
+      is_at: "must be at %{restriction}"
+      before: "must be before %{restriction}"
+      on_or_before: "must be on or before %{restriction}"
+      after: "must be after %{restriction}"
+      on_or_after: "must be on or after %{restriction}"
+
