@@ -35,8 +35,20 @@ class User < ActiveRecord::Base
   has_many :accept_tasks, :foreign_key => :accepter_id, :class_name => "Task"
   has_many :handle_feedbacks, :foreign_key => :handler_id, :class_name => "Feedback"
 
+
   symbolize :gender, :in => [ :male, :female ], :scopes => true, :methods => true
   symbolize :state, :in => [ :pending, :actived, :paused, :deleted ], :scopes => true, :methods => true
+
+
+  class << self
+    def current=(user)
+      Thread.current[:user] = user
+    end
+
+    def current
+      Thread.current[:user]
+    end
+  end
 
 end
 

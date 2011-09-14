@@ -159,17 +159,19 @@ describe Issue do
 
   context "callbacks" do
     before {
+      User.current = user
+    }
+    before {
       subject.type = 'Task'
       subject.service = service
       subject.state = :assigned
       subject.save! :validate => false
     }
     describe 'before create' do
-      it "should build user" do
-        subject.expired_date.should be_true
+      it "should build editor" do
+        subject.editor.id.should eq(user.id)
       end
-    end
-    describe 'after create' do
+
       it "should build expired_date" do
         subject.expired_date.to_s.should eq((subject.created_at + subject.expired_date_hours.hours).to_s)
       end
@@ -178,7 +180,11 @@ describe Issue do
         subject.assign_at.to_s.should eq(subject.created_at.to_s)
       end
     end
-
+    describe 'before_save' do
+      it "should build assigner if assigner?" do
+        subject.assigner.id.should eq(user.id)
+      end
+    end
   end
 
 

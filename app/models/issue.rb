@@ -12,6 +12,9 @@ class Issue < ActiveRecord::Base
   has_one :feedback
 
 
+  symbolize :state, :in => [ :pending, :assigned, :accepted, :finished, :expired], :scopes => true, :methods => true
+
+
   delegate :email, :name, :to => :editor, :prefix => true, :allow_nil => true
   delegate :email, :name, :to => :assigner, :prefix => true, :allow_nil => true
   delegate :email, :name, :to => :accepter, :prefix => true, :allow_nil => true
@@ -19,9 +22,6 @@ class Issue < ActiveRecord::Base
   delegate :name, :to => :service, :prefix => true
   delegate :expired_date_hours, :to => :service
   delegate :name, :to => "service.try(:department)", :prefix => :service_department, :allow_nil => true
-
-
-  symbolize :state, :in => [ :pending, :assigned, :accepted, :finished, :expired], :scopes => true, :methods => true
 
 
   include AASM
@@ -74,8 +74,12 @@ class Issue < ActiveRecord::Base
   end
 
 
-  after_create :build_expired_date
-  after_create :build_assign_at, :if => Proc.new { |record| record.assigned? and record.type == 'Task' }
+  before_create :build_editor
+  before_create :build_expired_date
+  with_options :if => Proc.new { |record| record.assigned? } do |assigned|
+    assigned.before_create :build_assign_at
+    assigned.before_save :build_assigner
+  end
 
   private
 
@@ -97,6 +101,14 @@ class Issue < ActiveRecord::Base
 
     def build_expired_date
       self.expired_date = Time.zone.now + self.expired_date_hours.hours
+    end
+
+    def build_editor
+      self.editor = User.current
+    end
+
+    def build_assigner
+      self.assigner = User.current
     end
 end
 
