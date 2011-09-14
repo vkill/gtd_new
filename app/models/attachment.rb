@@ -2,6 +2,7 @@ class Attachment < ActiveRecord::Base
 
   belongs_to :attachmentable, :polymorphic => true
 
+
   has_attached_file :data,
                     :url  => "/system/attachments/:id/:style_:basename.:extension",
                     :path => ":rails_root/public/system/attachments/:id/:style_:basename.:extension",

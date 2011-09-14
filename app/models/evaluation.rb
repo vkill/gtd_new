@@ -2,7 +2,12 @@ class Evaluation < ActiveRecord::Base
 
   belongs_to :evaluationable, :polymorphic => true
 
+
   symbolize :category, :in => [ :good, :bad ], :scopes => true, :methods => true
+
+
+  validates :star_rating, :presence => true,
+                          :inclusion => 0..5
 
 end
 

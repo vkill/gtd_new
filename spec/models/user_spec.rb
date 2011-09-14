@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe User do
-  it "should succeed creating a new :user from the Factory" do
-    _1_user
-  end
 end
 
 

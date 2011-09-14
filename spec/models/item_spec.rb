@@ -1,13 +1,6 @@
 require 'spec_helper'
 
 describe Item do
-  it "should succeed creating a new :post from the Factory" do
-    _1_post
-  end
-
-  it "should succeed creating a new :software from the Factory" do
-    _1_software
-  end
 end
 
 

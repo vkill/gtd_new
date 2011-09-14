@@ -1,0 +1,22 @@
+%header.container_12.clearfix
+  .grid_12
+    %h1= t("web.page.index", :model => Department.model_name.human)
+%section.container_12.clearfix
+  .grid_12
+    .actions
+      = link_to t("web.page.new", :model => Department.model_name.human), new_admin_department_path, :class => "button"
+    #demo.clearfix
+      = render "entries", :departments => @departments
+
+= content_for :javascript do
+  
+  :javascript
+    $(document).ready(function() {
+        $('.list_table').dataTable( {
+            "sPaginationType": "full_numbers",
+            "aaSorting": [[0,'asc']],
+            "oLanguage": {
+              "sUrl": "/javascripts/datatables/zh-CN.txt"
+            }
+        });
+    });

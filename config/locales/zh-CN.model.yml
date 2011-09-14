@@ -1,9 +1,159 @@
 ---
 zh-CN:
+  activemodel:
+    models: {}
+    attributes: {}
   activerecord:
-    models:
-      user:
+
     attributes:
+      department:
+        id: 序号
+        name: 名称
+        describtion: 描述
+        ancestry: 上层部门
+        created_at: 创建时间
+        updated_at: 更新时间
+
       user:
         id: 序号
+        email: 邮箱
+        current_password: 当前密码
+        password: 密码
+        password_confirmation: 密码确认
+        remember_me: 记住我
+        encrypted_password: 密码加密后
+        reset_password_token: 重置密码标识
+        reset_password_sent_at: 重置密码消息发送时间
+        remember_created_at: 记住我创建时间
+        confirmation_token: 确认标识
+        confirmed_at: 确认时间
+        confirmation_sent_at: 确认标识发送时间
+        sign_in_count: 登录次数
+        current_sign_in_at: 当前登录时间
+        last_sign_in_at: 最后登录时间
+        current_sign_in_ip: 当前登录ip
+        last_sign_in_ip: 最后登录ip
+        authentication_token: 认证标识
+        roles_mask: 角色标识
+        username: 登录名
+        superadmin: 超级管理员
+        name: 名字
+        gender: 性别
+        phone_number: 手机号
+        location: 位置
+        about: 简介
+        avatar: 头像
+        avatar_file_name: 头像文件名称
+        avatar_content_type: 头像文件类型
+        avatar_file_size: 头像文件大小
+        avatar_updated_at: 头像文件上传时间
+        created_at: 创建时间
+        updated_at: 更新时间
+        state: 状态
+        department_id: 部门
+        enums:
+          gender:
+            male: 男
+            female: 女
+          state:
+            pending: 待激活
+            actived: 已激活
+            paused: 已停用
+            deleted: 已删除
+
+      service:
+        id: 序号
+        name: 名称
+        describtion: 描述
+        category: 类别
+        expired_date_hours: 任务规定完成时间(小时)
+        department_id: 部门
+        created_at: 创建时间
+        updated_at: 更新时间
+        enums:
+          category:
+            new_business: 新业务办理
+            fault_repair: 故障维护
+            other: 其他
+
+      business:
+        id: 序号
+        user_id: 创建人
+        body: 内容
+        type: 类型
+        created_at: 创建时间
+        updated_at: 更新时间
+        service_id: 服务
+        state_workflow: 任务状态
+        state_workflow_operation: 任务操作
+        state_feedback: 投诉状态
+        state_feedback_operation: 投诉操作
+
+      feedback:
+        id: 序号
+        issue_id: 任务
+        reason: 投诉内容
+        handle_at: 处理时间
+        result: 处理结果
+        state: 状态
+        created_at: 创建时间
+        updated_at: 更新时间
+        handler_id: 处理人
+        enums:
+          state:
+            pending: 待处理
+            processing: 处理中
+            processed: 处理完成
+
+
+      workflow:
+        id: 序号
+        issue_id: 任务
+        user_id: 接受人
+        assigner_id: 分配人
+        accept_at: 接受时间
+        finish_at: 完成时间
+        created_at: 创建时间
+        updated_at: 更新时间
+        state: 状态
+        assign_at: 分配时间
+        process_at: 开始处理时间
+        enums:
+          state:
+            pending: 待分配
+            assigned: 已分配
+            accepted: 已接受
+            processing: 开始处理
+            processed: 处理完成
+
+
+      software:
+        id: 序号
+        title: 标题
+        permalink: 静态链接
+        content: 正文
+        type: 类型
+        data: 附件
+        data_file_name: 附件名
+        data_content_type: 附件类型
+        data_file_size: 附件大小
+        data_updated_at: 附件上传时间
+        created_at: 创建时间
+        updated_at: 更新时间
+        user_id: 用户
+        top: 状态
+        enums:
+          top:
+            'true': 置顶
+            'false': 普通
+
+    models:
+      department: 部门
+      user: 用户
+      service: 业务与服务
+      business: 业务
+      task: 任务
+      feedback: 反馈
+      post: 新闻资讯
+      software: 常用软件
 

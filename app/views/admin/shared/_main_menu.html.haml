@@ -1,0 +1,70 @@
+%header
+  %h1
+    = link_to Settings.title, admin_root_path
+
+  %nav
+    %ul#main-navigation.clearfix
+
+      = main_nav :issues, {:class => "dropdown"} do
+        = link_to "任务管理", "#"
+        %ul
+          - if can? :read, Business
+            %li.dropdown
+              = link_to "业务分配", admin_businesses_path
+              %ul
+                - if can? :create, Business
+                  %li.current= link_to "+ 业务分配", new_admin_business_path
+
+          - if can? :read, Task
+            %li.dropdown
+              = link_to "任务指派", admin_tasks_path
+              %ul
+                - if can? :create, Task
+                  %li= link_to "+ 创建任务", new_admin_task_path
+
+
+      - if current_user.has_role? 'admin' or current_user.has_role? 'chief'
+        = main_nav :basic, {:class => "dropdown"} do
+          = link_to "基础资料管理", "#"
+          %ul
+            - if can? :read, User
+              %li.dropdown
+                = link_to "用户管理", admin_users_path
+                %ul
+                  %li= link_to "+ 添加用户", new_admin_user_path
+
+            - if can? :read, Department
+              %li.dropdown
+                = link_to "部门管理", admin_departments_path
+                %ul
+                  %li= link_to "+ 添加部门", new_admin_department_path
+
+      - if current_user.has_role? 'admin'
+        = main_nav :content, {:class => "dropdown"} do
+          = link_to "图信内容管理", admin_posts_path
+          %ul
+            - if can? :read, Service
+              %li.dropdown
+                = link_to  "业务与服务管理", admin_services_path
+                %ul
+                  %li= link_to "+ 添加业务或服务", new_admin_service_path
+
+            - if can? :read, Post
+              %li.dropdown
+                = link_to "新闻资讯管理", admin_posts_path
+                %ul
+                  %li= link_to "+ 添加新闻资讯", new_admin_post_path
+
+            - if can? :read, Software
+              %li.dropdown
+                = link_to "常用软件管理", admin_softwares_path
+                %ul
+                  %li= link_to "+ 添加常用软件", new_admin_software_path
+
+      %li.fr.dropdown
+        = link_to raw("<span>#{image_tag(current_user.url_thumb)}</span>") + current_user.name, "#", :class => "with-profile-image"
+        %ul
+          %li= link_to "修改个人资料", edit_user_registration_path
+          %li= link_to "修改密码", edit_user_password_path
+          %li= link_to "注销账户", destroy_user_session_path
+

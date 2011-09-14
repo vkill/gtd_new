@@ -14,23 +14,32 @@ class User < ActiveRecord::Base
                     :url => "/system/avatars/:id/:id-:style.:extension",
                     :path => ":rails_root/public/:url",
                     :styles => { :normal => '250x250>', :thumb => '50x50' },
-                    :default_url => "/images/profile-avatar.jpg"
+                    :default_url => "/images/profile-avatar-thumb.jpg"
   validates_attachment_size :avatar, :less_than => 2.megabytes
-
+  def url(*args)
+    avatar.url(*args)
+  end
+  alias :public_filename :url
+  def url_normal
+    url(:normal)
+  end
+  def url_thumb
+    url(:thumb)
+  end
 
   #easy_roles
   easy_roles :roles_mask, :method => :bitmask
-  ROLES_MASK = %w(admin chief staff)
+  ROLES_MASK = %w(admin chief staff boss)
   scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES_MASK.index(role.to_s)} > 0 "} }
 
 
   belongs_to :department
-  has_many :posts
-  has_many :softwares
-  has_many :businesses
-  has_many :tasks
+  has_many :posts, :foreign_key => :user_id, :class_name => "Post"
+  has_many :softwares, :foreign_key => :user_id, :class_name => "Software"
+  has_many :businesses, :foreign_key => :user_id, :class_name => "Business"
   has_many :assign_businesses, :foreign_key => :assigner_id, :class_name => "Business"
   has_many :accept_businesses, :foreign_key => :accepter_id, :class_name => "Business"
+  has_many :tasks, :foreign_key => :user_id, :class_name => "Task"
   has_many :assign_tasks, :foreign_key => :assigner_id, :class_name => "Task"
   has_many :accept_tasks, :foreign_key => :accepter_id, :class_name => "Task"
   has_many :handle_feedbacks, :foreign_key => :handler_id, :class_name => "Feedback"
@@ -38,6 +47,30 @@ class User < ActiveRecord::Base
 
   symbolize :gender, :in => [ :male, :female ], :scopes => true, :methods => true
   symbolize :state, :in => [ :pending, :actived, :paused, :deleted ], :scopes => true, :methods => true
+
+
+  include AASM
+  aasm_column :state
+  aasm_initial_state :pending
+  aasm_state :pending
+  aasm_state :actived
+  aasm_state :paused
+  aasm_state :deleted
+  aasm_event :pending do
+    transitions :from => :deleted, :to => :pending
+  end
+  aasm_event :actived do
+    transitions :from => [:pending, :paused], :to => :actived
+  end
+  aasm_event :paused do
+    transitions :from => :actived, :to => :paused
+  end
+  aasm_event :deleted do
+    transitions :from => [:pending, :actived, :paused], :to => :deleted
+  end
+
+
+  validates :password, :presence => true, :confirmation => true, :on => :create
 
 
   class << self
@@ -49,7 +82,6 @@ class User < ActiveRecord::Base
       Thread.current[:user]
     end
   end
-
 end
 
 

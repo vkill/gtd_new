@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe Attachment do
-  it "should succeed creating a new :attachment from the Factory" do
-    _1_attachment
-  end
 end
 
 

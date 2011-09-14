@@ -1,0 +1,68 @@
+!!!5
+/[if IE 7]
+  %html.ie7.lte8/
+/[if IE 8]
+  %html.ie8.lte8/
+/[if IE 9]
+  %html.ie9/
+/[if gt IE 9]
+  %html/
+/[if !IE]
+  %html
+    %head
+      /[if lte IE9]
+        %meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+      /iPad Settings
+      %meta(name="apple-mobile-web-app-capable" content="yes")
+      %meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
+      %meta(name="viewport" content="user-scalable=no, initial-scale=1.0, width=device-width")
+
+      %meta(charset="utf-8")
+      = csrf_meta_tag
+
+      %title= "#{Settings.title}"
+      = favicon_link_tag
+
+
+      /iOS ICONS
+      %link(rel="apple-touch-icon" href="touch-icon-iphone.png")
+      %link(rel="apple-touch-icon" sizes="72x72" href="touch-icon-ipad.png")
+      %link(rel="apple-touch-icon" sizes="114x114" href="touch-icon-iphone4.png")
+      %link(rel="apple-touch-startup-image" href="touch-startup-image.png")
+
+      = stylesheet_link_tag 'reset', :media => 'screen'
+      = stylesheet_link_tag 'grids', :media => 'screen'
+      = stylesheet_link_tag 'style', :media => 'screen'
+      = stylesheet_link_tag 'forms', :media => 'screen'
+      = stylesheet_link_tag 'jquery.uniform', :media => 'screen'
+      = stylesheet_link_tag 'colorbox', :media => 'screen'
+      = stylesheet_link_tag 'themes/lightblue/style.css', :media => 'screen'
+      = stylesheet_link_tag "//ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/base/jquery-ui.css", :media => 'screen, projection'
+      = stylesheet_link_tag 'application', :media => 'screen'
+      /jQplot CSS
+      = stylesheet_link_tag '/javascripts/jqplot/jquery.jqplot.min.css', :media => 'screen'
+      = stylesheet_link_tag '/javascripts/datatables/cleanslate.css', :media => 'screen'
+      = stylesheet_link_tag '/javascripts/fullcalendar/fullcalendar.css', :media => 'screen'
+      = stylesheet_link_tag '/javascripts/jquery.cluetip/jquery.cluetip.css', :media => 'screen'
+
+
+      /[if lt IE 9]
+        = javascript_include_tag 'html5', 'selectivizr'
+
+    %body(style="overflow: hidden;")
+      = render "/admin/shared/loading"
+
+      #wrapper
+        /= custom_render("main_menu")
+        = render "admin/shared/main_menu"
+
+        %section
+          /= custom_render("sidebar")
+          = render "admin/shared/sidebar"
+          %section
+            = render "admin/shared/messages"
+            = yield
+            = render "admin/shared/footer"
+
+    = render "/admin/shared/javascripts"
+

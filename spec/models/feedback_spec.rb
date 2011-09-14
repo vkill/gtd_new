@@ -4,7 +4,10 @@ describe Feedback do
   let(:department) { _1_department }
   let(:user) { _1_user :department => department }
   let(:service) { _1_service :department => department }
-  let(:business) { _1_business :user => user, :service => service }
+  let(:business) {
+    User.current = user
+    _1_business :user => user, :service => service
+  }
   let(:feedback) { _1_feedback :issue => business }
   let(:handler) { _1_user :department => department }
   let :attrs_new do
@@ -61,22 +64,19 @@ describe Feedback do
 
   context "valid_attribute" do
     it { should_not have_valid(:issue).when(nil) }
-    it { should have_valid(:issue).when(issue) }
+    it { should have_valid(:issue).when(business) }
     it { should_not have_valid(:body).when(nil)  }
     it { should_not have_valid(:body).when('s'*9) }
     it { should have_valid(:body).when('s'*10) }
     describe 'processing?' do
       before { subject.state = :processing }
       it { should_not have_valid(:handler).when(nil) }
-      it { should have_valid(:handler).when(handler) }
     end
     describe 'processed?' do
-      before { subject.state = :processing }
+      before { subject.state = :processed }
       it { should_not have_valid(:handler).when(nil) }
-      it { should have_valid(:handler).when(handler) }
-      it { should_not have_valid(:result).when(nil)  }
-      it { should_not have_valid(:result).when('s'*9) }
-      it { should have_valid(:result).when('s'*10) }
+      it { should_not have_valid(:result).when(nil) }
+      it { should have_valid(:result).when('s') }
     end
   end
 end

@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe Department do
-  it "should succeed creating a new :department from the Factory" do
-    _1_department
-  end
 end
 
 

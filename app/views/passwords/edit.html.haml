@@ -1,0 +1,19 @@
+%header.container_12.clearfix
+  .grid_12
+    %h1 修改密码
+
+%section.container_12.clearfix
+  .portlet.grid_12
+    %header
+      %h2 修改密码
+
+    %section
+      = simple_form_for resource, :as => resource_name, :url => password_path(resource_name), :method => :put, :html => {:multipart => true, :class => "form has-validation"} do |f|
+        = devise_error_messages!
+        = f.input :reset_password_token, :as => :hidden
+        = f.input :current_password, :as => :password
+        = f.input :password, :as => :password
+        = f.input :password_confirmation, :as => :password
+        .form-action
+          = f.submit "Change my password"
+

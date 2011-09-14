@@ -1,0 +1,43 @@
+%aside
+  %nav
+    %ul
+      - case @main_nav
+        - when :main
+          = sec_nav :dashboard do
+            = link_to "控制面板", admin_root_path
+          = sec_nav :calendar do
+            = link_to "我的日程", admin_calendar_path
+          = sec_nav :profile do
+            = link_to "我的资料", edit_user_registration_path(current_user)
+          = sec_nav :password do
+            = link_to "修改密码", edit_user_password_path
+          = sec_nav :logout do
+            = link_to "账户注销", destroy_user_session_path
+
+        - when :issues
+          - if can? :read, Business
+            = sec_nav :businesses do
+              = link_to "业务分配", admin_businesses_path
+          - if can? :read, Task
+            = sec_nav :tasks do
+              = link_to "任务指派", admin_tasks_path
+
+        - when :basic
+          - if can? :read, User
+            = sec_nav :users do
+              = link_to "图信用户管理", admin_users_path
+          - if can? :read, Department
+            = sec_nav :departments do
+              = link_to "部门管理", admin_departments_path
+
+        - when :content
+          - if can? :read, Service
+            = sec_nav :services do
+              = link_to "业务与服务管理", admin_services_path
+          - if can? :read, Post
+            = sec_nav :posts do
+              = link_to "新闻资讯管理", admin_posts_path
+          - if can? :read, Software
+            = sec_nav :softwares do
+              = link_to "常用软件管理", admin_softwares_path
+

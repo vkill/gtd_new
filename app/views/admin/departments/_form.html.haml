@@ -1,0 +1,5 @@
+= simple_form_for @department, :url => url, :html => {:multipart => true, :class => 'form has-validation'} do |f|
+  = f.input :name
+  = f.input :ancestry, :as => :select, :collection => Department.select([:id,:name]).map{ |x| [x.name, x.id] }, :prompt => t(:select_options)
+  .form-action
+    = f.button "submit"

@@ -1,0 +1,57 @@
+%header.container_12.clearfix
+  .grid_12
+    %h1= t('web.content.dashboard')
+    
+%section.container_12.clearfix
+  %section.grid_12
+    .message.info
+      %h3 Quick Help - Dashboard
+      %p Lorem ipsum dolor sit amet
+      %ol
+        %li Lorem ipsum
+        %li dolor
+        %li sit amet
+        
+  %section.portlet.grid_6.leading
+    %header
+      %h2 Invoice Statistics
+    %section
+      %table.full
+        %tbody
+          %tr
+            %td Total Invoices
+            %td.ar= link_to "30", "#"
+            %td.ar= link_to "1,498.50 $", "#"
+          %tr
+            %td Total Due
+            %td.ar= link_to "5", "#"
+            %td.ar "249,75"
+          %tr
+            %td Total Overdue
+            %td.ar 0
+            %td.ar 0.00 $
+            
+  %section.portlet.grid_6.leading
+    %header
+      %h2 Sales Statistics
+    %section
+      %table.full
+        %tbody
+          %tr
+            %td Total Invoices
+            %td.ar= link_to "30", "#"
+            %td.ar= link_to "1,498.50 $", "#"
+          %tr
+            %td Total Due
+            %td.ar= link_to "5", "#"
+            %td.ar "249,75"
+          %tr
+            %td Total Overdue
+            %td.ar 0
+            %td.ar 0.00 $
+  .clear
+  = render "progress"
+  = render "chart"
+  .clear
+  = render "tabs"
+  .clear

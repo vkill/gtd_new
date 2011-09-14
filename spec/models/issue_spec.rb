@@ -5,10 +5,16 @@ describe Issue do
   let(:department) { _1_department }
   let(:user) { _1_user :department => department }
   let(:service) { _1_service :department => department }
-  let(:business) { _1_business :user => user, :service => service }
+  let(:business) {
+    User.current = user
+    _1_business :user => user, :service => service
+  }
   let(:assigner) { _1_user :department => department }
   let(:accepter) { _1_user :department => department }
-  let(:task) { _1_task :user => user, :service => service, :assigner => assigner,  :accepter => accepter }
+  let(:task) {
+    User.current = assigner
+    _1_task :user => assigner, :service => service, :assigner => assigner,  :accepter => accepter
+  }
   let :attrs_new do
     {}
   end
@@ -114,7 +120,6 @@ describe Issue do
   context "valid_attribute" do
     before { subject.expired_date = Time.zone.now + 1.hours }
     it { should_not have_valid(:user).when(nil) }
-    it { should have_valid(:user).when(user) }
     it { should_not have_valid(:service).when(nil) }
     it { should have_valid(:service).when(service) }
     it { should_not have_valid(:body).when(nil)  }
@@ -123,9 +128,7 @@ describe Issue do
     describe 'assigned?' do
       before { subject.state = :assigned }
       it { should_not have_valid(:assigner).when(nil) }
-      it { should have_valid(:assigner).when(assigner) }
       it { should_not have_valid(:accepter).when(nil) }
-      it { should have_valid(:accepter).when(accepter) }
       describe 'business' do
         before { subject.type = 'Business' }
         it { should_not have_valid(:assign_at).when(Time.zone.now + 2.hours) }
@@ -161,17 +164,13 @@ describe Issue do
     before {
       User.current = user
     }
-    before {
-      subject.type = 'Task'
-      subject.service = service
-      subject.state = :assigned
-      subject.save! :validate => false
-    }
     describe 'before create' do
-      it "should build editor" do
-        subject.editor.id.should eq(user.id)
-      end
-
+      before {
+        subject.type = 'Task'
+        subject.service = service
+        subject.state = :assigned
+        subject.save! :validate => false
+      }
       it "should build expired_date" do
         subject.expired_date.to_s.should eq((subject.created_at + subject.expired_date_hours.hours).to_s)
       end
@@ -180,7 +179,15 @@ describe Issue do
         subject.assign_at.to_s.should eq(subject.created_at.to_s)
       end
     end
-    describe 'before_save' do
+    describe 'before_validation' do
+      before {
+        subject.state = :assigned
+        subject.valid?
+      }
+      it "should build editor" do
+        subject.editor.id.should eq(user.id)
+      end
+
       it "should build assigner if assigner?" do
         subject.assigner.id.should eq(user.id)
       end
@@ -215,25 +222,26 @@ end
 #
 # Table name: issues
 #
-#  id            :integer         not null, primary key
-#  body          :text
-#  state         :string(255)     default("pending")
-#  assigner_id   :integer
-#  accepter_id   :integer
-#  assign_remark :text
-#  assign_at     :datetime
-#  solution      :text
-#  accept_at     :datetime
-#  result        :text
-#  finish_at     :datetime
-#  user_id       :integer
-#  service_id    :integer
-#  type          :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
-#  expired_date  :datetime
-#  name          :string(255)
-#  start_at      :datetime
-#  end_at        :datetime
+#  id                   :integer         not null, primary key
+#  body                 :text
+#  state                :string(255)     default("pending")
+#  assigner_id          :integer
+#  accepter_id          :integer
+#  assign_remark        :text
+#  assign_at            :datetime
+#  solution             :text
+#  accept_at            :datetime
+#  result               :text
+#  finish_at            :datetime
+#  user_id              :integer
+#  service_id           :integer
+#  type                 :string(255)
+#  created_at           :datetime
+#  updated_at           :datetime
+#  expired_date         :datetime
+#  name                 :string(255)
+#  start_at             :datetime
+#  end_at               :datetime
+#  state_before_expired :string(255)
 #
 

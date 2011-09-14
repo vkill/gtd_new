@@ -1,0 +1,21 @@
+%header.container_12.clearfix
+  .grid_12
+    %h1= t("web.page.show", :model => Department.model_name.human)
+
+%section.container_12.clearfix
+  .portlet.grid_12
+    %header
+      %h2= @department.title
+      = link_to t("web.page.back_to_list"), admin_departments_path, :class => "button"
+      = link_to t("web.page.edit_this"), edit_admin_department_path(@department), :class => "button"
+
+    %section
+      %p
+        %span= ta Department, :id
+        %span= @department.id
+      %p
+        %span= ta Department, :name
+        %span= @department.name
+      %p
+        %span= ta Department, :code
+        %span= @department.code

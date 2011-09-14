@@ -1,0 +1,12 @@
+%header.container_12.clearfix
+  .grid_12
+    %h1= t("web.page.edit", :model => Department.model_name.human)
+    
+%section.container_12.clearfix
+  .portlet.grid_12
+    %header
+      %h2= @department.title
+      = link_to t("web.page.back_to_list"), admin_departments_path, :class => "button"
+      
+    %section
+      = render "form", :url => admin_department_path(@department)

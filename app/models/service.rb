@@ -1,10 +1,18 @@
 class Service < ActiveRecord::Base
 
   belongs_to :department
-  has_many :businesses
-  has_many :tasks
+  has_many :businesses, :foreign_key => :service_id, :class_name => "Business"
+  has_many :tasks, :foreign_key => :service_id, :class_name => "Task"
 
-  symbolize :category, :in => [ :new_business, :fault_repair ], :scopes => true, :methods => true
+
+  symbolize :category, :in => [ :new_business, :fault_repair, :other ], :scopes => true, :methods => true
+
+
+  validates :name, :presence => true,
+                    :uniqueness => true,
+                    :length => { :maximum => 20 }
+  validates :expired_date_hours, :presence => true
+  validates :department, :existence => { :both => false }
 
 end
 

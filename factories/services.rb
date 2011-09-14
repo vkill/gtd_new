@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :service do
-      name                { Faker::LoremCN.word }
-      describtion         { Faker::LoremCN.paragraph }
+      name                { Faker::LoremCN.word + Faker::LoremCN.word }
+      describtion         { Faker::LoremCN.word }
       category            { Service.get_category_values.map{|x| x[1]}.sample }
       expired_date_hours  { rand 168 }
       association :department

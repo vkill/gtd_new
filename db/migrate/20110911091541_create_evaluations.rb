@@ -1,7 +1,7 @@
 class CreateEvaluations < ActiveRecord::Migration
   def self.up
     create_table :evaluations do |t|
-      t.string :category
+      t.string :category, :default => :good
       t.integer :star_rating
       t.references :evaluationable, :polymorphic => {}
 

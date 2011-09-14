@@ -26,6 +26,7 @@ Department.find_each do |department|
   services = _3_services :department => department
   users = _5_users :department => department
   users.each do |user|
+    User.current = user
     posts = _3_posts :user => user
     softwares = _3_softwares :user => user
     softwares.each do |software|

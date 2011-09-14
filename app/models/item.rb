@@ -3,8 +3,35 @@ class Item < ActiveRecord::Base
   belongs_to :user
   has_many :attachments, :as => :attachmentable
 
+
   symbolize :top, :in => [ true, false ], :scopes => true, :methods => true
 
+
+  validates :user, :existence => { :both => false }
+  validates :title, :presence => true,
+                    :uniqueness => true,
+                    :length => { :maximum => 40 }
+  validates :content, :presence => true,
+                      :length => { :minimum => 2 }
+
+
+  before_save :build_permalink
+  before_validation :build_user
+
+
+  def to_param
+    "%s-%s" % [id, permalink.parameterize]
+  end
+
+
+  private
+    def build_permalink
+      self.permalink = Hz2py.do(self.title).parameterize unless self.permalink
+    end
+
+    def build_user
+      self.user = User.current
+    end
 end
 
 

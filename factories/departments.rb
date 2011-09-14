@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :department do
-      name        { Faker::LoremCN.word }
-      describtion { Faker::LoremCN.paragraph }
+      name        { Faker::LoremCN.word + Faker::LoremCN.word }
+      describtion { Faker::LoremCN.word }
     end
 end
 

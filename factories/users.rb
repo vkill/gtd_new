@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :user do
-    name                  { Faker::LoremCN.word }
+    name                  { Faker::NameCN.name }
     username              { Hz2py.do name, :join_with => '' }
     email                 { Faker::Internet.email(username) }
     password              { 123456 }

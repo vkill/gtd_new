@@ -1,24 +1,20 @@
-en:
+"zh-CN":
   simple_form:
-    "yes": 'Yes'
-    "no": 'No'
-    required:
-      text: 'required'
-      mark: '*'
-      # You can uncomment the line below if you need to overwrite the whole required html.
-      # When using html, text and mark won't be used.
-      # html: '<abbr title="required">*</abbr>'
-    error_notification:
-      default_message: "Some errors were found, please take a look:"
-    # Labels and hints examples
-    # labels:
-    #   password: 'Password'
-    #   user:
-    #     new:
-    #       email: 'E-mail para efetuar o sign in.'
-    #     edit:
-    #       email: 'E-mail.'
-    # hints:
-    #   username: 'User name to sign in.'
-    #   password: 'No special characters, please.'
+    labels:
+      user:
+        new:
+          avatar: 头像
+        edit:
+          avatar: 新头像
+          avatar_old: 旧头像
+        show:
+          avatar: 新头像
+          avatar_old: 旧头像
+
+
+    hints:
+      user:
+        name: 姓名最短6位，最长10位
+        edit:
+          avatar: 新头像留空则继续使用旧头像
 

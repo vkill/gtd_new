@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe Evaluation do
-  it "should succeed creating a new :evaluation from the Factory" do
-    _1_evaluation
-  end
 end
 
 

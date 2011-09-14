@@ -74,11 +74,11 @@ class Issue < ActiveRecord::Base
   end
 
 
-  before_create :build_editor
+  before_validation :build_editor, :on => :create
   before_create :build_expired_date
   with_options :if => Proc.new { |record| record.assigned? } do |assigned|
     assigned.before_create :build_assign_at
-    assigned.before_save :build_assigner
+    assigned.before_validation :build_assigner
   end
 
   private
@@ -117,25 +117,26 @@ end
 #
 # Table name: issues
 #
-#  id            :integer         not null, primary key
-#  body          :text
-#  state         :string(255)     default("pending")
-#  assigner_id   :integer
-#  accepter_id   :integer
-#  assign_remark :text
-#  assign_at     :datetime
-#  solution      :text
-#  accept_at     :datetime
-#  result        :text
-#  finish_at     :datetime
-#  user_id       :integer
-#  service_id    :integer
-#  type          :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
-#  expired_date  :datetime
-#  name          :string(255)
-#  start_at      :datetime
-#  end_at        :datetime
+#  id                   :integer         not null, primary key
+#  body                 :text
+#  state                :string(255)     default("pending")
+#  assigner_id          :integer
+#  accepter_id          :integer
+#  assign_remark        :text
+#  assign_at            :datetime
+#  solution             :text
+#  accept_at            :datetime
+#  result               :text
+#  finish_at            :datetime
+#  user_id              :integer
+#  service_id           :integer
+#  type                 :string(255)
+#  created_at           :datetime
+#  updated_at           :datetime
+#  expired_date         :datetime
+#  name                 :string(255)
+#  start_at             :datetime
+#  end_at               :datetime
+#  state_before_expired :string(255)
 #
 

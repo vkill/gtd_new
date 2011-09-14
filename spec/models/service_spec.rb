@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe Service do
-  it "should succeed creating a new :service from the Factory" do
-    _1_service
-  end
 end
 
 

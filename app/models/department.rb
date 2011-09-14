@@ -1,9 +1,15 @@
 class Department < ActiveRecord::Base
 
+  has_ancestry
+
+
   has_many :users
   has_many :services
 
-  has_ancestry
+
+  validates :name, :presence => true,
+                    :uniqueness => true,
+                    :length   => { :maximum => 15 }
 
 end
 

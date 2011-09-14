@@ -1,0 +1,18 @@
+%table.list_table.display
+  %thead
+    %tr
+      %th= ta Department, :id
+      %th= ta Department, :name
+      %th= ta Department, :ancestry
+      %th= t(:operations)
+
+  %tbody
+    - departments.each do |department|
+      %tr
+        %td= department.id
+        %td= department.name
+        %td= department.ancestors.map{|x| x.name}.join(",")
+        %td
+          = link_to t(:show), admin_department_path(department), :title => t(:show), :class => "show"
+          = link_to t(:edit), edit_admin_department_path(department), :title => t(:edit), :class => "edit"
+          = link_to t(:delete), admin_department_path(department), :title => t(:delete), :class => "delete", :method => :delete, :confirm => t(:delete_confirm)

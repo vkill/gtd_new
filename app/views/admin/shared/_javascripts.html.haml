@@ -1,0 +1,23 @@
+/MAIN JAVASCRIPTS
+/%script(type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.js')
+/%script(type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js')
+= javascript_include_tag 'jquery.min'
+= javascript_include_tag 'jquery-ui.min'
+= javascript_include_tag 'jquery_ujs'
+= javascript_include_tag 'jquery.tools.min', 'jquery.uniform.min'
+= javascript_include_tag 'datatables/jquery.dataTables', 'datatables/jquery.dataTables.columnFilter.js'
+= javascript_include_tag 'jquery.colorbox-min'
+= javascript_include_tag 'jquery.cluetip/jquery.cluetip'
+/[if le IE 9]
+  = javascript_include_tag 'PIE', 'ie'
+= javascript_include_tag 'global'
+
+:javascript
+  $(window).load(function(){
+      $("#loading").fadeOut(function(){
+          $(this).remove();
+          $('body').removeAttr('style');
+      });
+  });
+
+= yield :javascript
