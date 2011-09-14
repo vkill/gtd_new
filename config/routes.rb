@@ -20,8 +20,8 @@ GtdNew::Application.routes.draw do
         get :show_colorbox
       end
     end
-    resources :posts
-    resources :softwares
+    resources :posts, :controller => 'items', :default => { :class_name => 'Post' }
+    resources :softwares, :controller => 'items', :default => { :class_name => 'Software' }
     resources :businesses do
       member do
         get :show_colorbox
@@ -109,3 +109,4 @@ end
 #                routing_error        /routing_error(.:format)                      {:action=>"rescue", :controller=>"routing_error"}
 #            kindeditor_upload POST   /kindeditor/upload(.:format)                  {:controller=>"kindeditor/assets", :action=>"create"}
 #       kindeditor_filemanager GET    /kindeditor/filemanager(.:format)             {:controller=>"kindeditor/assets", :action=>"list"}
+

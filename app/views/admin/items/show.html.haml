@@ -1,0 +1,17 @@
+%header.container_12.clearfix
+  .grid_12
+    %h1= t("web.page.show", :model => @model.model_name.human)
+
+%section.container_12.clearfix
+  .portlet.grid_12
+    %header
+      %h2= @item.title
+      = link_to t("web.page.back_to_list"), [:admin, @items_symbol], :class => "button"
+      = link_to t("web.page.edit_this"), [:edit, :admin, @item], :class => "button"
+
+    %section
+      = show_for @item do |item|
+        = item.attributes :id, :title, :permalink, :content, :top_text, :category_text, :user_name
+        = item.attribute :created_at, :format => :short
+        = item.attribute :updated_at, :format => :short
+

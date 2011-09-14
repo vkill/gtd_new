@@ -1,12 +1,12 @@
 %header.container_12.clearfix
   .grid_12
-    %h1= t("web.page.index", :model => Department.model_name.human)
+    %h1= t("web.page.index", :model => User.model_name.human)
 %section.container_12.clearfix
   .grid_12
     .actions
-      = link_to t("web.page.new", :model => Department.model_name.human), [:new, :admin, :department], :class => "button"
+      = link_to t("web.page.new", :model => User.model_name.human), [:new, :admin, :user], :class => "button"
     #demo.clearfix
-      = render "entries", :departments => @departments
+      = render "entries", :users => @users
 
 = content_for :javascript do
 

@@ -1,0 +1,9 @@
+= simple_form_for @service, :url => url, :html => {:multipart => true, :class => 'form has-validation'} do |f|
+  = f.input :name
+  = f.input :category, :as => :select, :collection => Service.get_category_values, :prompt => t(:select_options)
+  = f.input :expired_date_hours
+  = f.association :department, :prompt => t(:select_options)
+  = f.input :describtion
+  .form-action
+    = f.button "submit"
+

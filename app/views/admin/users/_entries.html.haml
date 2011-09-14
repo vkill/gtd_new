@@ -1,0 +1,24 @@
+%table.list_table.display
+  %thead
+    %tr
+      %th= ta User, :name
+      %th= ta User, :email
+      %th= ta User, :phone_number
+      %th= ta User, :department_id
+      %th= ta User, :state
+      %th= t(:operations)
+
+  %tbody
+    - users.each do |user|
+      %tr
+        %td= user.name
+        %td= user.email
+        %td= user.phone_number
+        %td= user.department_name
+        %td= user.state_text
+        %td
+          = link_to t(:show), [:admin, user], :title => t(:show), :class => "show"
+          = link_to t(:edit), [:edit, :admin, user], :title => t(:edit), :class => "edit"
+          = link_to t(:delete), [:admin, user], :title => t(:delete), :class => "delete",
+                                                      :method => :delete, :confirm => t(:delete_confirm)
+

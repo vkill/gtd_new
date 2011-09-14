@@ -13,5 +13,9 @@ class Admin::BaseController < ApplicationController
   def update
     update!(:notice => t(:update_successful)) { collection_url }
   end
+
+  def destroy
+    destroy!(:notice => t(:destroy_successful)) { collection_url }
+  end
 end
 

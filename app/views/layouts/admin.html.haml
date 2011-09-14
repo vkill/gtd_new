@@ -50,7 +50,7 @@
         = javascript_include_tag 'html5', 'selectivizr'
 
     %body(style="overflow: hidden;")
-      = render "/admin/shared/loading"
+      = render "admin/shared/loading"
 
       #wrapper
         /= custom_render("main_menu")
@@ -64,5 +64,5 @@
             = yield
             = render "admin/shared/footer"
 
-    = render "/admin/shared/javascripts"
+    = render "admin/shared/javascripts"
 

@@ -1,0 +1,24 @@
+%table.list_table.display
+  %thead
+    %tr
+      %th= ta Service, :id
+      %th= ta Service, :name
+      %th= ta Service, :category
+      %th= ta Service, :expired_date_hours
+      %th= ta Service, :department
+      %th= t(:operations)
+
+  %tbody
+    - services.each do |service|
+      %tr
+        %td= service.id
+        %td= service.name
+        %td= service.category_text
+        %td= service.expired_date_hours
+        %td= service.department_name
+        %td
+          = link_to t(:show), [:admin, service], :title => t(:show), :class => "show"
+          = link_to t(:edit), [:edit, :admin, service], :title => t(:edit), :class => "edit"
+          = link_to t(:delete), [:admin, service], :title => t(:delete), :class => "delete",
+                                                      :method => :delete, :confirm => t(:delete_confirm)
+

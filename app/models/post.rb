@@ -1,6 +1,6 @@
 class Post < Item
 
-  symbolize :category, :in => [ :school_news ], :scopes => true, :methods => true
+  symbolize :category, :in => [ :notify, :school_news ], :scopes => true, :methods => true
 
 end
 

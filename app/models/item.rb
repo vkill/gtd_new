@@ -2,9 +2,13 @@ class Item < ActiveRecord::Base
 
   belongs_to :user
   has_many :attachments, :as => :attachmentable
+  accepts_nested_attributes_for :attachments
 
 
   symbolize :top, :in => [ true, false ], :scopes => true, :methods => true
+
+
+  delegate :name, :to => :user, :prefix => true, :allow_nil => true
 
 
   validates :user, :existence => { :both => false }

@@ -1,0 +1,55 @@
+"zh-CN":
+  web:
+    page:
+      show: 浏览%{model}
+      index: %{model}列表
+      edit: 修改%{model}
+      new: + 创建%{model}
+      assign: 分配%{model}
+      back_to_list: 返回列表页面
+      edit_this: 修改记录
+      edit_profile: 修改个人资料
+
+    change_state:
+      user:
+        to_pending: 初始化
+        to_actived: 激活
+        to_paused: 停用
+        to_deleted: 删除
+      feedback:
+        to_pending:
+        to_processing: 开始处理
+        to_processed: 继续处理
+      workflow:
+        to_pending:
+        to_assigned: 分配任务
+        to_accepted: 催促接受
+        to_processing: 催促开始
+        to_processed: 催促完成
+      workflow_staff:
+        to_pending:
+        to_assigned:
+        to_accepted: 接受
+        to_processing: 开始
+        to_accepted_and_processing: 直接开始
+        to_processed: 完成
+
+    content:
+      dashboard: '控制面板'
+    footer:
+      copyright: 'Copyright &copy; 2011. Powered by Jerry'
+
+  update_password: 更新用户密码
+
+  select_options: 请选择一个选项
+  operations: 操作
+  show: 查看
+  edit: 编辑
+  delete: 删除
+  confirm: 确定执行此操作?
+  delete_confirm: 确定要执行删除操作吗?
+  update_successful: 更新成功！
+  create_successful: 创建成功！
+  destroy_successful: 删除成功！
+  state_change_successful: 状态更改成功！
+

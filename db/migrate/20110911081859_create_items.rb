@@ -7,6 +7,7 @@ class CreateItems < ActiveRecord::Migration
       t.boolean :top, :default => false
       t.string :category, :default => 'none'
       t.references :user
+      t.string :type
 
       t.timestamps
     end

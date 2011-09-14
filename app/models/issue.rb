@@ -10,6 +10,8 @@ class Issue < ActiveRecord::Base
   belongs_to :service
   has_one :evaluation, :as => :evaluationable
   has_one :feedback
+  accepts_nested_attributes_for :feedback
+  accepts_nested_attributes_for :evaluation
 
 
   symbolize :state, :in => [ :pending, :assigned, :accepted, :finished, :expired], :scopes => true, :methods => true

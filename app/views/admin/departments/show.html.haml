@@ -5,17 +5,19 @@
 %section.container_12.clearfix
   .portlet.grid_12
     %header
-      %h2= @department.title
-      = link_to t("web.page.back_to_list"), admin_departments_path, :class => "button"
-      = link_to t("web.page.edit_this"), edit_admin_department_path(@department), :class => "button"
+      %h2= @department.name
+      = link_to t("web.page.back_to_list"), [:admin, :departments], :class => "button"
+      = link_to t("web.page.edit_this"), [:edit, :admin, @department], :class => "button"
 
     %section
-      %p
-        %span= ta Department, :id
-        %span= @department.id
-      %p
-        %span= ta Department, :name
-        %span= @department.name
-      %p
-        %span= ta Department, :code
-        %span= @department.code
+      = show_for @department do |department|
+        = department.attributes :id, :name, :describtion
+        = department.attribute :created_at, :format => :short
+        = department.attribute :updated_at, :format => :short
+        = department.association :users do |user|
+          = link_to user.name, [:admin, user]
+          = raw " | "
+        = department.association :services do |service|
+          = link_to service.name, [:admin, service]
+          = raw " | "
+

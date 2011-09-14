@@ -8,6 +8,9 @@ class Service < ActiveRecord::Base
   symbolize :category, :in => [ :new_business, :fault_repair, :other ], :scopes => true, :methods => true
 
 
+  delegate :name, :to => :department, :prefix => true, :allow_nil => true
+
+
   validates :name, :presence => true,
                     :uniqueness => true,
                     :length => { :maximum => 20 }

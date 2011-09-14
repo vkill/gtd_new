@@ -1,0 +1,19 @@
+%header.container_12.clearfix
+  .grid_12
+    %h1= t("web.page.show", :model => User.model_name.human)
+
+%section.container_12.clearfix
+  .portlet.grid_12
+    %header
+      %h2= @user.name
+      = link_to t("web.page.back_to_list"), [:admin, :users], :class => "button"
+      = link_to t("web.page.edit_this"), [:edit, :admin, @user], :class => "button"
+
+    %section
+      = show_for @user do |user|
+        = user.attributes :id, :name, :email, :gender, :phone_number, :location, :about
+        = user.attribute :avatar do
+          = image_tag(@user.url)
+        = user.attribute :created_at, :format => :short
+        = user.attribute :updated_at, :format => :short
+

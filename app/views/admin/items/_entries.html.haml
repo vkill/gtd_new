@@ -1,0 +1,24 @@
+%table.list_table.display
+  %thead
+    %tr
+      %th= ta Item, :id
+      %th= ta Item, :title
+      %th= ta Item, :top
+      %th= ta Item, :category
+      %th= ta Item, :created_at
+      %th= t(:operations)
+
+  %tbody
+    - items.each do |item|
+      %tr
+        %td= item.id
+        %td= item.title
+        %td= item.top_text
+        %td= item.category_text
+        %td= item.created_at.strftime("%m/%d/%Y %H:%M")
+        %td
+          = link_to t(:show), [:admin, item], :title => t(:show), :class => "show"
+          = link_to t(:edit), [:edit, :admin, item], :title => t(:edit), :class => "edit"
+          = link_to t(:delete), [:admin, item], :title => t(:delete), :class => "delete",
+                                                      :method => :delete, :confirm => t(:delete_confirm)
+

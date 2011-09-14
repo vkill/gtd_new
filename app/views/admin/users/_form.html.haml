@@ -1,0 +1,31 @@
+- unless @user.new_record?
+  = simple_form_for @user, :url => url, :html => {:multipart => true, :class => "form has-validation"} do |f|
+    = f.input :password
+    = f.input :password_confirmation
+    .form-action
+      = f.submit t'update_password'
+
+%br
+%br
+
+= simple_form_for @user, :url => url, :html => {:multipart => true, :class => 'form has-validation'} do |f|
+  = f.input :name
+  = f.input :username
+  - if @user.new_record?
+    = f.input :password
+    = f.input :password_confirmation
+  = f.input :email
+  = f.input :gender, :as => :select, :collection => User.get_gender_values
+  = f.input :phone_number, :as => :string
+  = f.input :location
+  = f.input :about, :input_html => { :rows => 5, :cols => 60 }
+  = f.association :department, :prompt => t(:select_options)
+  - if @user.avatar?
+    %div
+      = f.label :avatar_old
+      %img{ :src => "#{@user.url}"}
+  = f.input :avatar, :as => :file
+  = f.input :state, :as => :select, :collection => User.get_state_values
+  .form-action
+    = f.button "submit"
+

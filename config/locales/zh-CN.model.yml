@@ -3,8 +3,8 @@ zh-CN:
   activemodel:
     models: {}
     attributes: {}
-  activerecord:
 
+  activerecord:
     attributes:
       department:
         id: 序号
@@ -13,6 +13,8 @@ zh-CN:
         ancestry: 上层部门
         created_at: 创建时间
         updated_at: 更新时间
+        users: 用户
+        services: 服务
 
       user:
         id: 序号
@@ -50,7 +52,7 @@ zh-CN:
         created_at: 创建时间
         updated_at: 更新时间
         state: 状态
-        department_id: 部门
+        department: 部门
         enums:
           gender:
             male: 男
@@ -66,8 +68,9 @@ zh-CN:
         name: 名称
         describtion: 描述
         category: 类别
+        category_text: 类别
         expired_date_hours: 任务规定完成时间(小时)
-        department_id: 部门
+        department: 部门
         created_at: 创建时间
         updated_at: 更新时间
         enums:
@@ -78,74 +81,93 @@ zh-CN:
 
       business:
         id: 序号
-        user_id: 创建人
+        name: 任务名
         body: 内容
-        type: 类型
+        state: 任务状态
+        state_text: 任务状态
+        assigner: 分配人
+        accepter: 接收人
+        assign_remark: 分配备注
+        assign_at: 分配时间
+        solution: 处理方法
+        accept_at: 接受&开始处理时间
+        result: 完成结果
+        finish_at: 完成时间
+        user: 创建人
+        service: 服务
         created_at: 创建时间
         updated_at: 更新时间
-        service_id: 服务
-        state_workflow: 任务状态
-        state_workflow_operation: 任务操作
-        state_feedback: 投诉状态
-        state_feedback_operation: 投诉操作
+        expired_date: 过期时间
+        enums:
+          state:
+            pending: 待分配
+            assigned: 已分配
+            accepted: 已接受&开始处理
+            finished: 处理完成
+            expired: 已过期
 
       feedback:
         id: 序号
-        issue_id: 任务
-        reason: 投诉内容
-        handle_at: 处理时间
-        result: 处理结果
+        category: 类别
+        category_text: 类别
+        body: 反馈内容
         state: 状态
+        state_text: 状态
+        result: 处理结果
+        handler: 处理人
+        handle_at: 处理时间
+        issue: 业务/任务
         created_at: 创建时间
         updated_at: 更新时间
-        handler_id: 处理人
         enums:
+          category:
+            good: 好
+            bad: 差
           state:
             pending: 待处理
             processing: 处理中
             processed: 处理完成
 
 
-      workflow:
-        id: 序号
-        issue_id: 任务
-        user_id: 接受人
-        assigner_id: 分配人
-        accept_at: 接受时间
-        finish_at: 完成时间
-        created_at: 创建时间
-        updated_at: 更新时间
-        state: 状态
-        assign_at: 分配时间
-        process_at: 开始处理时间
-        enums:
-          state:
-            pending: 待分配
-            assigned: 已分配
-            accepted: 已接受
-            processing: 开始处理
-            processed: 处理完成
-
-
-      software:
+      item:
         id: 序号
         title: 标题
         permalink: 静态链接
         content: 正文
-        type: 类型
+        top: 状态
+        top_text: 状态
+        category: 分类
+        category_text: 分类
+        user: 用户
+        user_name: 用户
+        created_at: 创建时间
+        updated_at: 更新时间
+
+      software:
+        enums:
+          top:
+            'true': 置顶
+            'false': 普通
+          category:
+            doc: 文档
+            system: 系统软件
+            network: 网络软件
+
+      post:
+        enums:
+          top:
+            'true': 置顶
+            'false': 普通
+          category:
+            notify: 通知
+            school_news: 学校新闻
+
+      attachment:
         data: 附件
         data_file_name: 附件名
         data_content_type: 附件类型
         data_file_size: 附件大小
         data_updated_at: 附件上传时间
-        created_at: 创建时间
-        updated_at: 更新时间
-        user_id: 用户
-        top: 状态
-        enums:
-          top:
-            'true': 置顶
-            'false': 普通
 
     models:
       department: 部门
@@ -154,6 +176,8 @@ zh-CN:
       business: 业务
       task: 任务
       feedback: 反馈
-      post: 新闻资讯
+      item: 新闻资讯/常用软件
       software: 常用软件
+      post: 新闻资讯
+      attachment: 附件
 

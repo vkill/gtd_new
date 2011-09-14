@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20110913094402) do
   end
 
   create_table "evaluations", :force => true do |t|
-    t.string   "category"
+    t.string   "category",            :default => "good"
     t.integer  "star_rating"
     t.integer  "evaluationable_id"
     t.string   "evaluationable_type"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20110913094402) do
     t.boolean  "top",        :default => false
     t.string   "category",   :default => "none"
     t.integer  "user_id"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
