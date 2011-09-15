@@ -1,6 +1,7 @@
 class Issue < ActiveRecord::Base
 
-  has_event_calendar
+  has_event_calendar :start_at_field  => 'created_at', :end_at_field => 'expired_date'
+
 
 
   belongs_to :user
@@ -85,6 +86,9 @@ class Issue < ActiveRecord::Base
     assigned.before_create :build_assign_at
     assigned.before_validation :build_assigner
   end
+  before_create :build_name
+  before_save :build_start_at
+  before_save :build_end_at
 
   private
 
@@ -114,6 +118,18 @@ class Issue < ActiveRecord::Base
 
     def build_assigner
       self.assigner = User.current
+    end
+
+    def build_name
+      self.name = self.body[0,20] unless self.name.blank?
+    end
+
+    def build_start_at
+      self.start_at = Time.zone.now
+    end
+
+    def build_end_at
+      self.start_at = self.expired_date
     end
 end
 

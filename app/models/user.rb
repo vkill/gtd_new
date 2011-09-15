@@ -36,6 +36,9 @@ class User < ActiveRecord::Base
   belongs_to :department
   has_many :posts, :foreign_key => :user_id, :class_name => "Post"
   has_many :softwares, :foreign_key => :user_id, :class_name => "Software"
+  has_many :issues, :foreign_key => :user_id, :class_name => "Issue"
+  has_many :assign_issues, :foreign_key => :assigner_id, :class_name => "Issue"
+  has_many :accept_issues, :foreign_key => :accepter_id, :class_name => "Issue"
   has_many :businesses, :foreign_key => :user_id, :class_name => "Business"
   has_many :assign_businesses, :foreign_key => :assigner_id, :class_name => "Business"
   has_many :accept_businesses, :foreign_key => :accepter_id, :class_name => "Business"

@@ -5,6 +5,7 @@ class Department < ActiveRecord::Base
 
   has_many :users
   has_many :services
+  has_many :issues, :foreign_key => :service_id, :class_name => "Issue", :through => :services
   has_many :businesses, :foreign_key => :service_id, :class_name => "Business", :through => :services
   has_many :tasks, :foreign_key => :service_id, :class_name => "Task", :through => :services
 

@@ -2,6 +2,12 @@
   .grid_12
     %h1 我的日程
 
-= stylesheet_link_tag "event_calendar"
-= raw(event_calendar)
+%section.container_12.clearfix
+  .portlet.grid_12
+    %header
+      %h2= 我的日程
+
+    %section
+      = stylesheet_link_tag "event_calendar"
+      = raw(event_calendar)
 

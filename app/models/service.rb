@@ -1,6 +1,7 @@
 class Service < ActiveRecord::Base
 
   belongs_to :department
+  has_many :issues, :foreign_key => :service_id, :class_name => "Issue"
   has_many :businesses, :foreign_key => :service_id, :class_name => "Business"
   has_many :tasks, :foreign_key => :service_id, :class_name => "Task"
 
