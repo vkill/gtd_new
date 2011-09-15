@@ -310,7 +310,7 @@ DEPENDENCIES
   libnotify (~> 0.5.7)
   meta_search (~> 1.0.6)
   meta_where (~> 1.0.4)
-  nested_form!
+  nested_form (~> 0.1.1)!
   nokogiri (~> 1.4.4)
   paperclip (~> 2.3.11)
   pg (~> 0.11.0)

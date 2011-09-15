@@ -4,19 +4,10 @@
   = f.input :content, :input_html => { :id => "kindeditor_id" }
   - if resource_class.name == 'Software'
     = f.simple_fields_for :attachments do |f_attachments|
-      - if f_attachments.object.new_record?
-        = f_attachments.input :name
-        = f_attachments.input :describtion, :input_html => {:rows => 3, :cols => 70}
-        = f_attachments.input :data, :as => :file
-      - else
-        = f_attachments.input :name
-        = f_attachments.input :describtion, :input_html => {:rows => 3, :cols => 70}
-        = f_attachments.input :data_file_name, :disabled => true
-        = f_attachments.input :data_content_type, :disabled => true
-        = f_attachments.input :data_file_size, :disabled => true
-        = f_attachments.input :data_updated_at, :disabled => true
-        = f_attachments.input :_destroy, :as => :boolean
-        = f_attachments.link_to_remove "Remove this attachment"
+      = f_attachments.input :name
+      = f_attachments.input :describtion, :input_html => {:rows => 3, :cols => 70}
+      = f_attachments.input :data_file_name, :disabled => true
+      = f_attachments.link_to_remove "Remove this attachment"
     = f.link_to_add "Add a attachment", :attachments
 
   = f.input :top, :as => :select, :collection => resource_class.get_top_values, :include_blank => false
