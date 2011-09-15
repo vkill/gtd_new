@@ -1,15 +1,31 @@
-%h2 Sign in
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  %p
-    = f.label :email
-    = f.email_field :email
-  %p
-    = f.label :password
-    = f.password_field :password
-  
-  - if devise_mapping.rememberable?
-    %p
-      = f.check_box :remember_me
-      = f.label :remember_me
-  %p
-    = f.submit "Sign up"
+.login-box
+  %section.portlet.login-box-top
+    %header
+      %h2.ac= Settings.title
+    %section
+      /.message.info
+
+      = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name),
+                      :html => { :class => 'has-validation', :id => 'form', :style => "margin-top: 30px" }) do |f|
+
+        - if f.error_notification
+          .message.info= f.error_notification
+
+        %p{ :style => "margin-bottom: 30px" }
+          = f.input :email, :required => "required", :autofocus => true,
+                              :input_html => { :class => 'full', :id => 'password' }
+        %p{ :style => "margin-bottom: 30px" }
+          = f.input :password, :required => "required",
+                                :input_html => { :class => 'full', :id => 'password' }
+
+        %p
+        %p.clearfix
+          - if devise_mapping.rememberable?
+            %span.fl{ :style => "line-height: 23px;" }
+              %label.choice{ :for => 'remmber' }
+                = f.input :remember_me, :as => :boolean
+          = f.button :submit, "登录", :class => :fr
+
+      %footer.ac
+        = link_to "注册", new_user_registration_path, :class => "button"
+

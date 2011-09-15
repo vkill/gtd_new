@@ -17,6 +17,9 @@ class Issue < ActiveRecord::Base
   symbolize :state, :in => [ :pending, :assigned, :accepted, :finished, :expired], :scopes => true, :methods => true
 
 
+  default_scope order('created_at DESC')
+
+
   delegate :email, :name, :to => :editor, :prefix => true, :allow_nil => true
   delegate :email, :name, :to => :assigner, :prefix => true, :allow_nil => true
   delegate :email, :name, :to => :accepter, :prefix => true, :allow_nil => true

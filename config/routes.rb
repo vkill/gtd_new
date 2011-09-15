@@ -20,8 +20,8 @@ GtdNew::Application.routes.draw do
         get :show_colorbox
       end
     end
-    resources :posts, :controller => 'items', :default => { :class_name => 'Post' }
-    resources :softwares, :controller => 'items', :default => { :class_name => 'Software' }
+    resources :posts, :controller => 'items', :default => { :resource_class => 'Post' }
+    resources :softwares, :controller => 'items', :default => { :resource_class => 'Software' }
     resources :businesses do
       member do
         get :show_colorbox

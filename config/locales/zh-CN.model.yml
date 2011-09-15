@@ -142,6 +142,7 @@ zh-CN:
         user_name: 用户
         created_at: 创建时间
         updated_at: 更新时间
+        attachments: 附件
 
       software:
         enums:
@@ -163,11 +164,14 @@ zh-CN:
             school_news: 学校新闻
 
       attachment:
+        name: 附件显示名
+        describtion: 附件描述
         data: 附件
         data_file_name: 附件名
         data_content_type: 附件类型
         data_file_size: 附件大小
         data_updated_at: 附件上传时间
+        _destroy: 是否删除
 
     models:
       department: 部门
@@ -176,7 +180,6 @@ zh-CN:
       business: 业务
       task: 任务
       feedback: 反馈
-      item: 新闻资讯/常用软件
       software: 常用软件
       post: 新闻资讯
       attachment: 附件

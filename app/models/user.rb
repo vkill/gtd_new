@@ -49,6 +49,9 @@ class User < ActiveRecord::Base
   symbolize :state, :in => [ :pending, :actived, :paused, :deleted ], :scopes => true, :methods => true
 
 
+  default_scope order('created_at DESC')
+
+
   delegate :name, :to => :department, :prefix => true, :allow_nil => true
 
 

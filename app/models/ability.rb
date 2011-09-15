@@ -8,9 +8,17 @@ class Ability
       can :manage, :all
 
     elsif current_user.has_role? 'chief'
+      can :manage, Admin
+      can [:read, :create, :update], User
+      can [:read, :create, :update], Service
+      can [:read, :update], Business
+      can :manage, Task
+
 
     elsif current_user.has_role? 'staff'
-
+      can :manage, Admin
+      can [:read, :update], Business
+      can [:read, :update], Task
     else
 
     end

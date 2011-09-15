@@ -39,7 +39,7 @@
                 %ul
                   %li= link_to "+ 添加部门", new_admin_department_path
 
-      - if current_user.has_role? 'admin'
+      - if current_user.has_role? 'admin' or current_user.has_role? 'chief'
         = main_nav :content, {:class => "dropdown"} do
           = link_to "图信内容管理", admin_posts_path
           %ul
@@ -66,5 +66,5 @@
         %ul
           %li= link_to "修改个人资料", edit_user_registration_path
           %li= link_to "修改密码", edit_user_password_path
-          %li= link_to "注销账户", destroy_user_session_path
+          %li= link_to "注销账户", destroy_user_session_path, :method => :delete
 

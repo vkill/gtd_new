@@ -1,0 +1,26 @@
+.login-box
+  %section.portlet.login-box-top
+    %header
+      %h2.ac= Settings.title
+    %section
+
+      = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name),
+                      :html => { :class => 'has-validation', :id => 'form', :style => "margin-top: 30px" }) do |f|
+
+        - if f.error_notification
+          .message.info= f.error_notification
+
+        %p{ :style => "margin-bottom: 30px" }
+          = f.input :email, :required => "required", :autofocus => true,
+                              :input_html => { :class => 'full', :id => 'password' }
+        %p{ :style => "margin-bottom: 30px" }
+          = f.input :password, :required => "required",
+                                :input_html => { :class => 'full', :id => 'password' }
+        %p{ :style => "margin-bottom: 30px" }
+          = f.input :password_confirmation, :required => "required",
+                                :input_html => { :class => 'full', :id => 'password' }
+
+        %p
+        %p.clearfix
+          = f.button :submit, "注册", :class => :fr
+

@@ -8,6 +8,9 @@ class Service < ActiveRecord::Base
   symbolize :category, :in => [ :new_business, :fault_repair, :other ], :scopes => true, :methods => true
 
 
+  default_scope order('created_at DESC')
+
+
   delegate :name, :to => :department, :prefix => true, :allow_nil => true
 
 

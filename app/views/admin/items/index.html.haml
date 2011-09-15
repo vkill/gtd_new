@@ -1,12 +1,12 @@
 %header.container_12.clearfix
   .grid_12
-    %h1= t("web.page.index", :model => @model.model_name.human)
+    %h1= t("web.page.index", :model => resource_class.model_name.human)
 %section.container_12.clearfix
   .grid_12
     .actions
-      = link_to t("web.page.new", :model => @model.model_name.human), [:new, :admin, @item_symbol], :class => "button"
+      = link_to t("web.page.new", :model => resource_class.model_name.human), [:new, :admin, resource_class.name.underscore], :class => "button"
     #demo.clearfix
-      = render "entries", :items => @items
+      = render "entries", :items => collection
 
 = content_for :javascript do
 
@@ -14,7 +14,7 @@
     $(document).ready(function() {
         $('.list_table').dataTable( {
             "sPaginationType": "full_numbers",
-            "aaSorting": [[0,'asc']],
+            "aaSorting": [[4,'desc']],
             "oLanguage": {
               "sUrl": "/javascripts/datatables/zh-CN.txt"
             }

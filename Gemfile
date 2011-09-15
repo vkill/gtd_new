@@ -43,6 +43,7 @@ gem "show_for", "~> 0.2.4"
 
 #template
 gem 'simple_form', '~> 1.5.0'
+gem 'nested_form', :git => "https://github.com/ryanb/nested_form.git"
 gem 'kaminari', '~> 0.12.4'
 gem "rails_kindeditor", "~> 0.1.0"
 gem 'client_side_validations', '~> 3.0.4'

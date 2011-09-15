@@ -12,7 +12,7 @@
           = sec_nav :password do
             = link_to "修改密码", edit_user_password_path
           = sec_nav :logout do
-            = link_to "账户注销", destroy_user_session_path
+            = link_to "账户注销", destroy_user_session_path, :method => :delete
 
         - when :issues
           - if can? :read, Business

@@ -2,13 +2,18 @@ class Item < ActiveRecord::Base
 
   belongs_to :user
   has_many :attachments, :as => :attachmentable
-  accepts_nested_attributes_for :attachments
+  accepts_nested_attributes_for :attachments, :reject_if => lambda { |a| a[:data].blank? },
+                                             :allow_destroy => true
+
 
 
   symbolize :top, :in => [ true, false ], :scopes => true, :methods => true
 
 
   delegate :name, :to => :user, :prefix => true, :allow_nil => true
+
+
+  default_scope order('created_at DESC')
 
 
   validates :user, :existence => { :both => false }
@@ -30,7 +35,7 @@ class Item < ActiveRecord::Base
 
   private
     def build_permalink
-      self.permalink = Hz2py.do(self.title).parameterize unless self.permalink
+      self.permalink = Hz2py.do(self.title).parameterize unless self.permalink.blank?
     end
 
     def build_user

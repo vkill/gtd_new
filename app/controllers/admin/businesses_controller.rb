@@ -6,20 +6,14 @@ class Admin::BusinessesController < Admin::BaseController
   sec_nav_highlight :businesses
 
   protected
-  def collection
-    if current_user.has_role? 'admin'
-      @businesses = end_of_association_chain.all
-    elsif current_user.has_role? 'chief'
-    elsif current_user.has_role? 'staff'
+    def end_of_association_chain
+      if current_user.has_role? 'admin'
+        end_of_association_chain
+      elsif current_user.has_role? 'chief'
+        current_user.department.businesses
+      elsif current_user.has_role? 'staff'
+        current_user.accept_businesses
+      end
     end
-  end
-
-  def resource
-    if current_user.has_role? 'admin'
-      @business = end_of_association_chain.find params[:id]
-    elsif current_user.has_role? 'chief'
-    elsif current_user.has_role? 'staff'
-    end
-  end
 end
 
