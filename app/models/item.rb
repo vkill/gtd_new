@@ -1,9 +1,8 @@
 class Item < ActiveRecord::Base
 
   belongs_to :user
-  has_many :attachments, :as => :attachmentable
-  accepts_nested_attributes_for :attachments, :reject_if => lambda { |a| a[:data].blank? },
-                                             :allow_destroy => true
+  has_many :attachments, :as => :attachmentable, :dependent => :destroy
+  accepts_nested_attributes_for :attachments, :allow_destroy => true
 
 
 

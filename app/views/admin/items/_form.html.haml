@@ -6,7 +6,10 @@
     = f.simple_fields_for :attachments do |f_attachments|
       = f_attachments.input :name
       = f_attachments.input :describtion, :input_html => {:rows => 3, :cols => 70}
-      = f_attachments.input :data_file_name, :disabled => true
+      - unless f_attachments.object.data?
+        = f_attachments.input :data, :as => :file
+      - else
+        = f_attachments.input :data_file_name, :disabled => true
       = f_attachments.link_to_remove "Remove this attachment"
     = f.link_to_add "Add a attachment", :attachments
 
