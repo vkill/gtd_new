@@ -1,4 +1,4 @@
-= simple_form_for resource, :url => url, :html => {:multipart => true, :class => 'form has-validation'} do |f|
+= simple_nested_form_for  resource, :url => url, :html => {:multipart => true, :class => 'form has-validation'} do |f|
   = f.input :title
   = f.input :permalink
   = f.input :content, :input_html => { :id => "kindeditor_id" }
@@ -16,8 +16,8 @@
         = f_attachments.input :data_file_size, :disabled => true
         = f_attachments.input :data_updated_at, :disabled => true
         = f_attachments.input :_destroy, :as => :boolean
-        /= f_attachments.link_to_remove "Remove this attachment"
-    /= f.link_to_add "Add a attachment", :attachments
+        = f_attachments.link_to_remove "Remove this attachment"
+    = f.link_to_add "Add a attachment", :attachments
 
   = f.input :top, :as => :select, :collection => resource_class.get_top_values, :include_blank => false
   = f.input :category, :as => :select, :collection => resource_class.get_category_values,

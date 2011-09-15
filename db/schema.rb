@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110915072719) do
+ActiveRecord::Schema.define(:version => 20110913094402) do
 
   create_table "attachments", :force => true do |t|
     t.string   "name"
@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(:version => 20110915072719) do
     t.datetime "start_at"
     t.datetime "end_at"
     t.string   "state_before_expired"
-    t.integer  "department_id"
   end
 
   create_table "items", :force => true do |t|

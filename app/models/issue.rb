@@ -82,13 +82,13 @@ class Issue < ActiveRecord::Base
 
   before_validation :build_editor, :on => :create
   before_create :build_expired_date
+  before_save :build_name
+  before_save :build_start_at
+  before_save :build_end_at
   with_options :if => Proc.new { |record| record.assigned? } do |assigned|
     assigned.before_create :build_assign_at
     assigned.before_validation :build_assigner
   end
-  before_create :build_name
-  before_save :build_start_at
-  before_save :build_end_at
 
   private
 
@@ -125,11 +125,11 @@ class Issue < ActiveRecord::Base
     end
 
     def build_start_at
-      self.start_at = Time.zone.now
+      self.start_at = self.created_at if self.created_at_changed?
     end
 
     def build_end_at
-      self.start_at = self.expired_date
+      self.start_at = self.expired_date if self.expired_date_changed?
     end
 end
 
