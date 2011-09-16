@@ -22,14 +22,13 @@ GtdNew::Application.routes.draw do
     end
     resources :posts, :controller => 'items', :default => { :resource_class => 'Post' }
     resources :softwares, :controller => 'items', :default => { :resource_class => 'Software' }
-    resources :businesses do
+    resources :businesses, :tasks do
       member do
         get :show_colorbox
-      end
-    end
-    resources :tasks do
-      member do
-        get :show_colorbox
+        get :assign
+        put :assign
+        get :process_feedback
+        put :process_feedback
       end
     end
   end

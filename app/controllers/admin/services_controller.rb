@@ -8,7 +8,7 @@ class Admin::ServicesController < Admin::BaseController
   protected
     def end_of_association_chain
       if current_user.has_role? 'admin'
-        end_of_association_chain
+        resource_class
       elsif current_user.has_role? 'chief'
         current_user.department.services
       end

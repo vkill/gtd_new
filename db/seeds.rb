@@ -13,6 +13,8 @@ p '> Initializing primary users ...'
 %w(vkill jerry).each do |name|
   user = Factory :user, :name => name, :email => '%s@gmail.com' % name
   user.add_role! 'admin'
+  user.superadmin = true
+  user.save!
 end
 p '   %s users were created.' % User.count
 

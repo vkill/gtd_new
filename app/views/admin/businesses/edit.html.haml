@@ -9,5 +9,5 @@
       = link_to t("web.page.back_to_list"), [:admin, resource_class.name.underscore.pluralize], :class => "button"
 
     %section
-      = render "form", :url => [:admin, resource]
+      = render "admin/businesses/form", :url => [:admin, resource]
 

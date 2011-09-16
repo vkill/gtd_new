@@ -79,14 +79,16 @@ zh-CN:
             fault_repair: 故障维护
             other: 其他
 
-      business:
+      issue:
         id: 序号
         name: 任务名
         body: 内容
         state: 任务状态
         state_text: 任务状态
         assigner: 分配人
+        assigner_name: 分配人
         accepter: 接收人
+        accepter_name: 接收人
         assign_remark: 分配备注
         assign_at: 分配时间
         solution: 处理方法
@@ -94,10 +96,30 @@ zh-CN:
         result: 完成结果
         finish_at: 完成时间
         user: 创建人
+        user_name: 创建人
+        editor: 创建人
+        editor_name: 创建人
         service: 服务
+        service_name: 服务
+        service_department_name: 服务所在部门
         created_at: 创建时间
         updated_at: 更新时间
         expired_date: 过期时间
+        state_operation: 状态操作
+        feedback: 反馈
+        feedback_state: 反馈状态
+        feedback_state_operation: 反馈操作
+
+      business:
+        enums:
+          state:
+            pending: 待分配
+            assigned: 已分配
+            accepted: 已接受&开始处理
+            finished: 处理完成
+            expired: 已过期
+
+      task:
         enums:
           state:
             pending: 待分配
@@ -115,6 +137,7 @@ zh-CN:
         state_text: 状态
         result: 处理结果
         handler: 处理人
+        handler_name: 处理人
         handle_at: 处理时间
         issue: 业务/任务
         created_at: 创建时间

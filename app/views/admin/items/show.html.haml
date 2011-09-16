@@ -5,7 +5,7 @@
 %section.container_12.clearfix
   .portlet.grid_12
     %header
-      %h2= @item.title
+      %h2= resource.title rescue resource.name
       = link_to t("web.page.back_to_list"), [:admin, resource_class.name.underscore.pluralize], :class => "button"
       = link_to t("web.page.edit_this"), [:edit, :admin, resource_class.name.underscore], :class => "button"
 

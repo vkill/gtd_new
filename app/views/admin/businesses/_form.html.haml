@@ -1,0 +1,25 @@
+= simple_nested_form_for  resource, :url => url, :html => {:multipart => true, :class => 'form has-validation'} do |f|
+  = f.association :service, :collection => resource_issue_services, :prompt => t(:select_options),
+                            :disabled => (resource.new_record? ? false : true)
+  = f.input :name
+  = f.input :body, :input_html => { :id => "kindeditor_id" }
+  - if resource.new_record?
+    - if resource.type == "Task"
+      = render 'admin/businesses/fields_assign', :f => f
+  - else
+    - if resource.pending?
+      = render 'admin/businesses/fields_assign', :f => f
+    - elsif resource.assigned?
+      = f.input :solution, :input_html => {:rows => 3, :cols => 70}
+    - elsif resource.accepted?
+      = f.input :result, :input_html => {:rows => 3, :cols => 70}
+    - if resource.feedback
+      = f.simple_fields_for :feedback, resource.feedback do |f_feedback|
+        = render 'admin/businesses/fields_feedback', :f => f_feedback
+
+  .form-action
+    = f.button "submit"
+
+= content_for :javascript do
+  = include_kindeditor_if_needed :lang => :zh_CN, :cache => true
+

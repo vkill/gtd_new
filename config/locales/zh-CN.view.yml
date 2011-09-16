@@ -6,6 +6,7 @@
       edit: 修改%{model}
       new: + 创建%{model}
       assign: 分配%{model}
+      process: 处理%{model}
       back_to_list: 返回列表页面
       edit_this: 修改记录
       edit_profile: 修改个人资料
@@ -20,19 +21,11 @@
         to_pending:
         to_processing: 开始处理
         to_processed: 继续处理
-      workflow:
+      issue:
         to_pending:
         to_assigned: 分配任务
         to_accepted: 催促接受
-        to_processing: 催促开始
-        to_processed: 催促完成
-      workflow_staff:
-        to_pending:
-        to_assigned:
-        to_accepted: 接受
-        to_processing: 开始
-        to_accepted_and_processing: 直接开始
-        to_processed: 完成
+        to_finished: 催促完成
 
     content:
       dashboard: '控制面板'
@@ -52,4 +45,6 @@
   create_successful: 创建成功！
   destroy_successful: 删除成功！
   state_change_successful: 状态更改成功！
+  assign_successful: 分配成功！
+  process: 处理反馈
 

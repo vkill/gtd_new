@@ -49,9 +49,6 @@ class Issue < ActiveRecord::Base
   aasm_event :finished do
     transitions :from => [:accepted, :expired], :to => :finished
   end
-  aasm_event :expired do
-    transitions :from => [:pending, :assigned, :accepted], :to => :expired
-  end
 
 
   validates :service, :existence => { :both => false }
@@ -72,7 +69,6 @@ class Issue < ActiveRecord::Base
     finished.validates_datetime :finish_at, :before => :expired_date
   end
   with_options :if => Proc.new { |record| record.expired? } do |expired|
-    expired.validates :state_before_expired, :presence => true
     expired.validates_datetime :expired_date, :before => lambda { Time.now }
   end
 
@@ -82,6 +78,9 @@ class Issue < ActiveRecord::Base
   with_options :if => Proc.new { |record| record.assigned? } do |assigned|
     assigned.before_create :build_assign_at
     assigned.before_save :build_assigner
+  end
+  with_options :if => Proc.new { |record| record.expired? } do |expired|
+    expired.before_create :build_state_before_expired
   end
 
   private

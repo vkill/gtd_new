@@ -8,6 +8,11 @@ class Feedback < ActiveRecord::Base
   symbolize :state, :in => [ :pending, :processing, :processed ], :scopes => true, :methods => true
 
 
+  default_scope order('created_at DESC')
+
+
+  delegate :email, :name, :to => :handler, :prefix => true, :allow_nil => true
+
   include AASM
   aasm_column :state
   aasm_initial_state :pending

@@ -17,5 +17,11 @@ class Admin::BaseController < ApplicationController
   def destroy
     destroy!(:notice => t(:destroy_successful)) { collection_url }
   end
+
+  def show_colorbox
+    @show_colorbox = true
+    resource
+    render :show ,:layout => false
+  end
 end
 

@@ -1,0 +1,34 @@
+%table.list_table.display
+  %thead
+    %tr
+      %th= ta Issue, :name
+      %th= ta Issue, :service
+      %th= ta Issue, :created_at
+      %th= ta Issue, :state
+      %th= ta Issue, :state_operation
+      %th= ta Issue, :feedback_state
+      %th= ta Issue, :feedback_state_operation
+      %th= t(:operations)
+
+  %tbody
+    - collection.each do |business|
+      %tr
+        %td= business.name
+        %td= business.service_name
+        %td= business.created_at.strftime("%m/%d/%Y %H:%M")
+        %td= business.state_text
+        %td= admin_state_operation(business)
+        - if business.feedback
+          %td= business.feedback.state_text
+          %td= admin_feedback_state_operation(business)
+        - else
+          %td
+          %td
+        %td
+          = link_to t(:show), [:admin, business], :title => t(:show), :class => "show"
+          - if can? :edit, business
+            = link_to t(:edit), [:edit, :admin, business], :title => t(:edit), :class => "edit"
+          - if can? :destroy, business
+            = link_to t(:delete), [:admin, business], :title => t(:delete), :class => "delete",
+                                                      :method => :delete, :confirm => t(:delete_confirm)
+

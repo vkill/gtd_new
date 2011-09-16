@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
 
 
   default_scope order('created_at DESC')
-
+  scope :not_superadmin, where(:superadmin => false)
 
   delegate :name, :to => :department, :prefix => true, :allow_nil => true
 
@@ -100,6 +100,7 @@ class User < ActiveRecord::Base
       Thread.current[:user]
     end
   end
+
 end
 
 
