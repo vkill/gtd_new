@@ -1,7 +1,6 @@
 class Issue < ActiveRecord::Base
 
-  has_event_calendar :start_at_field  => 'created_at', :end_at_field => 'expired_date'
-
+  has_event_calendar :start_at_field  => 'start_at', :end_at_field => 'expired_date'
 
 
   belongs_to :user
@@ -55,12 +54,10 @@ class Issue < ActiveRecord::Base
   end
 
 
-  validates :user, :existence => { :both => false }
   validates :service, :existence => { :both => false }
   validates :body, :presence => true,
                     :length   => { :minimum => 10 }
   with_options :if => Proc.new { |record| record.assigned? } do |assigned|
-    assigned.validates :assigner, :existence => { :both => false }
     assigned.validates :accepter, :existence => { :both => false }
   end
   with_options :if => Proc.new { |record| record.type == 'Business' and record.assigned? } do |business_assigned|
@@ -80,14 +77,11 @@ class Issue < ActiveRecord::Base
   end
 
 
-  before_validation :build_editor, :on => :create
-  before_create :build_expired_date
+  before_create :build_editor, :build_expired_date, :build_start_at
   before_save :build_name
-  before_save :build_start_at
-  before_save :build_end_at
   with_options :if => Proc.new { |record| record.assigned? } do |assigned|
     assigned.before_create :build_assign_at
-    assigned.before_validation :build_assigner
+    assigned.before_save :build_assigner
   end
 
   private
@@ -108,28 +102,24 @@ class Issue < ActiveRecord::Base
       self.state_before_expired = self.aasm_current_state
     end
 
+    def build_editor
+      self.editor = User.current
+    end
+
     def build_expired_date
       self.expired_date = Time.zone.now + self.expired_date_hours.hours
     end
 
-    def build_editor
-      self.editor = User.current
+    def build_name
+      self.name = self.body.to_s[0,20] if self.name.blank?
     end
 
     def build_assigner
       self.assigner = User.current
     end
 
-    def build_name
-      self.name = self.body[0,20] unless self.name.blank?
-    end
-
     def build_start_at
-      self.start_at = self.created_at if self.created_at_changed?
-    end
-
-    def build_end_at
-      self.start_at = self.expired_date if self.expired_date_changed?
+      self.start_at = Time.zone.now
     end
 end
 

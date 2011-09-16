@@ -25,24 +25,15 @@ class Feedback < ActiveRecord::Base
   validates :issue, :existence => { :both => false }
   validates :body, :presence => true,
                     :length   => { :minimum => 10 }
-  with_options :if => Proc.new { |record| record.processing? } do |processing|
-    processing.validates :handler, :existence => { :both => false }
-  end
   with_options :if => Proc.new { |record| record.processed? } do |processed|
-    processed.validates :handler, :existence => { :both => false }
     processed.validates :result, :presence => true
   end
 
 
-  with_options :if => Proc.new { |record| record.processing? } do |processing|
-    processing.before_validation :build_handler
-    processing.before_save :build_handle_at
+  with_options :if => Proc.new { |record| record.processing? or record.processed? } do |processing_or_processed|
+    processing_or_processed.before_save :build_handler
+    processing_or_processed.before_save :build_handle_at
   end
-  with_options :if => Proc.new { |record| record.processed? } do |processed|
-    processed.before_validation :build_handler
-    processed.before_save :build_handle_at
-  end
-
 
   private
     def build_handler

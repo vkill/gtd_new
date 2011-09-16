@@ -15,7 +15,6 @@ class Item < ActiveRecord::Base
   default_scope order('created_at DESC')
 
 
-  validates :user, :existence => { :both => false }
   validates :title, :presence => true,
                     :uniqueness => true,
                     :length => { :maximum => 40 }
@@ -24,7 +23,7 @@ class Item < ActiveRecord::Base
 
 
   before_save :build_permalink
-  before_validation :build_user
+  before_create :build_user
 
 
   def to_param

@@ -18,7 +18,7 @@ module CalendarHelper
     # args is an argument hash containing :event, :day, and :options
     calendar event_calendar_opts do |args|
       event = args[:event]
-      %(<a href="#{[:admin, event]}" title="#{h(event.name)}">#{h(event.name)}</a>)
+      link_to event.name, [:admin, event], :title => event.name, :target => :_blank
     end
   end
 end
