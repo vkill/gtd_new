@@ -6,12 +6,14 @@
   .portlet.grid_12
     %header
       %h2= @user.name
-      = link_to t("web.page.back_to_list"), [:admin, :users], :class => "button"
-      = link_to t("web.page.edit_this"), [:edit, :admin, @user], :class => "button"
+      - unless @show_colorbox
+        = link_to t("web.page.back_to_list"), [:admin, resource_class.name.underscore.pluralize], :class => "button"
+        - if can? :edit, resource
+          = link_to t("web.page.edit_this"), [:edit, :admin, resource], :class => "button"
 
     %section
       = show_for @user do |user|
-        = user.attributes :id, :name, :email, :gender, :phone_number, :location, :about
+        = user.attributes :id, :name, :email, :gender, :phone_number, :location, :about, :department_name
         = user.attribute :avatar do
           = image_tag(@user.url)
         = user.attribute :created_at, :format => :short

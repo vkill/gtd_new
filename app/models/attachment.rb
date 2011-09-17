@@ -9,11 +9,15 @@ class Attachment < ActiveRecord::Base
   validates_attachment_size :data, :less_than => 2.megabytes
 
 
-  after_save :build_name
+  before_save :build_name
+
+  def to_param
+    "%s-%s" % [id, name.parameterize]
+  end
 
   private
     def build_name
-      self.name = self.data_file_name unless self.name.blank?
+      self.name = self.data_file_name if self.name.blank?
     end
 
 end

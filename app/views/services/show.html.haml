@@ -1,0 +1,12 @@
+= render "shared/left_area"
+
+#right_area
+  #about_text_heading 业务介绍
+  #about_text
+    #about_title
+      = @service.name
+    .post_detail
+    #about_body
+      = show_for @service do |service|
+        = service.attributes :name, :category_text, :expired_date_hours, :describtion, :department_name
+

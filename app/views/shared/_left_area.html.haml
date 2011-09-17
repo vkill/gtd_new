@@ -1,0 +1,17 @@
+#left_area
+  #lastest_list
+    #lastest_bg_top
+    #lastest_bg_mid
+      %ul.list_2
+        - @hot_posts.each do |post|
+          %li= link_to (raw "&gt;　%s" % truncate(post.title, :length => 10)), [post]
+    #lastest_bg_foot
+
+  #lastest_software
+    #software_bg_top
+    #software_bg_mid
+      %ul.list_2
+        - @hot_softwares.each do |software|
+          %li= link_to (raw "&gt;　%s" % truncate(software.title, :length => 10)), [software]
+    #software_bg_foot
+

@@ -5,16 +5,17 @@
     = link_to "登录", new_user_session_path
     = link_to "注册", new_user_registration_path
     = link_to "忘记密码", "#"
-  
+
   #top_menu
     #menu_bg_left
     #menu_bg_mid
       %ul#menu_list
-        %li#a1= link_to "首页", "#"
-        %li#a2= link_to "部门简介", "#"
-        %li#a3= link_to "新闻公告", "#"
-        %li#a4= link_to "业务办理", "#"
-        %li#a5= link_to "软件下载", "#"
-        %li#a6= link_to "业务介绍", "#"
+        %li#a1= link_to "首页", root_path
+        %li#a2= link_to "部门简介", department_about_path
+        %li#a3= link_to "新闻公告", [:posts]
+        %li#a4= link_to "业务办理", [:new, :business]
+        %li#a5= link_to "软件下载", [:softwares]
+        %li#a6= link_to "业务介绍", [:services]
     #menu_bg_right
     .clear
+

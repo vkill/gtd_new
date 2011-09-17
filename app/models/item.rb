@@ -12,7 +12,8 @@ class Item < ActiveRecord::Base
   delegate :name, :to => :user, :prefix => true, :allow_nil => true
 
 
-  default_scope order('created_at DESC')
+  scope :default_scope, order('created_at DESC')
+  scope :list, order("top DESC, created_at DESC")
 
 
   validates :title, :presence => true,
@@ -33,7 +34,7 @@ class Item < ActiveRecord::Base
 
   private
     def build_permalink
-      self.permalink = Hz2py.do(self.title).parameterize unless self.permalink.blank?
+      self.permalink = Hz2py.do(self.title).parameterize if self.permalink.blank?
     end
 
     def build_user

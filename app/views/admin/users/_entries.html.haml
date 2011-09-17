@@ -4,8 +4,9 @@
       %th= ta User, :name
       %th= ta User, :email
       %th= ta User, :phone_number
-      %th= ta User, :department_id
+      %th= ta User, :department
       %th= ta User, :state
+      %th= ta User, :state_operation
       %th= t(:operations)
 
   %tbody
@@ -16,6 +17,7 @@
         %td= user.phone_number
         %td= user.department_name
         %td= user.state_text
+        %td= user_state_operation(user)
         %td
           = link_to t(:show), [:admin, user], :title => t(:show), :class => "show"
           = link_to t(:edit), [:edit, :admin, user], :title => t(:edit), :class => "edit"

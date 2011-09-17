@@ -1,0 +1,15 @@
+= render "shared/left_area"
+
+#right_area
+  #about_text_heading 新闻公告
+  #about_text
+    #about_title
+      = @post.title
+    .post_detail
+    #about_body
+      = @post.content
+    .post_detail
+    #about_info
+      %span= "(%s)" % @post.user_name
+      %span= l @post.created_at, :format => :long
+

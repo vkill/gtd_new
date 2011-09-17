@@ -1,0 +1,26 @@
+= render "shared/left_area"
+
+#right_area
+  #about_text_heading 软件下载
+  #about_text
+    #about_title
+      = @software.title
+    .post_detail
+    #about_body
+      = show_for @software do |software|
+        = software.attributes :category_text, :content
+        = software.association :attachments do |attachment|
+          = show_for attachment do |attachment|
+            #about_software_attachments_list
+              = attachment.attributes :data_content_type, :data_file_size
+              = attachment.attribute :data do
+                = link_to "download", [:sent, @software, attachment.object],
+                                    :title => attachment.object.name, :method => :put
+              .clear
+
+    .clear
+    .post_detail
+    #about_info
+      %span= "(%s)" % @software.user_name
+      %span= l @software.created_at, :format => :long
+

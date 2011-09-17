@@ -17,10 +17,10 @@
         %td= business.service_name
         %td= business.created_at.strftime("%m/%d/%Y %H:%M")
         %td= business.state_text
-        %td= admin_state_operation(business)
+        %td= issue_state_operation(business)
         - if business.feedback
           %td= business.feedback.state_text
-          %td= admin_feedback_state_operation(business)
+          %td= issue_feedback_state_operation(business)
         - else
           %td
           %td

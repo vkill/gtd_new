@@ -1,2 +1,31 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+#table_1
+  #table1_bg_left
+  #table1_bg_mid
+    #table1_heading
+      %img(width="380"){:src => image_path("design/lastest.jpg")}
+      %ul.list_1.list_1_margin
+        - @posts.each do |post|
+          %li= link_to (raw "&gt;　%s" % truncate(post.title, :length => 22)), [post]
+
+  #table1_bg_right
+
+#table_2
+  #table2_bg_left
+  #table2_bg_mid
+    #table2_heading
+      = link_to image_tag("design/more.gif", :id => :more, :border => 0, :name => :more), [:services]
+    %ul.list_1
+      - @services.each do |service|
+        %li= link_to (raw "&gt;　%s" % truncate(service.name, :length => 16)), [service]
+  #table2_bg_right
+
+#table_3
+  #table3_bg_left
+  #table3_bg_mid
+    #table3_heading
+      = link_to image_tag("design/more.gif", :id => :more, :border => 0, :name => :more), [:softwares]
+    %ul.list_1
+      - @softwares.each do |software|
+        %li= link_to (raw "&gt;　%s" % truncate(software.title, :length => 16)), [software]
+  #table2_bg_right
+

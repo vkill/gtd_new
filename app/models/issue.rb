@@ -41,13 +41,13 @@ class Issue < ActiveRecord::Base
     transitions :from => :expired, :to => :pending
   end
   aasm_event :assigned do
-    transitions :from => [:pending, :expired], :to => :assigned
+    transitions :from => :pending, :to => :assigned
   end
   aasm_event :accepted do
-    transitions :from => [:assigned, :expired], :to => :accepted
+    transitions :from => :assigned, :to => :accepted
   end
   aasm_event :finished do
-    transitions :from => [:accepted, :expired], :to => :finished
+    transitions :from => :accepted, :to => :finished
   end
 
 

@@ -14,12 +14,16 @@
 = content_for :javascript do
   :javascript
     $(document).ready(function() {
-        $('.list_table').dataTable( {
-            "sPaginationType": "full_numbers",
-            "aaSorting": [[4,'asc']],
-            "oLanguage": {
-              "sUrl": "/javascripts/datatables/zh-CN.txt"
-            }
-        });
+      $('.list_table').dataTable( {
+          "sPaginationType": "full_numbers",
+          "aaSorting": [[4,'asc']],
+          "oLanguage": {
+            "sUrl": "/javascripts/datatables/zh-CN.txt"
+          }
+      });
+      $("[data-colorBox-ajax-load]").colorbox({
+        width: "80%",
+        height: "80%"
+      });
     });
 

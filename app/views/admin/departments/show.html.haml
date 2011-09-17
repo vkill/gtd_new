@@ -6,8 +6,8 @@
   .portlet.grid_12
     %header
       %h2= @department.name
-      = link_to t("web.page.back_to_list"), [:admin, :departments], :class => "button"
-      = link_to t("web.page.edit_this"), [:edit, :admin, @department], :class => "button"
+      = link_to t("web.page.back_to_list"), [:admin, resource_class.name.underscore.pluralize], :class => "button"
+      = link_to t("web.page.edit_this"), [:edit, :admin, resource], :class => "button"
 
     %section
       = show_for @department do |department|

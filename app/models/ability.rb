@@ -10,10 +10,9 @@ class Ability
     elsif current_user.has_role? 'chief'
       can :manage, Admin
       can [:read, :create, :update], User
-      can [:read, :create, :update], Service
+      can :manage, Service
       can [:read, :update], Business
       can :manage, Task
-
 
     elsif current_user.has_role? 'staff'
       can :manage, Admin

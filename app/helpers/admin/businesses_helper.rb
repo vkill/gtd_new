@@ -26,7 +26,7 @@ module Admin::BusinessesHelper
     end
   end
 
-  def admin_state_operation(record)
+  def issue_state_operation(record)
 
     case record.state
     when :pending
@@ -56,7 +56,7 @@ module Admin::BusinessesHelper
     end
   end
 
-  def admin_feedback_state_operation(record)
+  def issue_feedback_state_operation(record)
     case record.feedback.state
     when :pending
       link_to t("web.change_state.feedback.to_processing"),

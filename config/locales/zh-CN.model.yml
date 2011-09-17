@@ -52,7 +52,9 @@ zh-CN:
         created_at: 创建时间
         updated_at: 更新时间
         state: 状态
+        state_operation: 状态操作
         department: 部门
+        department_name: 部门
         enums:
           gender:
             male: 男
@@ -73,6 +75,7 @@ zh-CN:
         department: 部门
         created_at: 创建时间
         updated_at: 更新时间
+        department_name: 所属部门
         enums:
           category:
             new_business: 新业务办理
@@ -168,6 +171,7 @@ zh-CN:
         attachments: 附件
 
       software:
+        content: 描述
         enums:
           top:
             'true': 置顶

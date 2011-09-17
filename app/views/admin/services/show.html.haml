@@ -6,12 +6,12 @@
   .portlet.grid_12
     %header
       %h2= @service.name
-      = link_to t("web.page.back_to_list"), [:admin, :services], :class => "button"
-      = link_to t("web.page.edit_this"), [:edit, :admin, @service], :class => "button"
+      = link_to t("web.page.back_to_list"), [:admin, resource_class.name.underscore.pluralize], :class => "button"
+      = link_to t("web.page.edit_this"), [:edit, :admin, resource], :class => "button"
 
     %section
       = show_for @service do |service|
-        = service.attributes :id, :name, :category_text, :expired_date_hours, :describtion
+        = service.attributes :id, :name, :category_text, :expired_date_hours, :describtion, :department_name
         = service.attribute :created_at, :format => :short
         = service.attribute :updated_at, :format => :short
 

@@ -4,26 +4,28 @@
     %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}
     %meta{:name => "keywords", :content => "四川职业建筑技术学院,图书信息中心,故障保修,业务办理"}
     = csrf_meta_tag
-    
+
     %title ooxx
     = favicon_link_tag
-    
+
     = stylesheet_link_tag 'design', :media => 'screen'
-    
+
     = yield :head
-  
+
   %body
     = render "shared/header"
     = render "shared/banner"
-    
+
     #content
       - flash.each do |type, message|
         %div
           %p.msg{:class => "type"}
             = message
-          
-          = yield
-          
-          .clear
+
+      = yield
+
+      .clear
+
     = render "shared/footer"
     = render "shared/javascripts"
+

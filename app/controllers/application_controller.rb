@@ -41,6 +41,13 @@ class ApplicationController < ActionController::Base
     User.current = current_user
   end
 
+
+  def find_hot_posts_and_softwares
+    @hot_posts = Post.limit(5)
+    @hot_softwares = Software.limit(5)
+  end
+
+
   private
     def store_location
       session[:return_to] = request.fullpath

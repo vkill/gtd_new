@@ -21,6 +21,11 @@ class Service < ActiveRecord::Base
   validates :expired_date_hours, :presence => true
   validates :department, :existence => { :both => false }
 
+
+  def to_param
+    "%s-%s" % [id, Hz2py.do(name).parameterize]
+  end
+
 end
 
 

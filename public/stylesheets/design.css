@@ -175,6 +175,9 @@ div{
     margin:13px 10px 5px 0;
 	border: 0;
 }
+#paginator{
+  text-align:center;
+}
 /*==========about page styles========*/
 #left_area,#right_area{
     float:left;
@@ -228,6 +231,23 @@ div{
 }
 .list_2 li{
     padding:5px 10px 5px 20px;
+}
+#about_title{
+  text-align: center;
+  font-size: 20px;
+  font-weight: bolder;
+}
+#about_body{
+}
+#about_info{
+  text-align: right;
+}
+#about_software_attachments_list{
+/*  padding: 10px 0px 10px 30px;*/
+}
+#about_software_attachments_list p{
+  float: left;
+  margin-right: 20px;
 }
 /*===============login page style==============*/
 #log_form{
@@ -394,6 +414,7 @@ a.text_link:active {
 }
 .grey_font{
     color:#666666;
+
 }
 
 .post_heading{
@@ -504,3 +525,4 @@ span.user-username {
     display: inline;
     padding-left: 15px;
 }
+
