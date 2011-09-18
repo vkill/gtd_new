@@ -18,7 +18,15 @@ class Admin::ItemsController < Admin::BaseController
 
 
   def update
-    update!(:notice => t(:update_successful)) { [:admin, resource_class.name.underscore.pluralize] }
+    @item = resource
+    respond_to do |format|
+      if @item.update_attributes(params[params[:default][:resource_class].underscore])
+        format.html { redirect_to [:admin, resource_class.name.underscore.pluralize],
+                                           notice: t(:update_successful) }
+      else
+        format.html { render action: "edit" }
+      end
+    end
   end
 
   def destroy

@@ -4,6 +4,14 @@
   #about_text_heading 软件下载
   #about_text
     %table.grey_font{:border => "0", :cellpadding => "0", :cellspacing => "5", :width => "100%"}
+      %thead
+        %tr
+          %th{:width => "60%"}
+            名字
+          %th{:width => "20%"}
+            分类
+          %th{:width => "20%"}
+            创建时间
       %tbody
         - @softwares.each do |software|
           %tr

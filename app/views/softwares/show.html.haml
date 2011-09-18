@@ -8,7 +8,9 @@
     .post_detail
     #about_body
       = show_for @software do |software|
-        = software.attributes :category_text, :content
+        = software.attributes :category_text
+        = software.attribute :content do
+          = raw @software.content
         = software.association :attachments do |attachment|
           = show_for attachment do |attachment|
             #about_software_attachments_list

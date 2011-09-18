@@ -3,7 +3,7 @@ KindEditor.ready(function(K) {
 		width: "550px",
 		allowFileManager: true,
 		langType: "zh_CN",
-		uploadJson: '/kindeditor/upload',
+		uploadJson: "/kindeditor/upload",
 		fileManagerJson: '/kindeditor/filemanager'
 	});
 });

@@ -13,7 +13,9 @@
 
     %section
       = show_for resource do |item|
-        = item.attributes :id, :title, :permalink, :content, :top_text, :category_text, :user_name
+        = item.attributes :id, :title, :permalink, :top_text, :category_text, :user_name
+        = item.attribute :content do
+          = raw resource.content
         = item.attribute :created_at, :format => :short
         = item.attribute :updated_at, :format => :short
         = item.association :attachments do |attachment|

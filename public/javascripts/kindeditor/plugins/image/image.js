@@ -102,7 +102,7 @@ KindEditor.plugin('image', function(K) {
 				tabs = K.tabs({
 					src : K('.tabs', div),
 					afterSelect : function(i) {
-				
+
 					}
 				});
 				tabs.add({
@@ -130,7 +130,7 @@ KindEditor.plugin('image', function(K) {
 			var uploadbutton = K.uploadbutton({
 				button : K('.ke-upload-button', div)[0],
 				fieldName : 'imgFile',
-				url : uploadJson + '?dir=image',
+				url : uploadJson + '?dir=image' + "&" + encodeURIComponent($("[name='csrf-param']").attr("content")) + "=" + encodeURIComponent($("[name='csrf-token']").attr("content")),
 				afterUpload : function(data) {
 					if (data.error === 0) {
 						var width = widthBox.val(),
@@ -224,3 +224,4 @@ KindEditor.plugin('image', function(K) {
 	};
 	self.clickToolbar(name, self.plugin.image.edit);
 });
+
