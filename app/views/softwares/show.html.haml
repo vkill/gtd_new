@@ -14,9 +14,11 @@
         = software.association :attachments do |attachment|
           = show_for attachment do |attachment|
             #about_software_attachments_list
-              = attachment.attributes :data_content_type, :data_file_size
+              = attachment.attributes :data_content_type
+              = attachment.attribute :data_file_size do
+                = number_to_human_size attachment.object.data_file_size
               = attachment.attribute :data do
-                = link_to "download", [:sent, @software, attachment.object],
+                = link_to "download", [:download, @software, attachment.object],
                                     :title => attachment.object.name, :method => :put
               .clear
 

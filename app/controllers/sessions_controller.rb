@@ -1,6 +1,6 @@
 class SessionsController < Devise::SessionsController
 
-  layout 'login'
+  layout 'application'
   main_nav_highlight :main
   sec_nav_highlight :logout
 

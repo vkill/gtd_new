@@ -6,21 +6,26 @@
     %table.grey_font{:border => "0", :cellpadding => "0", :cellspacing => "5", :width => "100%"}
       %thead
         %tr
-          %th{:width => "60%"}
+          %th{:width => "50%"}
             名字
           %th{:width => "20%"}
             分类
           %th{:width => "20%"}
             创建时间
+          %th{:width => "10%"}
+
       %tbody
         - @softwares.each do |software|
           %tr
-            %td{:width => "60%"}
+            %td{:width => "50%"}
               = link_to (raw "&gt;　%s" % truncate(software.title, :length => 23)), [software]
             %td{:width => "20%"}
               = link_to software.category_text, softwares_path("search[category_eq]" => software.category)
             %td{:width => "20%"}
               = l software.created_at, :format => :long
+            %td{:width => "10%"}
+              - if can? :edit, software
+                = link_to t(:edit), [:edit, :admin, software]
 
   #paginator
     = paginate @softwares, :remote => true

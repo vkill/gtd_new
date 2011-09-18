@@ -11,7 +11,7 @@ class UsersController < Devise::RegistrationsController
       when 'edit', 'update'
         'admin'
       when 'new', 'create'
-        'login'
+        'application'
       else
         false
       end

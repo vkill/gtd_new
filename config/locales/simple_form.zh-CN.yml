@@ -14,7 +14,6 @@
 
     hints:
       user:
-        name: 姓名最短6位，最长10位
         edit:
           avatar: 新头像留空则继续使用旧头像
 

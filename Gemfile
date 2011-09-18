@@ -94,6 +94,7 @@ group :development do
   gem 'thin', "~> 1.2.11"
   gem "curb", "~> 0.7.15"
   gem 'annotate', :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
+  gem "erb2haml", "~> 0.1.2"
 end
 
 group :test do

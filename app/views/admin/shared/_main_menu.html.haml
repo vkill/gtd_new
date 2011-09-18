@@ -4,6 +4,8 @@
 
   %nav
     %ul#main-navigation.clearfix
+      = main_nav :link, {:class => ""} do
+        = link_to "返回首页", root_path
 
       = main_nav :issues, {:class => "dropdown"} do
         = link_to "任务管理", "#"

@@ -79,17 +79,12 @@ class User < ActiveRecord::Base
   end
 
 
-  validates :password, :presence => true,
-                       :confirmation => true,
-                       :length       => { :within => 6..15 },
-                        :if => Proc.new { |record| record.password }
   validates :username, :presence     => true,
                        :uniqueness   => { :case_sensitive => false },
                        :length       => { :within => 4..20 },
                        :format       => { :with => /^[A-Za-z0-9_]+$/ }
   validates :name,     :presence     => true,
                        :length       => { :within => 2..30 }
-  validates :email, :presence => true
 
   class << self
     def current=(user)

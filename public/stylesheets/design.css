@@ -252,26 +252,26 @@ div{
 /*===============login page style==============*/
 #log_form{
     background:url(../images/design/grey_bg.jpg) no-repeat;
-    width:1000px;
-    height:350px;
+/*    width:1000px;*/
+/*    height:350px;*/
     padding-top:100px;
 }
 #form_bg_top{
-    background:url(../images/design/login_top.jpg) no-repeat;
-    width:397px;
-    height:60px;
+/*    background:url(../images/design/login_top.jpg) no-repeat;*/
+/*    width:397px;*/
+/*    height:60px;*/
 }
 #form_bg_mid{
-    background:url(../images/design/login_mid.jpg) repeat-y;
-    width:397px;
+/*    background:url(../images/design/login_mid.jpg) repeat-y;*/
+/*    width:397px;*/
 }
 #form_bg_foot{
-    background:url(../images/design/login_foot.jpg) no-repeat;
-    width:397px;
-    height:17px;
+/*    background:url(../images/design/login_foot.jpg) no-repeat;*/
+/*    width:397px;*/
+/*    height:17px;*/
 }
 #form{
-    width:270px;
+/*    width:270px;*/
     line-height:34px;
     padding-top:10px;
 }

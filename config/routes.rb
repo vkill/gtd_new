@@ -5,7 +5,7 @@ GtdNew::Application.routes.draw do
   resources :softwares, :only => [:index, :show] do
     resources :attachments, :only => [] do
       member do
-        get :sent
+        put :download
       end
     end
   end
