@@ -6,8 +6,8 @@
   .grid_12
     .actions
       - if can? :create, resource_class
-        = link_to t("web.page.new", :model => resource_class.model_name.human),
-                    [:new, :admin, resource_class.name.underscore], :class => "button"
+        /= link_to t("web.page.new", :model => resource_class.model_name.human),
+        /            [:new, :admin, resource_class.name.underscore], :class => "button"
 
     #demo.clearfix
       = render "admin/businesses/entries"

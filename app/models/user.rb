@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :username, :name, :gender, :phone_number, :location, :about, :avatar, :department, :state
-  attr_accessible :roles_mask
+  attr_accessible :username, :name, :gender, :phone_number, :location, :about, :avatar, :department_id, :state
+  attr_accessible :roles
 
   has_attached_file :avatar,
                     :url => "/system/avatars/:id/:id-:style.:extension",
@@ -35,9 +35,11 @@ class User < ActiveRecord::Base
 
 
   belongs_to :department
-  has_many :posts, :foreign_key => :user_id, :class_name => "Post"
-  has_many :softwares, :foreign_key => :user_id, :class_name => "Software"
-  has_many :issues, :foreign_key => :user_id, :class_name => "Issue"
+  with_options :dependent => :destroy do |owner|
+    owner.has_many :posts, :foreign_key => :user_id, :class_name => "Post"
+    owner.has_many :softwares, :foreign_key => :user_id, :class_name => "Software"
+    owner.has_many :issues, :foreign_key => :user_id, :class_name => "Issue"
+  end
   has_many :assign_issues, :foreign_key => :assigner_id, :class_name => "Issue"
   has_many :accept_issues, :foreign_key => :accepter_id, :class_name => "Issue"
   has_many :businesses, :foreign_key => :user_id, :class_name => "Business"
@@ -53,7 +55,7 @@ class User < ActiveRecord::Base
   symbolize :state, :in => [ :pending, :actived, :paused, :deleted ], :scopes => true, :methods => true
 
 
-  default_scope order('created_at DESC')
+  scope :default_scope, order('updated_at DESC')
   scope :not_superadmin, where(:superadmin => false)
 
   delegate :name, :to => :department, :prefix => true, :allow_nil => true
@@ -102,7 +104,7 @@ class User < ActiveRecord::Base
   private
     def add_chief_or_staff_role_require_department
       if roles.index("chief") or roles.index("staff")
-        errors.add(:roles, "当角色为chief或staff时请先选择部门") if department.blank?
+        errors.add(:department, "当角色为chief或staff时必须选择部门") if department.blank?
       end
     end
 

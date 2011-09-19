@@ -12,7 +12,7 @@ class Item < ActiveRecord::Base
   delegate :name, :to => :user, :prefix => true, :allow_nil => true
 
 
-  scope :default_scope, order('created_at DESC')
+  scope :default_scope, order('updated_at DESC')
   scope :list, order("top DESC, created_at DESC")
 
 

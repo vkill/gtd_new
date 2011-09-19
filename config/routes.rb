@@ -10,7 +10,12 @@ GtdNew::Application.routes.draw do
     end
   end
   resources :services, :only => [:index, :show]
-  resources :businesses, :only => [:index, :new, :create, :show]
+  resources :businesses, :only => [:index, :new, :create, :show, :update] do
+    member do
+      get :add_feedback
+      put :add_feedback
+    end
+  end
 
   devise_for :users, :controllers => { :registrations => "users", :passwords => "passwords",:sessions => "sessions" }
 
@@ -32,7 +37,7 @@ GtdNew::Application.routes.draw do
     end
     resources :posts, :controller => 'items', :default => { :resource_class => 'Post' }
     resources :softwares, :controller => 'items', :default => { :resource_class => 'Software' }
-    resources :businesses, :tasks do
+    resources :businesses do
       member do
         get :show_colorbox
         get :assign
@@ -41,10 +46,17 @@ GtdNew::Application.routes.draw do
         put :accept
         get :finish
         put :finish
-        get :add_feedback
-        put :add_feedback
         get :process_feedback
         put :process_feedback
+      end
+    end
+    resources :tasks do
+      member do
+        get :show_colorbox
+        get :accept
+        put :accept
+        get :finish
+        put :finish
       end
     end
   end

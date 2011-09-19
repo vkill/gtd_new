@@ -6,18 +6,21 @@ class Ability
 
     elsif current_user.superadmin? or current_user.has_role? 'admin'
       can :manage, :all
+      cannot :destroy, User
 
     elsif current_user.has_role? 'chief'
       can :manage, Admin
       can [:read, :create, :update], User
       can :manage, Service
-      can [:read, :update, :assign, :accept, :finish, :process_feedback], Business
+      can [:read, :assign, :accept, :finish, :process_feedback], Business
       can :manage, Task
+      can [:read, :create, :add_feedback], Business
 
     elsif current_user.has_role? 'staff'
       can :manage, Admin
-      can [:read, :update, :accept, :finish], Business
-      can [:read, :update, :accept, :finish], Task
+      can [:read, :accept, :finish], Business
+      can [:read, :accept, :finish], Task
+      can [:read, :create, :add_feedback], Business
 
     else
       can :manage, Admin

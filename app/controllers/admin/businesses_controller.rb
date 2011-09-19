@@ -55,20 +55,6 @@ class Admin::BusinessesController < Admin::BaseController
   end
 
 
-  def add_feedback
-    @business = resource
-    if request.method == "GET"
-      @business.build_feedback
-      @show_colorbox = true
-      render :add_feedback, :layout => false
-    else
-      update! do |success, failure|
-        success.html { redirect_to collection_url, :notice => t(:add_feedback_successful) }
-        failure.html { render :add_feedback }
-      end
-    end
-  end
-
   def process_feedback
     @business = resource
     @business.feedback.processing! if @business.feedback.pending?
@@ -95,5 +81,16 @@ class Admin::BusinessesController < Admin::BaseController
         current_user.businesses
       end
     end
+
+    def resource
+      if params[:id]
+        if end_of_association_chain.find(params[:id])
+          @business = resource_class.find(params[:id])
+        end
+      else
+        @business = resource_class.new
+      end
+    end
+
 end
 

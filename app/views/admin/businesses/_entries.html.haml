@@ -7,8 +7,9 @@
       %th= ta Issue, :created_at
       %th= ta Issue, :state
       %th= ta Issue, :state_operation
-      %th= ta Issue, :feedback_state
-      %th= ta Issue, :feedback_state_operation
+      - if resource_class.name == "Business"
+        %th= ta Issue, :feedback_state
+        %th= ta Issue, :feedback_state_operation
       %th= t(:operations)
 
   %tbody
@@ -19,13 +20,15 @@
         %td= business.service_name
         %td= business.created_at.strftime("%m/%d/%Y %H:%M")
         %td= business.state_text
-        %td= issue_state_operation(business)
-        - if business.feedback
-          %td= business.feedback.state_text
-          %td= issue_feedback_state_operation(business)
-        - else
-          %td
-          %td= issue_feedback_add(business)
+        %td= admin_issue_state_operation(business)
+        - if resource_class.name == "Business"
+          - if business.feedback
+            %td= business.feedback.state_text
+            %td= admin_issue_feedback_state_operation(business)
+          - else
+            %td
+            %td
+
         %td
           = link_to t(:show), [:admin, business], :title => t(:show), :class => "show"
           - if can? :update, business

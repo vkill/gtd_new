@@ -12,7 +12,7 @@ class Admin::UsersController < Admin::BaseController
       redirect_to :back
     else
       update! do |success, failure|
-        success.html { redirect_to collection_url, :notice => t(:update_successful) }
+        success.html { redirect_to resource_url, :notice => t(:update_successful) }
         failure.html { render :action => :edit }
       end
     end
@@ -21,9 +21,9 @@ class Admin::UsersController < Admin::BaseController
   protected
     def end_of_association_chain
       if current_user.has_role? 'admin'
-        resource_class
+        resource_class.not_superadmin
       elsif current_user.has_role? 'chief'
-        current_user.department.users
+        current_user.department.users.not_superadmin
       end
     end
 end

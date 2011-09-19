@@ -15,10 +15,13 @@
         %ul
           - if can? :read, Business
             %li.dropdown
-              = link_to "业务办理", admin_businesses_path
+              = link_to "业务办理", businesses_path
               %ul
                 - if can? :create, Business
-                  %li.current= link_to "+ 创建新业务", new_admin_business_path
+                  %li.current= link_to "+ 创建新业务", new_business_path
+          - if can? :read, Business
+            %li.dropdown
+              = link_to "业务指派/完成", admin_businesses_path
 
           - if can? :read, Task
             %li.dropdown

@@ -1,6 +1,7 @@
 %table.list_table.display
   %thead
     %tr
+      %th= ta User, :id
       %th= ta User, :name
       %th= ta User, :email
       %th= ta User, :phone_number
@@ -12,6 +13,7 @@
   %tbody
     - users.each do |user|
       %tr
+        %td= user.id
         %td= user.name
         %td= user.email
         %td= user.phone_number

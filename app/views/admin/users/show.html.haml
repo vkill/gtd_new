@@ -13,7 +13,7 @@
 
     %section
       = show_for @user do |user|
-        = user.attributes :id, :name, :email, :gender, :phone_number, :location, :about, :department_name
+        = user.attributes :id, :name, :email, :gender, :phone_number, :location, :about, :department_name, :roles
         = user.attribute :avatar do
           = image_tag(@user.url)
         = user.attribute :created_at, :format => :short

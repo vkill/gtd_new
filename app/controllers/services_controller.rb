@@ -4,6 +4,8 @@ class ServicesController < ApplicationController
   respond_to :html, :xml, :json
   actions :index, :show
   before_filter :find_hot_posts_and_softwares
+  main_nav_highlight :issues
+  sec_nav_highlight :my_businesses
 
   protected
     def collection

@@ -4,13 +4,15 @@ class Department < ActiveRecord::Base
 
 
   has_many :users
-  has_many :services
+  with_options :dependent => :destroy do |department|
+    department.has_many :services
+  end
   has_many :issues, :foreign_key => :service_id, :class_name => "Issue", :through => :services
   has_many :businesses, :foreign_key => :service_id, :class_name => "Business", :through => :services
   has_many :tasks, :foreign_key => :service_id, :class_name => "Task", :through => :services
 
 
-  default_scope order('created_at DESC')
+  scope :default_scope, order('updated_at DESC')
 
 
   validates :name, :presence => true,

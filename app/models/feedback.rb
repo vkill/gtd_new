@@ -8,7 +8,7 @@ class Feedback < ActiveRecord::Base
   symbolize :state, :in => [ :pending, :processing, :processed ], :scopes => true, :methods => true
 
 
-  default_scope order('created_at DESC')
+  scope :default_scope, order('updated_at DESC')
 
 
   delegate :email, :name, :to => :handler, :prefix => true, :allow_nil => true

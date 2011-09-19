@@ -19,13 +19,16 @@
   = f.input :phone_number, :as => :string
   = f.input :location
   = f.input :about, :input_html => { :rows => 5, :cols => 60 }
-  = f.association :department, :prompt => t(:select_options)
+  - if current_user.has_role? 'admin'
+    = f.association :department, :prompt => t(:select_options)
   - if @user.avatar?
     %div
       = f.label :avatar_old
       %img{ :src => "#{@user.url}"}
   = f.input :avatar, :as => :file
   = f.input :state, :as => :select, :collection => User.get_state_values
+  - if current_user.has_role? 'admin'
+    = f.input :roles, :as => :check_boxes, :collection => User::ROLES_MASK
   .form-action
     = f.button "submit"
 

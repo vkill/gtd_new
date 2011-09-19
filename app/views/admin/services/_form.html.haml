@@ -2,7 +2,8 @@
   = f.input :name
   = f.input :category, :as => :select, :collection => Service.get_category_values, :prompt => t(:select_options)
   = f.input :expired_date_hours
-  = f.association :department, :prompt => t(:select_options)
+  - if current_user.has_role? 'admin'
+    = f.association :department, :prompt => t(:select_options)
   = f.input :describtion
   .form-action
     = f.button "submit"

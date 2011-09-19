@@ -8,16 +8,18 @@ class Issue < ActiveRecord::Base
   belongs_to :assigner, :foreign_key => :assigner_id, :class_name => "User"
   belongs_to :accepter, :foreign_key => :accepter_id, :class_name => "User"
   belongs_to :service
-  has_one :evaluation, :as => :evaluationable
-  has_one :feedback
-  accepts_nested_attributes_for :feedback
-  accepts_nested_attributes_for :evaluation
+  with_options :dependent => :destroy do |issue|
+    issue.has_one :evaluation, :as => :evaluationable
+    issue.has_one :feedback
+  end
+  accepts_nested_attributes_for :feedback, :allow_destroy => true
+  accepts_nested_attributes_for :evaluation, :allow_destroy => true
 
 
   symbolize :state, :in => [ :pending, :assigned, :accepted, :finished, :expired], :scopes => true, :methods => true
 
 
-  default_scope order('created_at DESC')
+  scope :default_scope, order('updated_at DESC')
 
 
   delegate :email, :name, :to => :editor, :prefix => true, :allow_nil => true

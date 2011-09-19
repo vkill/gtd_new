@@ -21,7 +21,7 @@ class Admin::TasksController < Admin::BaseController
     @task = end_of_association_chain.new params[:task]
     @task.state = :assigned
     create! do |success, failure|
-      success.html { redirect_to collection_url, :notice => t(:create_successful) }
+      success.html { redirect_to resource_url, :notice => t(:create_successful) }
       failure.html { render 'admin/businesses/new' }
     end
   end
@@ -40,8 +40,40 @@ class Admin::TasksController < Admin::BaseController
 
   def update
     update! do |success, failure|
-      success.html { redirect_to collection_url, :notice => t(:update_successful) }
+      success.html { redirect_to resource_url, :notice => t(:update_successful) }
       failure.html { render 'admin/businesses/edit' }
+    end
+  end
+
+  def accept
+    @business = resource
+    if request.method == "GET"
+      @show_colorbox = true
+      render 'admin/businesses/accept', :layout => false
+    else
+      @business.solution = params[:task][:solution]
+      if @business.accepted!
+        redirect_to collection_url, :notice => t(:accept_successful)
+      else
+        @show_colorbox = true
+        render 'admin/businesses/accept'
+      end
+    end
+  end
+
+  def finish
+    @business = resource
+    if request.method == "GET"
+      @show_colorbox = true
+      render 'admin/businesses/finish', :layout => false
+    else
+      @business.result = params[:task][:result]
+      if @business.finished!
+        redirect_to collection_url, :notice => t(:finish_successful)
+      else
+        @show_colorbox = true
+        render 'admin/businesses/finish'
+      end
     end
   end
 
@@ -53,6 +85,16 @@ class Admin::TasksController < Admin::BaseController
         current_user.department.tasks
       elsif current_user.has_role? 'staff'
         current_user.accept_tasks
+      end
+    end
+
+    def resource
+      if params[:id]
+        if end_of_association_chain.find(params[:id])
+          @business = @task = resource_class.find(params[:id])
+        end
+      else
+        @business = @task = resource_class.new
       end
     end
 end

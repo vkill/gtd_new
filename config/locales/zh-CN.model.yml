@@ -55,6 +55,8 @@ zh-CN:
         state_operation: 状态操作
         department: 部门
         department_name: 部门
+        roles_mask: 角色
+        roles: 角色
         enums:
           gender:
             male: 男

@@ -16,11 +16,14 @@
 
         - when :issues
           - if can? :read, Business
+            = sec_nav :my_businesses do
+              = link_to "业务办理", businesses_path
+          - if can? :read, Business
             = sec_nav :businesses do
-              = link_to "业务办理", admin_businesses_path
+              = link_to "业务指派/完成", admin_businesses_path
           - if can? :read, Task
             = sec_nav :tasks do
-              = link_to "任务指派", admin_tasks_path
+              = link_to "任务管理", admin_tasks_path
 
         - when :basic
           - if can? :read, User
