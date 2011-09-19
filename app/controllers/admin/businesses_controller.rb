@@ -91,6 +91,8 @@ class Admin::BusinessesController < Admin::BaseController
         current_user.department.businesses
       elsif current_user.has_role? 'staff'
         current_user.accept_businesses
+      else
+        current_user.businesses
       end
     end
 end

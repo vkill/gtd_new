@@ -18,9 +18,10 @@ class Ability
       can :manage, Admin
       can [:read, :update, :accept, :finish], Business
       can [:read, :update, :accept, :finish], Task
+
     else
       can :manage, Admin
-      can [:create, :add_feedback], Business
+      can [:read, :create, :add_feedback], Business
     end
   end
 end

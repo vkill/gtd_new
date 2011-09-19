@@ -84,8 +84,8 @@ zh-CN:
 
       issue:
         id: 序号
-        name: 任务名
-        body: 内容
+        name: 业务/任务标题
+        body: 业务/任务内容
         state: 任务状态
         state_text: 任务状态
         assigner: 分配人

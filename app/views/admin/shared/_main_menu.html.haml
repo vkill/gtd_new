@@ -7,22 +7,25 @@
       = main_nav :link, {:class => ""} do
         = link_to "返回首页", root_path
 
+      = main_nav :link, {:class => ""} do
+        = link_to "后台管理首页", admin_root_path
+
       = main_nav :issues, {:class => "dropdown"} do
         = link_to "任务管理", "#"
         %ul
           - if can? :read, Business
             %li.dropdown
-              = link_to "业务分配", admin_businesses_path
+              = link_to "业务办理", admin_businesses_path
               %ul
                 - if can? :create, Business
-                  %li.current= link_to "+ 业务分配", new_admin_business_path
+                  %li.current= link_to "+ 创建新业务", new_admin_business_path
 
           - if can? :read, Task
             %li.dropdown
-              = link_to "任务指派", admin_tasks_path
+              = link_to "任务管理", admin_tasks_path
               %ul
                 - if can? :create, Task
-                  %li= link_to "+ 创建任务", new_admin_task_path
+                  %li= link_to "+ 创建新任务", new_admin_task_path
 
 
       - if current_user.has_role? 'admin' or current_user.has_role? 'chief'
