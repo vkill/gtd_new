@@ -27,28 +27,28 @@ module Admin::BusinessesHelper
   end
 
   def issue_state_operation(record)
-
     case record.state
     when :pending
-      link_to( t("web.change_state.issue.to_assigned"),
+      if can? :assign, record
+        link_to t("web.change_state.issue.to_assigned"),
                 [:assign, :admin, record],
                 :title => t("web.change_state.issue.to_assigned"),
                 "data-colorBox-ajax-load" => ""
-                )
+      end
     when :assigned
-      raw("&nbsp"*6)
-#      link_to( t("web.change_state.issue.to_accepted"),
-#                "#",
-#                :title => t("web.change_state.issue.to_accepted")
-#                "data-colorBox-ajax-load" => ""
-#                )
+      if can? :accept, record
+        link_to t("web.change_state.issue.to_accepted"),
+                [:accept, :admin, record],
+                :title => t("web.change_state.issue.to_accepted"),
+                "data-colorBox-ajax-load" => ""
+      end
     when :accepted
-      raw("&nbsp"*6)
-#      link_to( t("web.change_state.issue.to_processing"),
-#                "#",
-#                :title => t("web.change_state.issue.to_finished")
-#                "data-colorBox-ajax-load" => ""
-#                )
+      if can? :finish, record
+        link_to t("web.change_state.issue.to_finished"),
+                [:finish, :admin, record],
+                :title => t("web.change_state.issue.to_finished"),
+                "data-colorBox-ajax-load" => ""
+      end
     when :finished
       raw("&nbsp"*6)
     when :expired
@@ -56,18 +56,31 @@ module Admin::BusinessesHelper
     end
   end
 
+  def issue_feedback_add(record)
+    if can? :add_feedback, record
+      link_to t("web.change_state.feedback.add"),
+              [:add_feedback, :admin, record],
+              :title => t("web.change_state.feedback.add"),
+              "data-colorBox-ajax-load" => ""
+    end
+  end
+
   def issue_feedback_state_operation(record)
     case record.feedback.state
     when :pending
-      link_to t("web.change_state.feedback.to_processing"),
-        [:process_feedback, :admin, record],
-        :title => t("web.change_state.feedback.to_processing"),
-        "data-colorBox-ajax-load" => ""
+      if can? :process_feedback, record
+        link_to t("web.change_state.feedback.to_processing"),
+                [:process_feedback, :admin, record],
+                :title => t("web.change_state.feedback.to_processing"),
+                "data-colorBox-ajax-load" => ""
+      end
     when :processing
-      link_to t("web.change_state.feedback.to_processed"),
-        [:process_feedback, :admin, record],
-        :title => t("web.change_state.feedback.to_processed"),
-        "data-colorBox-ajax-load" => ""
+      if can? :process_feedback, record
+        link_to t("web.change_state.feedback.to_processed"),
+                [:process_feedback, :admin, record],
+                :title => t("web.change_state.feedback.to_processed"),
+                "data-colorBox-ajax-load" => ""
+      end
     when :processed
       raw("&nbsp"*6)
     end

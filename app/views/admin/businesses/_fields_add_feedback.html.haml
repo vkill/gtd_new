@@ -1,0 +1,4 @@
+= f.input :category, :as => :select, :collection => f.object.class.get_category_values,
+                                    :prompt => t(:select_options)
+= f.input :body, :input_html => { :id => "kindeditor_id" }, :input_html => {:rows => 3, :cols => 70}
+

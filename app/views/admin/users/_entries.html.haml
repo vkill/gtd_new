@@ -20,7 +20,9 @@
         %td= user_state_operation(user)
         %td
           = link_to t(:show), [:admin, user], :title => t(:show), :class => "show"
-          = link_to t(:edit), [:edit, :admin, user], :title => t(:edit), :class => "edit"
-          = link_to t(:delete), [:admin, user], :title => t(:delete), :class => "delete",
+          - if can? :update, user
+            = link_to t(:edit), [:edit, :admin, user], :title => t(:edit), :class => "edit"
+          - if can? :destroy, user
+            = link_to t(:delete), [:admin, user], :title => t(:delete), :class => "delete",
                                                       :method => :delete, :confirm => t(:delete_confirm)
 

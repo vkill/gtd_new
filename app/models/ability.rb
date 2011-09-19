@@ -11,15 +11,16 @@ class Ability
       can :manage, Admin
       can [:read, :create, :update], User
       can :manage, Service
-      can [:read, :update], Business
+      can [:read, :update, :assign, :accept, :finish, :process_feedback], Business
       can :manage, Task
 
     elsif current_user.has_role? 'staff'
       can :manage, Admin
-      can [:read, :update], Business
-      can [:read, :update], Task
+      can [:read, :update, :accept, :finish], Business
+      can [:read, :update, :accept, :finish], Task
     else
-
+      can :manage, Admin
+      can [:create, :add_feedback], Business
     end
   end
 end

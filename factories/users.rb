@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :user do
-    name                  { Faker::NameCN.name }
+    name                  { Faker::NameCN.name + rand.to_s }
     username              { Hz2py.do name, :join_with => '' }
     email                 { Faker::Internet.email(username) }
     password              { 123456 }

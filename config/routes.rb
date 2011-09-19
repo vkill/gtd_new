@@ -37,6 +37,12 @@ GtdNew::Application.routes.draw do
         get :show_colorbox
         get :assign
         put :assign
+        get :accept
+        put :accept
+        get :finish
+        put :finish
+        get :add_feedback
+        put :add_feedback
         get :process_feedback
         put :process_feedback
       end

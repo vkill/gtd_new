@@ -11,7 +11,7 @@ FactoryGirl.define do
   end
 
   factory :software do
-    title       { Faker::LoremCN.word + Faker::LoremCN.word}
+    title       { Faker::LoremCN.word + rand.to_s}
     permalink   { rand(2) == 1 ? Faker::LoremCN.word : nil }
     content     { Faker::LoremCN.paragraph }
     top         { Software.get_top_values.map{|x| x[1]}.sample }

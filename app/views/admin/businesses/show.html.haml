@@ -8,7 +8,7 @@
       %h2= resource.title rescue resource.name
       - unless @show_colorbox
         = link_to t("web.page.back_to_list"), [:admin, resource_class.name.underscore.pluralize], :class => "button"
-        - if can? :edit, resource
+        - if can? :update, resource
           = link_to t("web.page.edit_this"), [:edit, :admin, resource], :class => "button"
     %section
       = show_for resource do |business|

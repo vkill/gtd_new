@@ -1,6 +1,7 @@
 %table.list_table.display
   %thead
     %tr
+      %th= ta Issue, :id
       %th= ta Issue, :name
       %th= ta Issue, :service
       %th= ta Issue, :created_at
@@ -13,6 +14,7 @@
   %tbody
     - collection.each do |business|
       %tr
+        %td= business.id
         %td= business.name
         %td= business.service_name
         %td= business.created_at.strftime("%m/%d/%Y %H:%M")
@@ -23,10 +25,10 @@
           %td= issue_feedback_state_operation(business)
         - else
           %td
-          %td
+          %td= issue_feedback_add(business)
         %td
           = link_to t(:show), [:admin, business], :title => t(:show), :class => "show"
-          - if can? :edit, business
+          - if can? :update, business
             = link_to t(:edit), [:edit, :admin, business], :title => t(:edit), :class => "edit"
           - if can? :destroy, business
             = link_to t(:delete), [:admin, business], :title => t(:delete), :class => "delete",

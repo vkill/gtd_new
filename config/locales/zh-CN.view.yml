@@ -6,7 +6,10 @@
       edit: 修改%{model}
       new: + 创建%{model}
       assign: 分配%{model}
-      process: 处理%{model}
+      accept: 接受%{model}
+      finish: 完成%{model}
+      add_feedback: 添加%{model}
+      process_feedback: 处理%{model}
       back_to_list: 返回列表页面
       edit_this: 修改记录
       edit_profile: 修改个人资料
@@ -18,14 +21,15 @@
         to_paused: 停用
         to_deleted: 删除
       feedback:
+        add: 添加反馈
         to_pending:
         to_processing: 开始处理
         to_processed: 继续处理
       issue:
         to_pending:
         to_assigned: 分配任务
-        to_accepted: 催促接受
-        to_finished: 催促完成
+        to_accepted: 接受任务
+        to_finished: 完成任务
 
     content:
       dashboard: '控制面板'
@@ -45,6 +49,9 @@
   create_successful: 创建成功！
   destroy_successful: 删除成功！
   state_change_successful: 状态更改成功！
-  assign_successful: 分配成功！
-  process: 处理反馈
+  assign_successful: 成功分配任务！
+  accept_successful: 成功接受任务！
+  finish_successful: 成功完成任务！
+  add_feedback_successful: 成功添加反馈！
+  process_feedback_successful: 成功处理反馈！
 

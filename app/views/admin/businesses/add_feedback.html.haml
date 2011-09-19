@@ -1,6 +1,6 @@
 %header.container_12.clearfix
   .grid_12
-    %h1= t("web.page.process_feedback", :model => Feedback.model_name.human)
+    %h1= t("web.page.add_feedback", :model => Feedback.model_name.human)
 
 %section.container_12.clearfix
   .portlet.grid_12
@@ -10,10 +10,10 @@
         = link_to t("web.page.back_to_list"), [:admin, resource_class.name.underscore.pluralize], :class => "button"
 
     %section
-      = simple_nested_form_for  resource, :url => [:process_feedback, :admin, resource],
+      = simple_nested_form_for  resource, :url => [:add_feedback, :admin, resource],
                           :html => {:multipart => true, :class => 'form has-validation'} do |f|
         = f.simple_fields_for :feedback, resource.feedback do |f_feedback|
-          = render 'admin/businesses/fields_process_feedback', :f => f_feedback
+          = render 'admin/businesses/fields_add_feedback', :f => f_feedback
 
         .form-action
           = f.button "submit"

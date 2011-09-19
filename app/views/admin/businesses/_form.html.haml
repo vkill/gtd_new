@@ -7,18 +7,17 @@
     - if resource.type == "Task"
       = render 'admin/businesses/fields_assign', :f => f
   - else
-    = binding.pry
     = f.input :state, :as => :select, :collection => resource.aasm_events_for_current_state, :prompt => t(:select_options)
     - if resource.pending?
       = render 'admin/businesses/fields_assign', :f => f
     - elsif resource.assigned?
-      = f.input :solution, :input_html => {:rows => 3, :cols => 70}
+      = render 'admin/businesses/fields_accept', :f => f
     - elsif resource.accepted?
-      = f.input :result, :input_html => {:rows => 3, :cols => 70}
+      = render 'admin/businesses/fields_finish', :f => f
 
     - if resource.feedback
       = f.simple_fields_for :feedback, resource.feedback do |f_feedback|
-        = render 'admin/businesses/fields_feedback', :f => f_feedback
+        = render 'admin/businesses/fields_process_feedback', :f => f_feedback
 
   .form-action
     = f.button "submit"

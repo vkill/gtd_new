@@ -4,7 +4,8 @@
 %section.container_12.clearfix
   .grid_12
     .actions
-      = link_to t("web.page.new", :model => User.model_name.human), [:new, :admin, :user], :class => "button"
+      - if can? :create, User
+        = link_to t("web.page.new", :model => User.model_name.human), [:new, :admin, :user], :class => "button"
     #demo.clearfix
       = render "entries", :users => @users
 

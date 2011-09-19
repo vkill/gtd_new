@@ -1,3 +1,4 @@
+#encoding: utf-8
 class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
@@ -82,9 +83,11 @@ class User < ActiveRecord::Base
   validates :username, :presence     => true,
                        :uniqueness   => { :case_sensitive => false },
                        :length       => { :within => 4..20 },
-                       :format       => { :with => /^[A-Za-z0-9_]+$/ }
+                       :format       => { :with => /^[A-Za-z0-9_]+$/ },
+                       :exclusion   => { :in => %w(admin guest administrator root) }
   validates :name,     :presence     => true,
                        :length       => { :within => 2..30 }
+  validate :add_chief_or_staff_role_require_department
 
   class << self
     def current=(user)
@@ -95,6 +98,13 @@ class User < ActiveRecord::Base
       Thread.current[:user]
     end
   end
+
+  private
+    def add_chief_or_staff_role_require_department
+      if roles.index("chief") or roles.index("staff")
+        errors.add(:roles, "当角色为chief或staff时请先选择部门") if department.blank?
+      end
+    end
 
 end
 

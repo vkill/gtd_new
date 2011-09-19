@@ -13,11 +13,58 @@ class Admin::BusinessesController < Admin::BaseController
     else
       @business.accepter_id = params[:business][:accepter_id]
       @business.assign_remark = params[:business][:assign_remark]
-      if @business.assign!
+      if @business.assigned!
         redirect_to collection_url, :notice => t(:assign_successful)
       else
         @show_colorbox = true
         render :assign
+      end
+    end
+  end
+
+  def accept
+    @business = resource
+    if request.method == "GET"
+      @show_colorbox = true
+      render :accept, :layout => false
+    else
+      @business.solution = params[:business][:solution]
+      if @business.accepted!
+        redirect_to collection_url, :notice => t(:accept_successful)
+      else
+        @show_colorbox = true
+        render :accept
+      end
+    end
+  end
+
+  def finish
+    @business = resource
+    if request.method == "GET"
+      @show_colorbox = true
+      render :finish, :layout => false
+    else
+      @business.result = params[:business][:result]
+      if @business.finished!
+        redirect_to collection_url, :notice => t(:finish_successful)
+      else
+        @show_colorbox = true
+        render :finish
+      end
+    end
+  end
+
+
+  def add_feedback
+    @business = resource
+    if request.method == "GET"
+      @business.build_feedback
+      @show_colorbox = true
+      render :add_feedback, :layout => false
+    else
+      update! do |success, failure|
+        success.html { redirect_to collection_url, :notice => t(:add_feedback_successful) }
+        failure.html { render :add_feedback }
       end
     end
   end
@@ -30,8 +77,8 @@ class Admin::BusinessesController < Admin::BaseController
       render :process_feedback, :layout => false
     else
       update! do |success, failure|
-        success.html { redirect_to collection_url, :notice => t(:update_successful) }
-        failure.html { render 'admin/businesses/process_feedback' }
+        success.html { redirect_to collection_url, :notice => t(:process_feedback_successful) }
+        failure.html { render :process_feedback }
       end
     end
   end
