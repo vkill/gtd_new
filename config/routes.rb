@@ -1,5 +1,7 @@
 GtdNew::Application.routes.draw do
 
+  resources :pages
+
   get "about/department", :as => :department_about
   resources :posts, :only => [:index, :show]
   resources :softwares, :only => [:index, :show] do
