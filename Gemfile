@@ -16,9 +16,14 @@ gem 'eventmachine', "~> 0.12.10"
 gem 'devise', '~> 1.4.4'
 gem 'cancan', "~> 1.6.4"
 gem 'easy_roles', '~> 1.2.0' #rails 3.1 use "rolify"
+#gem 'simple_roles', :git => "git://github.com/stanislaw/simple_roles.git"
+
 
 #template engine
 gem 'haml-rails', '~> 0.3.4'
+
+#static pages
+gem "high_voltage", "~> 0.9.2"
 
 #jquery
 gem "jquery-rails", "~> 1.0.14"
@@ -41,6 +46,7 @@ gem "validates_existence", "~> 0.7.0"
 gem 'inherited_resources', '~> 1.2.2'
 gem 'has_scope', '~> 0.5.1'
 gem "show_for", "~> 0.2.4"
+
 
 #template
 gem 'simple_form', '~> 1.5.0'
@@ -72,11 +78,12 @@ gem "yajl-ruby", "~> 1.0.0"
 
 #other
 gem "hz2py", "~> 0.0.4"
+gem "dotiw", "~> 1.1.1"
 
 
 group :development, :test do
-  gem "factory_girl_rails", "~> 1.2.0"
-  gem 'factory_seed', '~> 0.1.1'
+  gem "factory_girl_rails", "~> 1.2.0"  #use machinist replace
+  gem 'factory_seed', '~> 0.1.1'  #use machinist replace
 
   gem 'rspec-rails', '~> 2.6.1'
   gem "capybara", '~> 1.0.1'
@@ -89,7 +96,6 @@ group :development, :test do
   gem 'timecop', '~> 0.3.5'
 
   gem 'valid_attribute', '~> 1.2.0'
-
 end
 
 group :development do
@@ -101,6 +107,7 @@ group :development do
   gem "curb", "~> 0.7.15"
   gem 'annotate', :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
   gem "erb2haml", "~> 0.1.2"
+  gem "request-log-analyzer", "~> 1.11.1"
 end
 
 group :test do
