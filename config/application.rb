@@ -29,11 +29,13 @@ module GtdNew
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
     config.time_zone = 'Beijing'
+    config.active_record.default_timezone = :local
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.i18n.locale = config.i18n.default_locale = "zh-CN"
+    I18n.default_locale = 'zh-CN'
 
     # JavaScript files you want as :defaults (application.js is always included).
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
@@ -44,10 +46,18 @@ module GtdNew
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
+    config.logger = Logger.new(config.paths.log.first, 'weekly')
+
+
+    #config.cache_store = :redis_store, ‘redis://xx.xx.xx.xx:6379’
+    ActiveSupport::XmlMini.backend = 'Nokogiri'
+    ActiveSupport::JSON.backend = 'Yajl'
+
+
     config.generators do |g|
       g.template_engine :haml
       g.test_framework  :rspec, :fixture => true, :views => false
-      g.fixture_replacement :factory_girl, :dir => 'factories'
+      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end
 
 

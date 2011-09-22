@@ -10,6 +10,7 @@ gem 'resque', '~> 1.18.6'
 gem 'resque-scheduler', '~> 1.9.9'
 gem 'resque_mailer', '~> 2.0.2'
 gem "resque-status", "~> 0.2.3"
+gem 'eventmachine', "~> 0.12.10"
 
 #auth
 gem 'devise', '~> 1.4.4'
@@ -65,6 +66,10 @@ gem 'roo', '~> 1.9.3'
 #calendar
 gem 'event-calendar', "~> 2.3.3", :require => 'event_calendar'
 
+#engine
+gem "yajl-ruby", "~> 1.0.0"
+#gem 'nokogiri', '~> 1.4.4'
+
 #other
 gem "hz2py", "~> 0.0.4"
 
@@ -78,6 +83,7 @@ group :development, :test do
   gem "launchy", "~> 2.0.5"
   gem 'database_cleaner', '~> 0.6.7'
   gem "guard-rspec", "~> 0.4.4"
+  gem "guard-spork", "~> 0.2.1"
 
   gem 'ffaker', '~> 1.8.1'
   gem 'timecop', '~> 0.3.5'
@@ -104,6 +110,7 @@ group :test do
     gem 'rb-fsevent', :require => false
     gem 'growl_notify'
   when /linux/i
+    gem 'rb-inotify'
     gem "libnotify", "~> 0.5.7"
   end
 end

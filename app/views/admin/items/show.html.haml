@@ -20,7 +20,8 @@
         = item.attribute :updated_at, :format => :short
         = item.association :attachments do |attachment|
           = show_for attachment do |attachment|
-            = attachment.attributes :name, :describtion, :data_content_type
+            /= attachment.attributes :name
+            = attachment.attributes :name,:describtion, :data_content_type, :data_file_name
             = attachment.attribute :data_file_size do
               = number_to_human_size attachment.object.data_file_size
 

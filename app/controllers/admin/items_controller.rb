@@ -13,7 +13,7 @@ class Admin::ItemsController < Admin::BaseController
 
   def create
     @item = end_of_association_chain.new(params[params[:default][:resource_class].underscore])
-    create!(:notice => t(:create_successful)) { [:admin, resource_class.name.underscore.pluralize] }
+    create!(:notice => t(:create_successful)) { [:admin, @item] } #resource_class.name.underscore.pluralize] }
   end
 
 
@@ -21,7 +21,7 @@ class Admin::ItemsController < Admin::BaseController
     @item = resource
     respond_to do |format|
       if @item.update_attributes(params[params[:default][:resource_class].underscore])
-        format.html { redirect_to [:admin, resource_class.name.underscore.pluralize],
+        format.html { redirect_to [:admin, @item], #resource_class.name.underscore.pluralize],
                                            notice: t(:update_successful) }
       else
         format.html { render action: "edit" }
