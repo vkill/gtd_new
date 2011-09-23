@@ -76,6 +76,9 @@ gem 'event-calendar', "~> 2.3.3", :require => 'event_calendar'
 gem "yajl-ruby", "~> 1.0.0"
 #gem 'nokogiri', '~> 1.4.4'
 
+#
+gem 'simple_captcha', :git => 'https://github.com/hui/simple-captcha.git'
+
 #other
 gem "hz2py", "~> 0.0.4"
 gem "dotiw", "~> 1.1.1"

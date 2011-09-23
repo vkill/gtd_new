@@ -75,6 +75,7 @@ module GtdNew
                     :email_prefix => "[Whatever] ",
                     :sender_address => %{"137518792" <137518792@qq.com>},
                     :exception_recipients => %w{122755990@qq.com}
+
   end
 end
 

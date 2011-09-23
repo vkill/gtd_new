@@ -1,17 +1,30 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  rescue_from CanCan::AccessDenied do |exception|
-    unless current_user
-      redirect_to new_user_session_path(:ok_url => request.request_uri)
-    else
-      redirect_to root_path, :error => t(:can_not_access)
-    end
-  end
-
   respond_to :html, :xml, :json
 
   helper_method :current_user_session, :current_user
+
+  unless Rails.application.config.consider_all_requests_local
+    rescue_from Exception, :with => :rescue_500
+    rescue_from CanCan::AccessDenied do |exception|
+      unless current_user
+        redirect_to new_user_session_path(:ok_url => request.request_uri)
+      else
+        redirect_to root_path, :error => t(:can_not_access)
+      end
+    end
+    if (defined? ActiveRecord)
+      rescue_from ActiveRecord::RecordNotFound, :with => :rescue_404
+    end
+    rescue_from ActionController::RoutingError, :with => :rescue_404
+  end
+
+
+
+
+
+
 
   def authorize_namespace
     options = self.class.read_inheritable_attribute(:authorize_namespace)
@@ -55,6 +68,14 @@ class ApplicationController < ActionController::Base
 
     def redirect_back_or_default(default, options = {})
       redirect_to((params[:return_to] || default), options)
+    end
+
+    def rescue_404(e)
+      render :text => 404
+    end
+
+    def rescue_500(e)
+      render :text => 500
     end
 end
 
