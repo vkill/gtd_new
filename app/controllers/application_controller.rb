@@ -21,6 +21,8 @@ class ApplicationController < ActionController::Base
   end
 
 
+  include SimpleCaptcha::ControllerHelpers
+
 
 
 

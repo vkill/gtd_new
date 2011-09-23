@@ -1,0 +1,8 @@
+"zh-CN":
+  simple_captcha:
+    message:
+      default: "验证码不匹配"
+      user: "验证码不匹配"
+
+    label: 验证码
+
