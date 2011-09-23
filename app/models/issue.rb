@@ -20,7 +20,7 @@ class Issue < ActiveRecord::Base
 
 
   scope :default_scope, order('updated_at DESC')
-
+  scope :pre_expired, where(:state => [:pending, :assigned, :accepted]).where(:expired_date.lt => Time.zone.now)
 
   delegate :email, :name, :to => :editor, :prefix => true, :allow_nil => true
   delegate :email, :name, :to => :assigner, :prefix => true, :allow_nil => true
@@ -38,7 +38,7 @@ class Issue < ActiveRecord::Base
   aasm_state :assigned, :enter => :build_assign_at
   aasm_state :accepted, :enter => :build_accept_at
   aasm_state :finished, :enter => :build_finish_at
-  aasm_state :expired, :enter => :build_state_before_expired
+  aasm_state :expired
   aasm_event :pending do
     transitions :from => :expired, :to => :pending
   end
@@ -83,6 +83,15 @@ class Issue < ActiveRecord::Base
   end
   with_options :if => Proc.new { |record| record.expired? } do |expired|
     expired.before_create :build_state_before_expired
+  end
+
+  class << self
+    def expired!
+      self.pre_expired.find_each do |issue|
+        issue.state = :expired
+        issue.save!
+      end
+    end
   end
 
   private

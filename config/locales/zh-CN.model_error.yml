@@ -1,0 +1,7 @@
+"zh-CN":
+  #https://github.com/perfectline/validates_existence
+  activerecord:
+    errors:
+      messages:
+        existence: 对象不存在
+

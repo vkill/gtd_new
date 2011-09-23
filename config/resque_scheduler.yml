@@ -1,6 +1,6 @@
-resque_scheduler_test_job:
-  cron: "10 * * * * *"
+expired_issue:
+  cron: "3 * * * * *"
   queue: resque_scheduler
-  class: ResqueSchedulerTestJob
+  class: ExpiredIssueWorker
   args:
 

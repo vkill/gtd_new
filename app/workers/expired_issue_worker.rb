@@ -1,8 +1,8 @@
-class ResqueSchedulerTestJob
+class ExpiredIssueWorker
   @queue = :resque_scheduler
 
   def self.perform
-    Rails.logger.info "hello"
+    Issue.expired!
   end
 end
 
