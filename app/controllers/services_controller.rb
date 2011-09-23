@@ -1,7 +1,7 @@
 class ServicesController < ApplicationController
 
   inherit_resources
-  respond_to :html, :xml, :json
+  respond_to :html, :xml, :json, :js
   actions :index, :show
   before_filter :find_hot_posts_and_softwares
   main_nav_highlight :issues

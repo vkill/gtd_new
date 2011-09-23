@@ -13,18 +13,9 @@
           %th{:width => "20%"}
             所属部门
           %th{:width => "10%"}
-      %tbody
-        - @services.each do |service|
-          %tr
-            %td{:width => "50%"}
-              = link_to (raw "&gt;　%s" % truncate(service.name, :length => 23)), [service]
-            %td{:width => "20%"}
-              = link_to service.category_text, services_path("search[category_eq]" => service.category)
-            %td{:width => "20%"}
-              = link_to service.department_name, services_path("search[department_name_eq]" => service.department_name)
-            %td{:width => "10%"}
-              - if can? :edit, service
-                = link_to t(:edit), [:edit, :admin, service]
+      %tbody#tbody
+        = render 'tbody'
+
   #paginator
-    = paginate @services, :remote => true
+    = render 'paginator'
 
