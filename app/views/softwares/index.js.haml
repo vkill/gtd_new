@@ -4,6 +4,6 @@
   = render 'paginator'
 
 
-$("#tbody").html("#{raw @tbody_html.gsub(/\x22/, "'").gsub(/\n/, "")}")
-$("#paginator").html("#{raw @paginator_html.gsub(/\x22/, "'").gsub(/\n/, "")}")
+$("#tbody").html("#{ html_ @tbody_html }")
+$("#paginator").html("#{ html_ @paginator_html }")
 

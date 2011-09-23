@@ -29,5 +29,9 @@ module ApplicationHelper
     content_tag(:li, content, options)
   end
 
+  def html_(s)
+    raw s.gsub(/\x22/, "'").gsub(/\n/, "")
+  end
+
 end
 
