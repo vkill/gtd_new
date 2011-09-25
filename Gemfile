@@ -48,9 +48,9 @@ gem "show_for", "~> 0.2.4"
 
 #template
 gem 'simple_form', '~> 1.5.0'
-gem 'nested_form', '~> 0.1.1'
+gem 'nested_form', '~> 0.1.1', :git => "git://github.com/ryanb/nested_form.git"
 gem 'kaminari', '~> 0.12.4'
-gem "rails_kindeditor", "~> 0.1.0"
+gem "rails_kindeditor", "~> 0.1.2"
 gem 'client_side_validations', '~> 3.0.4'
 
 ##tag
@@ -105,7 +105,7 @@ group :development do
   gem "pry", "~> 0.9.2"
   gem "pry-padrino", "~> 0.1.2"
   gem 'thin', "~> 1.2.11"
-  gem "curb", "~> 0.7.15"
+  gem "curb", "~> 0.7.15" #or faraday
   gem 'annotate', :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
   gem "erb2haml", "~> 0.1.2"
   gem "request-log-analyzer", "~> 1.11.1"
