@@ -77,7 +77,7 @@ gem "yajl-ruby", "~> 1.0.0"
 #gem 'nokogiri', '~> 1.4.4'
 
 #
-gem 'simple_captcha', :git => 'https://github.com/hui/simple-captcha.git'
+gem 'simple_captcha', :git => '/media/pdata/netbeans_profile/simple-captcha/.git' #'git://github.com/vkill/simple-captcha.git'
 
 #other
 gem "hz2py", "~> 0.0.4"

@@ -5,6 +5,16 @@ class UsersController < Devise::RegistrationsController
   main_nav_highlight :main
   sec_nav_highlight :profile
 
+  def create
+    unless simple_captcha_valid?
+      resource = build_resource
+      flash[:alert] = @captcha_message = t("simple_captcha.message.default")
+      render :new
+    else
+      super
+    end
+  end
+
   private
     def set_layout
       case params[:action]

@@ -20,6 +20,12 @@
 //    border: none;
 //    background-color: #efefef;
 //  }
+:css
+  img#simple_captcha{
+    margin: 0px !important;
+    padding: 0px !important;
+    width: 110px !important;
+  }
 
 .input.string.captcha.optional
   %label(for="user_email" class="captcha optional")
@@ -27,5 +33,6 @@
   /%input(type="text" value="" size="6" name="captcha" maxlength="255" id="captcha" class="string captcha optional" autofocus="off")
   = simple_captcha_options[:field]
   = simple_captcha_options[:image]
-  = @captcha_message
+  = simple_captcha_options[:change]
+  /= @captcha_message
 

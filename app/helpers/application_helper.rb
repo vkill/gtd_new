@@ -30,7 +30,7 @@ module ApplicationHelper
   end
 
   def html_(s)
-    raw s.gsub(/\x22/, "'").gsub(/\n/, "")
+    s.gsub(/'/, '"').gsub(/\n/, '')
   end
 
 end
