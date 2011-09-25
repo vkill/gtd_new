@@ -32,6 +32,7 @@ GtdNew::Application.routes.draw do
 
     resources :departments
     resources :services
+    resources :roles
     resources :users, :except => [:destroy] do
       member do
         get :show_colorbox

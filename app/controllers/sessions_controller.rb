@@ -16,7 +16,7 @@ class SessionsController < Devise::SessionsController
 
   private
     def after_sign_in_path_for(resource)
-      if resource.roles_mask?
+      unless resource.roles.blank?
         admin_root_path
       else
         root_path

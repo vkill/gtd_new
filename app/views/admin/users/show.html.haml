@@ -13,9 +13,12 @@
 
     %section
       = show_for @user do |user|
-        = user.attributes :id, :name, :email, :gender, :phone_number, :location, :about, :department_name, :roles
+        = user.attributes :id, :name, :email, :gender, :phone_number, :location, :about, :department_name
         = user.attribute :avatar do
           = image_tag(@user.url)
         = user.attribute :created_at, :format => :short
         = user.attribute :updated_at, :format => :short
+        = user.association :roles do |role|
+          = link_to role.name, [:admin, role]
+          = raw " | "
 

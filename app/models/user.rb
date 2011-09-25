@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :username, :name, :gender, :phone_number, :location, :about, :avatar, :department_id, :state
-  attr_accessible :roles
+  attr_accessible :role_ids
 
   has_attached_file :avatar,
                     :url => "/system/avatars/:id/:id-:style.:extension",
@@ -28,12 +28,9 @@ class User < ActiveRecord::Base
     url(:thumb)
   end
 
-  #easy_roles
-  easy_roles :roles_mask, :method => :bitmask
-  ROLES_MASK = %w(admin chief staff boss)
-  scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES_MASK.index(role.to_s)} > 0 "} }
-
-
+  has_many :users_roles, :class_name => "UsersRoles"
+  has_many :roles, :through => :users_roles, :uniq => true
+  accepts_nested_attributes_for :roles, :allow_destroy => true
   belongs_to :department
   with_options :dependent => :destroy do |owner|
     owner.has_many :posts, :foreign_key => :user_id, :class_name => "Post"
@@ -89,7 +86,9 @@ class User < ActiveRecord::Base
                        :exclusion   => { :in => %w(admin guest administrator root) }
   validates :name,     :presence     => true,
                        :length       => { :within => 2..30 }
+
   validate :add_chief_or_staff_role_require_department
+
 
   class << self
     def current=(user)
@@ -101,10 +100,20 @@ class User < ActiveRecord::Base
     end
   end
 
+  def has_role?(role)
+    !self.roles.where(:code => role.to_s).blank?
+  end
+
+
   private
     def add_chief_or_staff_role_require_department
-      if roles.index("chief") or roles.index("staff")
-        errors.add(:department, "当角色为chief或staff时必须选择部门") if department.blank?
+      Role.where(:id => role_ids).find_each do |role|
+        if %w(chief staff).index(role.code.to_s)
+          if department.blank?
+            errors.add(:department, "当角色为chief或staff时必须选择部门")
+            return
+          end
+        end
       end
     end
 

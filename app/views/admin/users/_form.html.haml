@@ -28,7 +28,7 @@
   = f.input :avatar, :as => :file
   = f.input :state, :as => :select, :collection => User.get_state_values
   - if current_user.has_role? 'admin'
-    = f.input :roles, :as => :check_boxes, :collection => User::ROLES_MASK
+    = f.association :roles, :as => :check_boxes
   .form-action
     = f.button "submit"
 

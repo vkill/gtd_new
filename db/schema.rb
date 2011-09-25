@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110924010932) do
+ActiveRecord::Schema.define(:version => 20110925171051) do
 
   create_table "attachments", :force => true do |t|
     t.string   "name"
@@ -98,6 +98,14 @@ ActiveRecord::Schema.define(:version => 20110924010932) do
     t.datetime "updated_at"
   end
 
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.text     "describtion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "services", :force => true do |t|
     t.string   "name"
     t.text     "describtion"
@@ -130,7 +138,6 @@ ActiveRecord::Schema.define(:version => 20110924010932) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "roles_mask",                            :default => 0
     t.string   "username"
     t.boolean  "superadmin",                            :default => false
     t.string   "name"
@@ -148,5 +155,14 @@ ActiveRecord::Schema.define(:version => 20110924010932) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "users_roles", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
 
 end
