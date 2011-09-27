@@ -23,7 +23,8 @@
         %li#a1= link_to "首页", root_path
         %li#a2= link_to "部门简介", page_path(:id => :department)
         %li#a3= link_to "新闻公告", [:posts]
-        %li#a4= link_to "业务办理", [:new, :business]
+        %li#a4= link_to "新业务办理", [:new, :business]
+        %li#a4= link_to "我的业务", [:businesses]
         %li#a5= link_to "软件下载", [:softwares]
         %li#a6= link_to "业务介绍", [:services]
     #menu_bg_right

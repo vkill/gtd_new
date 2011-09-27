@@ -1,12 +1,12 @@
 - collection.each do |software|
   %tr
     %td{:width => "50%"}
-      = link_to (raw "&gt;　%s" % truncate(software.title, :length => 23)), [software]
+      = link_to (raw "&gt;　%s" % truncate(software.title, :length => 23)), [software], :class => :text_link
     %td{:width => "20%"}
-      = link_to software.category_text, softwares_path("search[category_eq]" => software.category)
+      = link_to software.category_text, softwares_path("search[category_eq]" => software.category), :class => :text_link
     %td{:width => "20%"}
       = l software.created_at, :format => :long
     - if can? :edit, software
       %td{:width => "10%"}
-        = link_to t(:edit), [:edit, :admin, software]
+        = link_to t(:edit), [:edit, :admin, software], :class => :text_link
 

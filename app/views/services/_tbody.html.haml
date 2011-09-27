@@ -1,12 +1,12 @@
 - collection.each do |service|
   %tr
     %td{:width => "50%"}
-      = link_to (raw "&gt;　%s" % truncate(service.name, :length => 23)), [service]
+      = link_to (raw "&gt;　%s" % truncate(service.name, :length => 23)), [service], :class => :text_link
     %td{:width => "20%"}
-      = link_to service.category_text, services_path("search[category_eq]" => service.category)
+      = link_to service.category_text, services_path("search[category_eq]" => service.category), :class => :text_link
     %td{:width => "20%"}
-      = link_to service.department_name, services_path("search[department_name_eq]" => service.department_name)
+      = link_to service.department_name, services_path("search[department_name_eq]" => service.department_name), :class => :text_link
     - if can? :edit, service
       %td{:width => "10%"}
-        = link_to t(:edit), [:edit, :admin, service]
+        = link_to t(:edit), [:edit, :admin, service], :class => :text_link
 

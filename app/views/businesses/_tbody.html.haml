@@ -1,0 +1,11 @@
+- collection.each do |business|
+  #tr
+    .td_5
+      = link_to (raw "&gt;　%s" % truncate(business.name, :length => 23)), [business], :class => :text_link
+    .td_6
+      = image_tag("design/right.gif") + raw("&nbsp;") + business.state_text
+    .td_7
+      = image_tag("design/ts.gif") + raw("&nbsp;") + link_to("投诉", [:add_feedback, business], :class => :text_link)
+    .td_8
+      = image_tag("design/pf.gif") + raw("&nbsp;") + link_to("评分", "", :class => :text_link)
+

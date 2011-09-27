@@ -1,10 +1,10 @@
 - @posts.each do |post|
   %tr
     %td{:width => "70%"}
-      = link_to (raw "&gt;　%s" % truncate(post.title, :length => 23)), [post]
+      = link_to (raw "&gt;　%s" % truncate(post.title, :length => 23)), [post], :class => :text_link
     %td{:width => "20%"}
       = l post.created_at, :format => :long
     - if can? :edit, post
       %td{:width => "10%"}
-        = link_to t(:edit), [:edit, :admin, post]
+        = link_to t(:edit), [:edit, :admin, post], :class => :text_link
 

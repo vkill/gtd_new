@@ -1,14 +1,32 @@
-%header.container_12.clearfix
-  .grid_12
-    - title = t("web.page.new", :model => resource_class.model_name.human)
-    %h1= title
+= render "shared/left_area"
 
-%section.container_12.clearfix
-  .portlet.grid_12
-    %header
-      %h2= title
-      = link_to t("web.page.back_to_list"), [resource_class.name.underscore.pluralize], :class => "button"
+#right_area
+  #about_text_heading 新业务办理
+  #about_text
+    = form_for @business do |f|
+      %table#table(border="0" width="100%" cellspacing="5" cellpadding="0")
+        %tbody
+          %tr
+            %td.table_td(bgcolor="#eaeff1" width="30%")
+              业务分类：
+            %td
+              = f.collection_select :service_id, Service.all, :id, :name, :prompt => true
+          %tr
+            %td.table_td(bgcolor="#eaeff1")
+              业务名称：
+            %td
+              = f.text_field :name
+          %tr
+            %td.table_td(bgcolor="#eaeff1")
+              业务内容：
+            %td
+              = f.text_area :body, :rows => 10, :cols => 45
+          %tr
+            %td.table_td
+              = raw "&nbsp;"
+            %td
+              = f.submit "提交", :type => :image, :src => image_path("design/submit_buttun_2.jpg")
 
-    %section
-      = render "form", :url => [resource_class.name.underscore.pluralize]
+  #paginator
+    = render 'paginator'
 

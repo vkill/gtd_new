@@ -4,7 +4,7 @@
     #lastest_bg_mid
       %ul.list_2
         - @hot_posts.each do |post|
-          %li= link_to (raw "&gt;　%s" % truncate(post.title, :length => 10)), [post]
+          %li= link_to (raw "&gt;　%s" % truncate(post.title, :length => 10)), [post], :class => :text_link
     #lastest_bg_foot
 
   #lastest_software
@@ -12,6 +12,6 @@
     #software_bg_mid
       %ul.list_2
         - @hot_softwares.each do |software|
-          %li= link_to (raw "&gt;　%s" % truncate(software.title, :length => 10)), [software]
+          %li= link_to (raw "&gt;　%s" % truncate(software.title, :length => 10)), [software], :class => :text_link
     #software_bg_foot
 
