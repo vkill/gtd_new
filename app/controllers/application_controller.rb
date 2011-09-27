@@ -5,15 +5,15 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user_session, :current_user
 
+  rescue_from CanCan::AccessDenied do |exception|
+    unless current_user
+      redirect_to new_user_session_path(:ok_url => request.request_uri)
+    else
+      redirect_to root_path, :error => t(:can_not_access)
+    end
+  end
   unless Rails.application.config.consider_all_requests_local
     rescue_from Exception, :with => :rescue_500
-    rescue_from CanCan::AccessDenied do |exception|
-      unless current_user
-        redirect_to new_user_session_path(:ok_url => request.request_uri)
-      else
-        redirect_to root_path, :error => t(:can_not_access)
-      end
-    end
     if (defined? ActiveRecord)
       rescue_from ActiveRecord::RecordNotFound, :with => :rescue_404
     end
@@ -22,10 +22,6 @@ class ApplicationController < ActionController::Base
 
 
   include SimpleCaptcha::ControllerHelpers
-
-
-
-
 
 
   def authorize_namespace

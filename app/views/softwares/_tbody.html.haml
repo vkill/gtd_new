@@ -6,7 +6,7 @@
       = link_to software.category_text, softwares_path("search[category_eq]" => software.category)
     %td{:width => "20%"}
       = l software.created_at, :format => :long
-    %td{:width => "10%"}
-      - if can? :edit, software
+    - if can? :edit, software
+      %td{:width => "10%"}
         = link_to t(:edit), [:edit, :admin, software]
 

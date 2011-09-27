@@ -10,7 +10,8 @@
             标题
           %th{:width => "20%"}
             创建时间
-          %th{:width => "10%"}
+          - if can? :edit, Post
+            %th{:width => "10%"}
       %tbody#tbody
         = render 'tbody'
 

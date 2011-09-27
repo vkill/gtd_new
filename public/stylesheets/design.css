@@ -249,6 +249,10 @@ div{
   float: left;
   margin-right: 20px;
 }
+
+thead {
+  background:#e0ebee;
+}
 /*===============login page style==============*/
 #log_form{
     background:url(../images/design/grey_bg.jpg) no-repeat;

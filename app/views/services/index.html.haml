@@ -12,7 +12,8 @@
             分类
           %th{:width => "20%"}
             所属部门
-          %th{:width => "10%"}
+          - if can? :edit, Service
+            %th{:width => "10%"}
       %tbody#tbody
         = render 'tbody'
 

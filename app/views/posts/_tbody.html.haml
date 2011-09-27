@@ -4,7 +4,7 @@
       = link_to (raw "&gt;　%s" % truncate(post.title, :length => 23)), [post]
     %td{:width => "20%"}
       = l post.created_at, :format => :long
-    %td{:width => "10%"}
-      - if can? :edit, post
+    - if can? :edit, post
+      %td{:width => "10%"}
         = link_to t(:edit), [:edit, :admin, post]
 
