@@ -13,10 +13,17 @@ p '> Initializing primary departments ...'
 end
 p '   %s departments were created.' % Department.count
 
+p '> Initializing primary roles ...'
+%w(admin chief staff).each do |code|
+  Factory :role, :name => code, :code => code, :describtion => ''
+end
+role_admin = Role.find_by_code(:admin)
+p '   %s roles were created.' % Role.count
+
 p '> Initializing primary users ...'
-%w(vkill jerry).each do |name|
+%w(vkill.net jerry).each do |name|
   user = Factory :user, :name => name, :email => '%s@gmail.com' % name
-  user.add_role! 'admin'
+  user.roles << role_admin
   user.superadmin = true
   user.save!
 end

@@ -59,6 +59,7 @@ gem 'client_side_validations', '~> 3.0.4'
 #exception
 gem "vidibus-routing_error", "~> 0.2.1"
 gem "exception_notification", "~> 2.5.2"
+#gem "airbrake", "~> 3.0.rc2"
 
 #roo
 gem 'rubyzip', '~> 0.9.4', :require => 'zip/zipfilesystem'

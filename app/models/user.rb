@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
   validates :username, :presence     => true,
                        :uniqueness   => { :case_sensitive => false },
                        :length       => { :within => 4..30 },
-                       :format       => { :with => /^[A-Za-z0-9_]+$/ },
+                       :format       => { :with => /^[A-Za-z0-9_\.]+$/ },
                        :exclusion   => { :in => %w(admin guest administrator root) }
   validates :name,     :presence     => true,
                        :length       => { :within => 2..30 }

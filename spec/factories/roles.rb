@@ -2,8 +2,9 @@
 
 FactoryGirl.define do
   factory :role do
-      name "MyString"
-      code "MyString"
-      describtion "MyText"
+      name        { Faker::LoremCN.word + Faker::LoremCN.word }
+      code        { Faker::LoremCN.word + Faker::LoremCN.word }
+      describtion { Faker::LoremCN.word }
     end
 end
+
