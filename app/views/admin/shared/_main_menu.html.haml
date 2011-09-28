@@ -19,7 +19,7 @@
               %ul
                 - if can? :create, Business
                   %li.current= link_to "+ 创建新业务", new_business_path
-          - if can? :read, Business
+          - if can?(:assign, Business) or can?(:accept, Business)
             %li.dropdown
               = link_to "业务指派/完成", admin_businesses_path
 
