@@ -32,25 +32,3 @@ p '   %s users were created.' % User.count
 #p '> Initializing primary services ...'
 #p '    %s services were created.' % Service.count
 
-
-p '> Generating test data'
-_5_departments if Department.any?
-Department.find_each do |department|
-  services = _3_services :department => department
-  users = _5_users :department => department
-  users.each do |user|
-    User.current = user
-    posts = _3_posts :user => user
-    softwares = _3_softwares :user => user
-    softwares.each do |software|
-      _1_attachment :attachmentable => software if rand(2) == 1
-    end
-
-    businesses = _3_businesses :user => user, :service => services.sample
-    businesses.each do |business|
-      _1_feedback :issue => business if rand(2) == 1
-    end
-  end
-end
-p '   done.'
-
