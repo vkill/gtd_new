@@ -5,7 +5,22 @@
     .td_6
       = image_tag("design/right.gif") + raw("&nbsp;") + business.state_text
     .td_7
-      = image_tag("design/ts.gif") + raw("&nbsp;") + link_to("投诉", [:add_feedback, business], :class => :text_link)
+      - if business.feedback
+        = image_tag("design/ts.gif") + raw("&nbsp;") + business.feedback.state_text
+      - else
+        = image_tag("design/ts.gif") + raw("&nbsp;") + link_to("我要投诉", [:add_feedback, business], :class => :text_link)
     .td_8
-      = image_tag("design/pf.gif") + raw("&nbsp;") + link_to("评分", "", :class => :text_link)
+      /= image_tag("design/pf.gif") + raw("&nbsp;") + link_to("评分", "", :class => :text_link)
+      %span.star-rating-control
+        .rating-cancel
+          %a{:title => "Cancel Rating"}
+        .star-rating.rater-0.auto-submit-star.star-rating-applied.star-rating-live.star-rating-on
+          %a{:title => "1"} 1
+        .star-rating.rater-0.auto-submit-star.star-rating-applied.star-rating-live.star-rating-on
+          %a{:title => "2"} 2
+        .star-rating.rater-0.auto-submit-star.star-rating-applied.star-rating-live
+          %a{:title => "3"} 3
+      %input.auto-submit-star.star-rating-applied{:name => "test-3A-rating-1", :style => "display: none;", :type => "radio", :value => "1"}
+      %input.auto-submit-star.star-rating-applied{:name => "test-3A-rating-1", :style => "display: none;", :type => "radio", :value => "2"}
+      %input.auto-submit-star.star-rating-applied{:name => "test-3A-rating-1", :style => "display: none;", :type => "radio", :value => "3"}
 

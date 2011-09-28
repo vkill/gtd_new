@@ -4,7 +4,7 @@ class Feedback < ActiveRecord::Base
   belongs_to :handler, :foreign_key => :handler_id, :class_name => "User"
 
 
-  symbolize :category, :in => [ :good, :bad ], :scopes => true, :methods => true
+  symbolize :category, :in => [ :good, :bad ], :scopes => true, :methods => true, :default => :bad
   symbolize :state, :in => [ :pending, :processing, :processed ], :scopes => true, :methods => true
 
 

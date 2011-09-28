@@ -17,12 +17,16 @@ class BusinessesController < ApplicationController
   load_and_authorize_resource
   before_filter :set_current_user
 
+  def create
+    create!(:notice => t(:create_successful)) { collection_url }
+  end
+
   def add_feedback
     @business = resource
     if request.method == "GET"
       @business.build_feedback
-      @show_colorbox = true
-      render :add_feedback, :layout => false
+#      @show_colorbox = true
+#      render :add_feedback, :layout => false
     else
       update! do |success, failure|
         success.html { redirect_to collection_url, :notice => t(:add_feedback_successful) }

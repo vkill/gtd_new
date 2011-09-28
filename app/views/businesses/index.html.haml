@@ -13,3 +13,19 @@
   #paginator
     = render 'paginator'
 
+
+= content_for :head do
+  = stylesheet_link_tag '/javascripts/star-rating/jquery.rating.css', :media => 'screen'
+
+= content_for :javascript do
+  = javascript_include_tag "star-rating/jquery"
+  = javascript_include_tag "star-rating/jquery.rating"
+  :javascript
+    $(document).ready(function() {
+      $('.auto-submit-star').rating({
+        callback: function(value, link){
+          alert(value)
+        }
+      })
+    })
+

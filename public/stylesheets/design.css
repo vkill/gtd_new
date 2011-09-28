@@ -305,6 +305,14 @@ border:#CCCCCC 1px solid;
 #submit_bt{
 margin:10px 0 10px 60px;
 }
+
+
+/*===============form page styles================*/
+.table_td {
+    padding-left: 30px;
+}
+
+
 /*===============profile page styles================*/
 #heading{
 background:#e0ebee;
