@@ -101,6 +101,7 @@ class User < ActiveRecord::Base
   end
 
   def has_role?(role)
+    return true if role.to_s == "admin" and self.superadmin
     !self.roles.where(:code => role.to_s).blank?
   end
 
