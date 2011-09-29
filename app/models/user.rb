@@ -105,6 +105,11 @@ class User < ActiveRecord::Base
     !self.roles.where(:code => role.to_s).blank?
   end
 
+  def has_any_role?(*roles)
+    return true if roles.map{|x| x.to_s == 'admin'}.index(true) and self.superadmin
+    !self.roles.where(:code => roles).blank?
+  end
+
 
   private
     def add_chief_or_staff_role_require_department

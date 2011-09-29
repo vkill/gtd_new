@@ -29,6 +29,14 @@
             = feedback.attributes :category_text, :body,
                                   :state_text,
                                   :result, :handler_name, :handle_at
+            = feedback.attribute :updated_at, :format => :short
         - else
           = business.attribute :feedback
+        - if resource.evaluation
+          = business.label :evaluation
+          = show_for resource.evaluation do |evaluation|
+            = evaluation.attributes :star_rating
+            = evaluation.attribute :updated_at, :format => :short
+        - else
+          = business.attribute :evaluation
 

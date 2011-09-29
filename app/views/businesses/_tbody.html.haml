@@ -11,16 +11,27 @@
         = image_tag("design/ts.gif") + raw("&nbsp;") + link_to("我要投诉", [:add_feedback, business], :class => :text_link)
     .td_8
       /= image_tag("design/pf.gif") + raw("&nbsp;") + link_to("评分", "", :class => :text_link)
-      %span.star-rating-control
-        .rating-cancel
-          %a{:title => "Cancel Rating"}
-        .star-rating.rater-0.auto-submit-star.star-rating-applied.star-rating-live.star-rating-on
-          %a{:title => "1"} 1
-        .star-rating.rater-0.auto-submit-star.star-rating-applied.star-rating-live.star-rating-on
-          %a{:title => "2"} 2
-        .star-rating.rater-0.auto-submit-star.star-rating-applied.star-rating-live
-          %a{:title => "3"} 3
-      %input.auto-submit-star.star-rating-applied{:name => "test-3A-rating-1", :style => "display: none;", :type => "radio", :value => "1"}
-      %input.auto-submit-star.star-rating-applied{:name => "test-3A-rating-1", :style => "display: none;", :type => "radio", :value => "2"}
-      %input.auto-submit-star.star-rating-applied{:name => "test-3A-rating-1", :style => "display: none;", :type => "radio", :value => "3"}
+      .star(id = "star_#{ business.id }" data-business = "#{ business.id }")
+      = content_for :javascript do
+        :javascript
+          $(document).ready(function() {
+            $("#star_#{ business.id }").raty({
+              path: "/javascripts/jquery.raty/img",
+              cancel: true,
+              start: "#{ business.evaluation.star_rating rescue 0 }",
+              click: function(score, evt) {
+                $.post(
+                  "#{ evaluate_business_path(business, :format => "json") }",
+                  { star: score },
+                  function(data){
+                    if (data.evaluated) {
+                      alert("评分成功")
+                    } else {
+                      alert("评分失败")
+                    };
+                  }, "json"
+                );
+              }
+            });
+          })
 

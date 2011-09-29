@@ -24,7 +24,7 @@ class Ability
 
     else
       can :manage, Admin
-      can [:read, :create, :add_feedback], Business
+      can [:read, :create, :add_feedback, :evaluate], Business
     end
   end
 end
