@@ -1,0 +1,38 @@
+= render "shared/left_area"
+
+#right_area
+  #about_text_heading 业务记录查看
+  #about_text
+    #about_title
+      = @business.name
+    .post_detail
+    #about_body
+      = show_for resource do |business|
+        = business.attributes :id, :name
+        = business.attribute :body do
+          = raw resource.body
+        = business.attributes :editor_name, :service_name, :service_department_name,
+                              :state_text,
+                              :assigner_name, :accepter_name, :assign_remark, :assign_at,
+                              :solution, :accept_at,
+                              :result, :finish_at
+        = business.attribute :created_at, :format => :short
+        = business.attribute :updated_at, :format => :short
+        = business.attribute :expired_date, :format => :short
+        - if resource.feedback
+          = business.label :feedback
+          = show_for resource.feedback do |feedback|
+            = feedback.attributes :category_text, :body,
+                                  :state_text,
+                                  :result, :handler_name, :handle_at
+            = feedback.attribute :updated_at, :format => :short
+        - else
+          = business.attribute :feedback
+        - if resource.evaluation
+          = business.label :evaluation
+          = show_for resource.evaluation do |evaluation|
+            = evaluation.attributes :star_rating
+            = evaluation.attribute :updated_at, :format => :short
+        - else
+          = business.attribute :evaluation
+
