@@ -1,16 +1,17 @@
 #log_form
-  = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form2" }) do |f|
     #form_bg_top
     #form_bg_mid
       #form
-        .inputs
-          = f.input :email, :required => false, :autofocus => true
-          = f.input :password, :required => false
-          = show_simple_captcha
-          = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
-        .actions
-          = f.button :submit, "登录"
-          = link_to "注册", new_user_registration_path
-          = link_to "忘记密码?", new_user_password_path
+        = raw("邮&nbsp&nbsp&nbsp&nbsp箱：")
+        = f.email_field :email, :id => "username"
+        %br
+        = raw("密&nbsp&nbsp&nbsp&nbsp码：")
+        = f.password_field :password, :id => "psw"
+        %br
+        = show_simple_captcha
+        %br
+        = f.submit :id => "submit_bt", :type => "image", :src => image_path("design/submit_buttun.jpg")
+        %br
     #form_bg_foot
 

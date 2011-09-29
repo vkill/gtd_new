@@ -1,19 +1,17 @@
-%header.container_12.clearfix
-  .grid_12
-    %h1 修改密码
-
-%section.container_12.clearfix
-  .portlet.grid_12
-    %header
-      %h2 修改密码
-
-    %section
-      = simple_form_for resource, :as => resource_name, :url => password_path(resource_name), :method => :put, :html => {:multipart => true, :class => "form has-validation"} do |f|
-        = devise_error_messages!
-        = f.input :reset_password_token, :as => :hidden
-        = f.input :current_password, :as => :password
-        = f.input :password, :as => :password
-        = f.input :password_confirmation, :as => :password
-        .form-action
-          = f.submit "Change my password"
+#log_form
+  = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :class => "form2", :method => :put }) do |f|
+    #form_bg_top
+    #form_bg_mid
+      #form
+        = render "shared/error_messages", :target => resource
+        = f.hidden_field :reset_password_token
+        = raw("密&nbsp&nbsp&nbsp&nbsp码：")
+        = f.password_field :password, :id => "psw"
+        %br
+        = raw("确认密码：")
+        = f.password_field :password_confirmation, :id => "psw"
+        %br
+        = f.submit :id => "submit_bt", :type => "image", :src => image_path("design/submit_buttun_2.jpg")
+        %br
+    #form_bg_foot
 

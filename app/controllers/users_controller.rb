@@ -15,6 +15,16 @@ class UsersController < Devise::RegistrationsController
     end
   end
 
+  def edit
+    if params[:edit_password]
+      @sec_nav = :password
+      render_with_scope :edit_password
+    else
+      @sec_nav = :profile
+      render_with_scope :edit
+    end
+  end
+
   private
     def set_layout
       case params[:action]

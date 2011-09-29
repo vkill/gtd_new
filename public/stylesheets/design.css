@@ -270,8 +270,8 @@ thead {
 #log_form{
 background:url(/images/design/grey_bg.jpg) no-repeat;
 width:1000px;
-height:350px;
-padding-top:100px;
+/*height:350px;*/
+padding-top:30px;
 }
 #form_bg_top{
 background:url(/images/design/login_top.jpg) no-repeat;

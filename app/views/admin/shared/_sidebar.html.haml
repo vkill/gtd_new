@@ -10,14 +10,11 @@
           = sec_nav :profile do
             = link_to "我的资料", edit_user_registration_path(current_user)
           = sec_nav :password do
-            = link_to "修改密码", edit_user_password_path
+            = link_to "修改密码", edit_user_registration_path(current_user, :edit_password => true)
           = sec_nav :logout do
             = link_to "账户注销", destroy_user_session_path, :method => :delete
 
         - when :issues
-          - if can? :read, Business
-            = sec_nav :my_businesses do
-              = link_to "业务办理", businesses_path
           - if can? :read, Business
             = sec_nav :businesses do
               = link_to "业务指派/完成", admin_businesses_path

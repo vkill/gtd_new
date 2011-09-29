@@ -10,25 +10,20 @@
       = main_nav :link, {:class => ""} do
         = link_to "后台管理首页", admin_root_path
 
-      = main_nav :issues, {:class => "dropdown"} do
-        = link_to "任务管理", "#"
-        %ul
-          - if can? :read, Business
-            %li.dropdown
-              = link_to "业务办理", businesses_path
-              %ul
-                - if can? :create, Business
-                  %li.current= link_to "+ 创建新业务", new_business_path
-          - if can?(:assign, Business) or can?(:accept, Business)
-            %li.dropdown
-              = link_to "业务指派/完成", admin_businesses_path
+      - if current_user.has_any_role? :admin, :chief, :staff
+        = main_nav :issues, {:class => "dropdown"} do
+          = link_to "任务管理", "#"
+          %ul
+            - if can?(:assign, Business) or can?(:accept, Business)
+              %li.dropdown
+                = link_to "业务指派/完成", admin_businesses_path
 
-          - if can? :read, Task
-            %li.dropdown
-              = link_to "任务管理", admin_tasks_path
-              %ul
-                - if can? :create, Task
-                  %li= link_to "+ 创建新任务", new_admin_task_path
+            - if can? :read, Task
+              %li.dropdown
+                = link_to "任务管理", admin_tasks_path
+                %ul
+                  - if can? :create, Task
+                    %li= link_to "+ 创建新任务", new_admin_task_path
 
 
       - if current_user.has_role? 'admin' or current_user.has_role? 'chief'
@@ -73,6 +68,6 @@
         = link_to raw("<span>#{image_tag(current_user.url_thumb)}</span>") + current_user.name, "#", :class => "with-profile-image"
         %ul
           %li= link_to "修改个人资料", edit_user_registration_path
-          %li= link_to "修改密码", edit_user_password_path
+          %li= link_to "修改密码", edit_user_registration_path(:edit_password => true)
           %li= link_to "注销账户", destroy_user_session_path, :method => :delete
 

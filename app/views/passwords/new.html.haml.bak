@@ -1,0 +1,15 @@
+#log_form
+  = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :method => :post) do |f|
+    #form_bg_top
+    #form_bg_mid
+      #form
+        = f.error_notification
+        .inputs
+          = f.input :email, :required => true
+          = show_simple_captcha
+        .actions
+          = f.button :submit, "发送密码重置邮件"
+          = link_to "登录", new_user_session_path
+          = link_to "注册", new_user_registration_path
+    #form_bg_foot
+

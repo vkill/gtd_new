@@ -1,19 +1,24 @@
 #log_form
-  = simple_form_for(resource, :as => resource_name, :url => user_registration_path, :validate => true) do |f|
+  = form_for(resource, :as => resource_name, :url => user_registration_path, :html => { :class => "form2" }) do |f|
     #form_bg_top
     #form_bg_mid
       #form
-        = f.error_notification
-        .inputs
-          = f.input :email, :required => true, :autofocus => true
-          = f.input :username, :required => true, :autofocus => true
-          = f.input :name, :required => true, :autofocus => true
-          = f.input :password, :required => true
-          = f.input :password_confirmation, :required => true
-          = show_simple_captcha
-        .actions
-          = f.button :submit, "注册"
-          = link_to "登录", new_user_session_path
-          = link_to "忘记密码?", new_user_password_path
+        = render "shared/error_messages", :target => resource
+        = raw("邮&nbsp&nbsp&nbsp&nbsp箱：")
+        = f.email_field :email, :id => "username"
+        %br
+        = raw("姓&nbsp&nbsp&nbsp&nbsp名：")
+        = f.text_field :name, :id => "username"
+        %br
+        = raw("密&nbsp&nbsp&nbsp&nbsp码：")
+        = f.password_field :password, :id => "psw"
+        %br
+        = raw("确认密码：")
+        = f.password_field :password_confirmation, :id => "psw"
+        %br
+        = show_simple_captcha
+        %br
+        = f.submit :id => "submit_bt", :type => "image", :src => image_path("design/submit_buttun_2.jpg")
+        %br
     #form_bg_foot
 
