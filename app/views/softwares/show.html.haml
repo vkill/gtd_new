@@ -18,8 +18,9 @@
               = attachment.attribute :data_file_size do
                 = number_to_human_size attachment.object.data_file_size
               = attachment.attribute :data do
-                = link_to "download", [:download, @software, attachment.object],
-                                    :title => attachment.object.name, :method => :put
+                = link_to t("download"), [:download, @software, attachment.object],
+                                    :title => attachment.object.name, :method => :put,
+                                    :class => :text_link
               .clear
 
     .clear
