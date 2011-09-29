@@ -1,6 +1,0 @@
-expired_issue:
-  cron: "3 * * * * *"
-  queue: resque_scheduler
-  class: ExpiredIssueWorker
-  args:
-
