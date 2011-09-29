@@ -6,11 +6,13 @@
       %span
         = raw "欢迎您:%s" % (link_to current_user.name, edit_user_registration_path, :title => "个人中心")
       %span
-        &nbsp&nbsp
+        = link_to "修改密码", edit_user_registration_path(:edit_password => true)
       %span
-        = link_to "注销账户", destroy_user_session_path, :method => :delete
-      %span
-        = link_to "后台管理", admin_root_path
+        = link_to "注销", destroy_user_session_path, :method => :delete
+      - if current_user.has_any_role? :admin, :chief, :staff
+        %span
+          = link_to "后台管理", admin_root_path
+
     - else
       = link_to "登录", new_user_session_path
       = link_to "注册", new_user_registration_path

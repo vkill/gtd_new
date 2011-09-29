@@ -9,13 +9,13 @@
           %tr
             %td.table_td(bgcolor="#eaeff1" width="30%")
               业务分类：
-            %td
+            %td(width="70%")
               = f.collection_select :service_id, Service.all, :id, :name, :prompt => true
           %tr
             %td.table_td(bgcolor="#eaeff1")
               业务名称：
             %td
-              = f.text_field :name
+              = f.text_field :name, :size => 19
           %tr
             %td.table_td(bgcolor="#eaeff1")
               业务内容：

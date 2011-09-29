@@ -1,0 +1,23 @@
+= render "shared/left_area"
+
+#right_area
+  #about_text_heading 投诉
+  #about_text
+    = form_for @business, :url => [:add_feedback, @business] do |f|
+      = f.simple_fields_for :feedback, @business.feedback do |f_feedback|
+        %table#table(border="0" width="100%" cellspacing="5" cellpadding="0")
+          %tbody
+            %tr
+              %td.table_td(bgcolor="#eaeff1" width="30%")
+                投诉内容：
+              %td
+                = f_feedback.text_area :body, :rows => 10, :cols => 45
+            %tr
+              %td.table_td
+                = raw "&nbsp;"
+              %td
+                = f.submit "提交", :type => :image, :src => image_path("design/submit_buttun_2.jpg")
+
+  #paginator
+    = render 'paginator'
+

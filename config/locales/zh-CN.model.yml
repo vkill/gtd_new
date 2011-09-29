@@ -105,7 +105,7 @@ zh-CN:
         editor: 创建人
         editor_name: 创建人
         service: 服务
-        service_name: 服务
+        service_name: 服务名称
         service_department_name: 服务所在部门
         created_at: 创建时间
         updated_at: 更新时间
@@ -114,6 +114,7 @@ zh-CN:
         feedback: 反馈
         feedback_state: 反馈状态
         feedback_state_operation: 反馈操作
+        evaluation: 评分
 
       business:
         enums:
@@ -156,6 +157,18 @@ zh-CN:
             processing: 处理中
             processed: 处理完成
 
+      evaluation:
+        id: 序号
+        category: 类别
+        category_text: 类别
+        star_rating: 评分等级
+        issue: 业务/任务
+        created_at: 创建时间
+        updated_at: 更新时间
+        enums:
+          category:
+            good: 好
+            bad: 差
 
       item:
         id: 序号

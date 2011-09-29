@@ -79,11 +79,11 @@ class User < ActiveRecord::Base
   end
 
 
-  validates :username, :presence     => true,
-                       :uniqueness   => { :case_sensitive => false },
-                       :length       => { :within => 4..30 },
-                       :format       => { :with => /^[A-Za-z0-9_\.]+$/ },
-                       :exclusion   => { :in => %w(admin guest administrator root) }
+#  validates :username, :presence     => true,
+#                       :uniqueness   => { :case_sensitive => false },
+#                       :length       => { :within => 4..30 },
+#                       :format       => { :with => /^[A-Za-z0-9_\.]+$/ },
+#                       :exclusion   => { :in => %w(admin guest administrator root) }
   validates :name,     :presence     => true,
                        :length       => { :within => 2..30 }
 
@@ -103,6 +103,11 @@ class User < ActiveRecord::Base
   def has_role?(role)
     return true if role.to_s == "admin" and self.superadmin
     !self.roles.where(:code => role.to_s).blank?
+  end
+
+  def has_any_role?(*roles)
+    return true if roles.map{|x| x.to_s == 'admin'}.index(true) and self.superadmin
+    !self.roles.where(:code => roles).blank?
   end
 
 

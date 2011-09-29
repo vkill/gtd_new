@@ -5,7 +5,33 @@
     .td_6
       = image_tag("design/right.gif") + raw("&nbsp;") + business.state_text
     .td_7
-      = image_tag("design/ts.gif") + raw("&nbsp;") + link_to("投诉", [:add_feedback, business], :class => :text_link)
+      - if business.feedback
+        = image_tag("design/ts.gif") + raw("&nbsp;") + business.feedback.state_text
+      - else
+        = image_tag("design/ts.gif") + raw("&nbsp;") + link_to("我要投诉", [:add_feedback, business], :class => :text_link)
     .td_8
-      = image_tag("design/pf.gif") + raw("&nbsp;") + link_to("评分", "", :class => :text_link)
+      /= image_tag("design/pf.gif") + raw("&nbsp;") + link_to("评分", "", :class => :text_link)
+      .star(id = "star_#{ business.id }" data-business = "#{ business.id }")
+      = content_for :javascript do
+        :javascript
+          $(document).ready(function() {
+            $("#star_#{ business.id }").raty({
+              path: "/javascripts/jquery.raty/img",
+              cancel: true,
+              start: "#{ business.evaluation.star_rating rescue 0 }",
+              click: function(score, evt) {
+                $.post(
+                  "#{ evaluate_business_path(business, :format => "json") }",
+                  { star: score },
+                  function(data){
+                    if (data.evaluated) {
+                      alert("评分成功")
+                    } else {
+                      alert("评分失败")
+                    };
+                  }, "json"
+                );
+              }
+            });
+          })
 

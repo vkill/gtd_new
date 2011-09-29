@@ -1,0 +1,14 @@
+%header.container_12.clearfix
+  .grid_12
+    - title = t("web.page.new", :model => resource_class.model_name.human)
+    %h1= title
+
+%section.container_12.clearfix
+  .portlet.grid_12
+    %header
+      %h2= title
+      = link_to t("web.page.back_to_list"), [resource_class.name.underscore.pluralize], :class => "button"
+
+    %section
+      = render "form", :url => [resource_class.name.underscore.pluralize]
+

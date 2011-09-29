@@ -1,0 +1,21 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    %title
+      = Settings.sitemap.title
+    :css
+      .map li { width:180px; height:30px; padding:15px; line-height:30px; background-color:#f9f9f9; margin-right:10px; float:left; margin-bottom:20px; font-size:14px; height:160px;  }
+
+      .map li dt { background:url(/images/design/icon2.gif) no-repeat 0 11px; padding-left:25px; }
+  %body
+    .map
+      %ul
+        - Settings.sitemap.map.to_hash.each do |category, links|
+          %li
+            = category
+            - links.each do |title, link|
+              %dt
+                - link = eval(link) if link =~ /_(path|url)$/
+                = link_to title, link, :class => :text_link
+

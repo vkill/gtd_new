@@ -13,3 +13,10 @@
   #paginator
     = render 'paginator'
 
+
+= content_for :head do
+  = stylesheet_link_tag '/javascripts/jquery.raty/jquery.raty.css', :media => 'screen'
+
+= content_for :javascript do
+  = javascript_include_tag "jquery.raty/js/jquery.raty"
+

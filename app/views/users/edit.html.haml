@@ -1,11 +1,11 @@
 %header.container_12.clearfix
   .grid_12
-    %h1 我的个人资料
-    
+    %h1 个人资料修改
+
 %section.container_12.clearfix
   .portlet.grid_12
     %header
-      %h2 我的个人资料
+      %h2 个人资料修改
 
     %section
       = simple_form_for @user, :url => user_registration_path(), :method => :put, :html => {:multipart => true, :class => "form has-validation"} do |f|
@@ -23,4 +23,4 @@
 
         .form-action
           = f.button "submit"
-      
+

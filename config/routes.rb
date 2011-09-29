@@ -16,6 +16,7 @@ GtdNew::Application.routes.draw do
     member do
       get :add_feedback
       put :add_feedback
+      post :evaluate
     end
   end
 

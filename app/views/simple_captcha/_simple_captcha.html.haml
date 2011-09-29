@@ -27,12 +27,10 @@
     width: 110px !important;
   }
 
-.input.string.captcha.optional
-  %label(for="user_email" class="captcha optional")
-    = simple_captcha_options[:label]
-  /%input(type="text" value="" size="6" name="captcha" maxlength="255" id="captcha" class="string captcha optional" autofocus="off")
-  = simple_captcha_options[:field]
-  = simple_captcha_options[:image]
-  = simple_captcha_options[:change]
-  /= @captcha_message
+= raw("验&nbsp证&nbsp码：")
+= text_field_tag(:captcha, nil, :autocomplete => 'off', :id => "v_code")
+= link_to(I18n.t('simple_captcha.change'), "/simple_captcha/change",
+            :method => :post, :remote => true, :class => :text_link)
+%br
+= raw '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp' + simple_captcha_options[:image]
 

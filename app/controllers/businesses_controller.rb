@@ -16,18 +16,40 @@ class BusinessesController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
   before_filter :set_current_user
+#  protect_from_forgery :except => [:evaluate]
+
+  def create
+    create!(:notice => t(:create_successful)) { collection_url }
+  end
 
   def add_feedback
     @business = resource
     if request.method == "GET"
       @business.build_feedback
-      @show_colorbox = true
-      render :add_feedback, :layout => false
+#      @show_colorbox = true
+#      render :add_feedback, :layout => false
     else
       update! do |success, failure|
         success.html { redirect_to collection_url, :notice => t(:add_feedback_successful) }
         failure.html { render :add_feedback }
       end
+    end
+  end
+
+  def evaluate
+    evaluation = resource.build_evaluation
+    evaluation.star_rating = params[:star]
+    respond_to do |format|
+      format.json {
+        if evaluation.save
+          evaluated = 1
+          msg = ""
+        else
+          evaluated = 0
+          msg = evaluate.errors
+        end
+        render :json => { :evaluated => evaluated, :msg => msg }.to_json
+      }
     end
   end
 

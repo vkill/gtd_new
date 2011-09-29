@@ -1,11 +1,11 @@
 #bottom
   #bottom_bg_left
   #bottom_bg_mid
-    = link_to "学院首页", "#"
+    = link_to "学院首页", Settings.info.school.website
     |
     = link_to "联系我们", "#"
     |
-    = link_to "站点地图", "#"
+    = link_to "站点地图", page_path(:id => :sitemap)
     %br
     投诉电话：#{Settings.info.school.tel}    业务办理：#{Settings.info.school.tel}    业务咨询：#{Settings.info.school.tel}　　地址：#{Settings.info.school.address}　　邮政编码：#{Settings.info.school.zip_code}
 

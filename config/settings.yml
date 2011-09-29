@@ -4,4 +4,17 @@ info:
     tel: 0838-2650255
     address: 四川省德阳市嘉陵江西路四号
     zip_code: 618000
+    website: "http://www.scac.edu.cn/"
+
+sitemap:
+  title: 站点地图
+  map:
+    首页:
+      首页: "root_path"
+    关于我们:
+      联系我们: ""
+      新闻中心: "posts_path"
+    产品服务:
+      软件下载: "softwares_path"
+      业务办理: "services_path"
 
