@@ -1,0 +1,17 @@
+//label_tag captcha[:label_text]
+= raw("验&nbsp证&nbsp码：")
+= hidden_field_tag captcha[:key_name], captcha[:key], :id => captcha[:key_id]
+= text_field_tag captcha[:field_name], nil, :size => 10
+= link_to captcha[:change_text], captcha[:change_url], :remote => true, :class => :text_link
+%br
+  = raw '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'
+  = image_tag captcha[:img_src], :id => captcha[:img_id], :alt => captcha[:label_text]
+
+
+:css
+  img#simple_captcha{
+    margin: 0px !important;
+    padding: 0px !important;
+    width: 110px !important;
+  }
+

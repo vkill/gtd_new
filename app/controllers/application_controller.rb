@@ -21,9 +21,6 @@ class ApplicationController < ActionController::Base
   end
 
 
-  include SimpleCaptcha::ControllerHelpers
-
-
   def authorize_namespace
     options = self.class.read_inheritable_attribute(:authorize_namespace)
     authorize!(params[:action].to_sym, options[:namespace])

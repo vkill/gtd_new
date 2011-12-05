@@ -1,0 +1,6 @@
+"zh-CN":
+  custom_captcha:
+    label: 验证码
+    change: 看不清？换一张
+    message: 验证码不匹配
+

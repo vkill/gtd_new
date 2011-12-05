@@ -5,9 +5,9 @@ class SessionsController < Devise::SessionsController
   sec_nav_highlight :logout
 
   def create
-    unless simple_captcha_valid?
+    unless custom_captcha_valid?
       resource = build_resource
-      flash[:alert] = @captcha_message = t("simple_captcha.message.default")
+      flash[:alert] = @captcha_message = t("custom_captcha.message")
       render :new
     else
       super

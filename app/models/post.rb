@@ -2,6 +2,19 @@ class Post < Item
 
   symbolize :category, :in => [ :notify, :school_news ], :scopes => true, :methods => true
 
+
+  def after_initialize
+    puts "xxxxx"
+  end
+
+  def after_find
+    puts "yyyyy"
+  end
+  
+  after_initialize do
+    after_initialize
+  end
+
 end
 
 

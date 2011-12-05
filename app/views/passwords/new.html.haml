@@ -7,7 +7,7 @@
         = raw("邮&nbsp&nbsp&nbsp&nbsp箱：")
         = f.email_field :email, :id => "username"
         %br
-        = show_simple_captcha
+        = display_custom_captcha :template => :mycaptcha
         %br
         = f.submit :id => "submit_bt", :type => "image", :src => image_path("design/submit_buttun_2.jpg")
         %br

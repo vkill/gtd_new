@@ -16,7 +16,7 @@
         = raw("确认密码：")
         = f.password_field :password_confirmation, :id => "psw"
         %br
-        = show_simple_captcha
+        = display_custom_captcha :template => :mycaptcha
         %br
         = f.submit :id => "submit_bt", :type => "image", :src => image_path("design/reg.jpg")
         %br

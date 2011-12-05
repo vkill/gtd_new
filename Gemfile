@@ -24,7 +24,7 @@ gem 'haml-rails', '~> 0.3.4'
 gem "high_voltage", "~> 0.9.2"
 
 #jquery
-gem "jquery-rails", "~> 1.0.14"
+gem "jquery-rails", "~> 1.0.16"
 
 #config
 gem "rails_config", "~> 0.2.4"
@@ -76,7 +76,8 @@ gem "yajl-ruby", "~> 1.0.0"
 #gem 'nokogiri', '~> 1.4.4'
 
 #captcha
-gem 'simple_captcha', :git => 'git://github.com/vkill/simple-captcha.git'
+#gem 'simple_captcha', :git => 'git://github.com/vkill/simple-captcha.git'
+gem "custom_captcha", "~> 0.1.0"
 
 #other
 gem "hz2py", "~> 0.0.4"
