@@ -9,8 +9,6 @@
         = raw("密&nbsp&nbsp&nbsp&nbsp码：")
         = f.password_field :password, :id => "psw"
         %br
-        = display_custom_captcha :template => :mycaptcha
-        %br
         = f.submit :id => "submit_bt", :type => "image", :src => image_path("design/submit_buttun.jpg")
         %br
     #form_bg_foot

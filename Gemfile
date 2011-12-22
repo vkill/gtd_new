@@ -77,7 +77,7 @@ gem "yajl-ruby", "~> 1.0.0"
 
 #captcha
 #gem 'simple_captcha', :git => 'git://github.com/vkill/simple-captcha.git'
-gem "custom_captcha", "~> 0.1.0"
+# gem "custom_captcha", "~> 0.1.0"
 
 #other
 gem "hz2py", "~> 0.0.4"

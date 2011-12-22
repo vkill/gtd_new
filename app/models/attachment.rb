@@ -1,12 +1,11 @@
 class Attachment < ActiveRecord::Base
 
   belongs_to :attachmentable, :polymorphic => true
-
-
+  
   has_attached_file :data,
-                    :url  => "/system/attachments/:id/:style_:basename.:extension",
-                    :path => ":rails_root/public/system/attachments/:id/:style_:basename.:extension"
-  validates_attachment_size :data, :less_than => 2.megabytes
+  :url  => "/system/attachments/:id/:style_:basename.:extension",
+  :path => ":rails_root/public/system/attachments/:id/:style_:basename.:extension"
+  validates_attachment_size :data, :less_than => 100.megabytes
 
 
   before_save :build_name
@@ -16,9 +15,9 @@ class Attachment < ActiveRecord::Base
   end
 
   private
-    def build_name
-      self.name = self.data_file_name if self.name.blank?
-    end
+  def build_name
+    self.name = self.data_file_name if self.name.blank?
+  end
 
 end
 
