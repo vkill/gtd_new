@@ -13,10 +13,12 @@
   #table2_bg_left
   #table2_bg_mid
     #table2_heading
-      = link_to image_tag("design/more.gif", :id => :more, :border => 0, :name => :more), [:services]
-    %ul.list_1
-      - @services.each do |service|
-        %li= link_to (raw "&gt;　%s" % truncate(service.name, :length => 16)), [service], :class => :text_link
+      %h2{:style =>'float: left; color: #275696; font-weight: normal; margin-top: 10px; margin-bottom: 0px;'} 机构设置
+      / = link_to image_tag("design/more.gif", :id => :more, :border => 0, :name => :more), [:services]
+      = image_tag('departments.jpg', :height => 160, :style => 'margin-top: 15px; margin-left: 15px; float:left;')
+    / %ul.list_1
+    /   - @services.each do |service|
+    /     %li= link_to (raw "&gt;　%s" % truncate(service.name, :length => 16)), [service], :class => :text_link
   #table2_bg_right
 
 #table_3
